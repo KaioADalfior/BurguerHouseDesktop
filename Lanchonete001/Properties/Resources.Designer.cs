@@ -113,6 +113,16 @@ namespace Lanchonete001.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_burguer_100__1_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8-burguer-100 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_burguer_38 {
             get {
                 object obj = ResourceManager.GetObject("icons8-burguer-38", resourceCulture);
