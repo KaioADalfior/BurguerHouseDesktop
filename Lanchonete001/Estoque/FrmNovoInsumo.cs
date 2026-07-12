@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,13 +14,12 @@ namespace Lanchonete001.Estoque
     public partial class FrmNovoInsumo : Form
     {
         public Insumo InsumoCriado { get; private set; }
-        
+
         private Insumo insumoEmEdicao;
 
         public FrmNovoInsumo()
         {
             InitializeComponent();
-
             ConfigurarCombos();
         }
 
@@ -60,6 +60,12 @@ namespace Lanchonete001.Estoque
             numQuantidadeAtual.Value = insumo.QuantidadeAtual;
             numQuantidadeMinima.Value = insumo.QuantidadeMinima;
             numPrecoUnitario.Value = insumo.PrecoUnitario;
+
+            // Ajusta os textos do cabeçalho e do botão principal para o modo de edição
+            lblTitulo.Text = "Editar Insumo";
+            lblSubtitulo.Text = "Atualize os dados do insumo abaixo";
+            btnSalvarInsumo.Text = "Atualizar";
+            this.Text = "Editar Insumo";
         }
 
         private void SalvarInsumo()
@@ -87,6 +93,17 @@ namespace Lanchonete001.Estoque
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void LimparCampos()
+        {
+            txtNomeInsumo.Clear();
+            cboCategoriaInsumo.SelectedIndex = -1;
+            cboUnidadeInsumo.SelectedIndex = -1;
+            numQuantidadeAtual.Value = 0;
+            numQuantidadeMinima.Value = 0;
+            numPrecoUnitario.Value = 0;
+            txtNomeInsumo.Focus();
         }
 
         private bool ValidarCampos()

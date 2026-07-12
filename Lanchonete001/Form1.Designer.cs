@@ -39,10 +39,11 @@
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblCargo = new System.Windows.Forms.Label();
             this.pictureBox15 = new System.Windows.Forms.PictureBox();
-            this.pictureBox14 = new System.Windows.Forms.PictureBox();
-            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.btnConfiguracoes02 = new System.Windows.Forms.PictureBox();
+            this.pnlBusca = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.panel12 = new System.Windows.Forms.Panel();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.btnConfiguracoes = new System.Windows.Forms.Panel();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.label12 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
@@ -77,34 +78,44 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pnlIndicadorAtivo = new System.Windows.Forms.Panel();
             this.pnlConteudo = new System.Windows.Forms.Panel();
-            this.panel18 = new System.Windows.Forms.Panel();
-            this.label22 = new System.Windows.Forms.Label();
-            this.lblDescricaoEstoque = new System.Windows.Forms.Label();
-            this.lblValorEstoque = new System.Windows.Forms.Label();
-            this.pictureBox20 = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.pnlAccentVendas = new System.Windows.Forms.Panel();
+            this.pnlIconVendas = new System.Windows.Forms.Panel();
+            this.pictureBox18 = new System.Windows.Forms.PictureBox();
             this.label16 = new System.Windows.Forms.Label();
             this.lblDescricaoCardTotalVendas = new System.Windows.Forms.Label();
             this.lblValorCardTotalVendas = new System.Windows.Forms.Label();
-            this.pictureBox18 = new System.Windows.Forms.PictureBox();
             this.panel16 = new System.Windows.Forms.Panel();
+            this.pnlAccentPedidos = new System.Windows.Forms.Panel();
+            this.pnlIconPedidos = new System.Windows.Forms.Panel();
+            this.pictureBox17 = new System.Windows.Forms.PictureBox();
             this.label = new System.Windows.Forms.Label();
             this.lblTituloCardPedidos = new System.Windows.Forms.Label();
             this.lblValorCardPedidos = new System.Windows.Forms.Label();
-            this.pictureBox17 = new System.Windows.Forms.PictureBox();
             this.lvlValorMesas = new System.Windows.Forms.Panel();
+            this.pnlAccentMesas = new System.Windows.Forms.Panel();
+            this.pnlIconMesas = new System.Windows.Forms.Panel();
+            this.pictureBox19 = new System.Windows.Forms.PictureBox();
             this.label19 = new System.Windows.Forms.Label();
             this.lblDescricaoMesas = new System.Windows.Forms.Label();
             this.lblValorCardMesas = new System.Windows.Forms.Label();
-            this.pictureBox19 = new System.Windows.Forms.PictureBox();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.pnlAccentEstoque = new System.Windows.Forms.Panel();
+            this.pnlIconEstoque = new System.Windows.Forms.Panel();
+            this.pictureBox20 = new System.Windows.Forms.PictureBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.lblDescricaoEstoque = new System.Windows.Forms.Label();
+            this.lblValorEstoque = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.pnlRodape = new System.Windows.Forms.Panel();
             this.lblUsuarioConectado = new System.Windows.Forms.Label();
             this.lblHora = new System.Windows.Forms.Label();
             this.lblData = new System.Windows.Forms.Label();
+            this.pnlStatusDot = new System.Windows.Forms.Panel();
             this.lblStatusBanco = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.pnlCorpo = new System.Windows.Forms.Panel();
@@ -118,9 +129,10 @@
             this.panel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnConfiguracoes02)).BeginInit();
+            this.pnlBusca.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
-            this.panel12.SuspendLayout();
+            this.btnConfiguracoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.panel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
@@ -143,15 +155,19 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlConteudo.SuspendLayout();
-            this.panel18.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel13.SuspendLayout();
+            this.pnlIconVendas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
             this.panel16.SuspendLayout();
+            this.pnlIconPedidos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
             this.lvlValorMesas.SuspendLayout();
+            this.pnlIconMesas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
+            this.panel18.SuspendLayout();
+            this.pnlIconEstoque.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
             this.pnlRodape.SuspendLayout();
             this.pnlCorpo.SuspendLayout();
             this.pnlMenuLateral.SuspendLayout();
@@ -174,6 +190,7 @@
             // pictureBox7
             // 
             this.pictureBox7.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_motorcycle_38;
+            this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox7.Location = new System.Drawing.Point(24, 3);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(40, 40);
@@ -183,20 +200,22 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.SystemColors.Window;
-            this.label8.Location = new System.Drawing.Point(77, 10);
+            this.label8.Font = new System.Drawing.Font("Poppins", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(221)))), ((int)(((byte)(203)))));
+            this.label8.Location = new System.Drawing.Point(77, 13);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(75, 28);
+            this.label8.Size = new System.Drawing.Size(67, 25);
             this.label8.TabIndex = 1;
             this.label8.Text = "Delivery";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.Window;
-            this.label2.Location = new System.Drawing.Point(77, 10);
+            this.label2.Font = new System.Drawing.Font("Poppins SemiBold", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(77, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 28);
+            this.label2.Size = new System.Drawing.Size(90, 25);
             this.label2.TabIndex = 1;
             this.label2.Text = "Dashboard";
             // 
@@ -204,8 +223,7 @@
             // 
             this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(22)))), ((int)(((byte)(52)))));
             this.pnlHeader.Controls.Add(this.panel15);
-            this.pnlHeader.Controls.Add(this.pictureBox13);
-            this.pnlHeader.Controls.Add(this.textBox1);
+            this.pnlHeader.Controls.Add(this.pnlBusca);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
@@ -218,7 +236,7 @@
             this.panel15.Controls.Add(this.lblUsuario);
             this.panel15.Controls.Add(this.lblCargo);
             this.panel15.Controls.Add(this.pictureBox15);
-            this.panel15.Controls.Add(this.pictureBox14);
+            this.panel15.Controls.Add(this.btnConfiguracoes02);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel15.Location = new System.Drawing.Point(967, 0);
             this.panel15.Name = "panel15";
@@ -240,20 +258,20 @@
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Font = new System.Drawing.Font("Poppins", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuario.Font = new System.Drawing.Font("Poppins SemiBold", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(221)))), ((int)(((byte)(203)))));
-            this.lblUsuario.Location = new System.Drawing.Point(3, 6);
+            this.lblUsuario.Location = new System.Drawing.Point(3, 5);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(63, 19);
+            this.lblUsuario.Size = new System.Drawing.Size(71, 22);
             this.lblUsuario.TabIndex = 7;
             this.lblUsuario.Text = "lblUsuario";
             // 
             // lblCargo
             // 
             this.lblCargo.AutoSize = true;
-            this.lblCargo.Font = new System.Drawing.Font("Poppins", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCargo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(221)))), ((int)(((byte)(203)))));
-            this.lblCargo.Location = new System.Drawing.Point(3, 24);
+            this.lblCargo.Font = new System.Drawing.Font("Poppins", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCargo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(205)))));
+            this.lblCargo.Location = new System.Drawing.Point(3, 23);
             this.lblCargo.Name = "lblCargo";
             this.lblCargo.Size = new System.Drawing.Size(55, 19);
             this.lblCargo.TabIndex = 6;
@@ -271,66 +289,83 @@
             this.pictureBox15.TabIndex = 5;
             this.pictureBox15.TabStop = false;
             // 
-            // pictureBox14
+            // btnConfiguracoes02
             // 
-            this.pictureBox14.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_config_38;
-            this.pictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox14.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox14.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox14.Location = new System.Drawing.Point(319, 0);
-            this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(40, 46);
-            this.pictureBox14.TabIndex = 4;
-            this.pictureBox14.TabStop = false;
+            this.btnConfiguracoes02.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_config_38;
+            this.btnConfiguracoes02.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnConfiguracoes02.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConfiguracoes02.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnConfiguracoes02.Location = new System.Drawing.Point(319, 0);
+            this.btnConfiguracoes02.Name = "btnConfiguracoes02";
+            this.btnConfiguracoes02.Size = new System.Drawing.Size(40, 46);
+            this.btnConfiguracoes02.TabIndex = 4;
+            this.btnConfiguracoes02.TabStop = false;
+            this.btnConfiguracoes02.Click += new System.EventHandler(this.btnConfiguracoes02_Click);
+            // 
+            // pnlBusca
+            // 
+            this.pnlBusca.BackColor = System.Drawing.Color.White;
+            this.pnlBusca.Controls.Add(this.textBox1);
+            this.pnlBusca.Controls.Add(this.pictureBox13);
+            this.pnlBusca.Location = new System.Drawing.Point(16, 8);
+            this.pnlBusca.Name = "pnlBusca";
+            this.pnlBusca.Size = new System.Drawing.Size(260, 30);
+            this.pnlBusca.TabIndex = 15;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(12, 6);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(206, 20);
+            this.textBox1.TabIndex = 0;
             // 
             // pictureBox13
             // 
             this.pictureBox13.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_search_30;
-            this.pictureBox13.Location = new System.Drawing.Point(230, 6);
+            this.pictureBox13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox13.Location = new System.Drawing.Point(224, 0);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(30, 30);
             this.pictureBox13.TabIndex = 13;
             this.pictureBox13.TabStop = false;
             // 
-            // textBox1
+            // btnConfiguracoes
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(12, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(212, 27);
-            this.textBox1.TabIndex = 0;
-            // 
-            // panel12
-            // 
-            this.panel12.Controls.Add(this.pictureBox11);
-            this.panel12.Controls.Add(this.label12);
-            this.panel12.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panel12.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel12.Location = new System.Drawing.Point(0, 602);
-            this.panel12.Name = "panel12";
-            this.panel12.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
-            this.panel12.Size = new System.Drawing.Size(260, 48);
-            this.panel12.TabIndex = 10;
+            this.btnConfiguracoes.Controls.Add(this.pictureBox11);
+            this.btnConfiguracoes.Controls.Add(this.label12);
+            this.btnConfiguracoes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConfiguracoes.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfiguracoes.Location = new System.Drawing.Point(0, 602);
+            this.btnConfiguracoes.Name = "btnConfiguracoes";
+            this.btnConfiguracoes.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
+            this.btnConfiguracoes.Size = new System.Drawing.Size(260, 48);
+            this.btnConfiguracoes.TabIndex = 10;
+            this.btnConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click);
             // 
             // pictureBox11
             // 
             this.pictureBox11.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_config_38;
+            this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox11.Location = new System.Drawing.Point(24, 3);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(40, 40);
             this.pictureBox11.TabIndex = 3;
             this.pictureBox11.TabStop = false;
+            this.pictureBox11.Click += new System.EventHandler(this.btnConfiguracoes_Click);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.SystemColors.Window;
-            this.label12.Location = new System.Drawing.Point(77, 10);
+            this.label12.Font = new System.Drawing.Font("Poppins", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(221)))), ((int)(((byte)(203)))));
+            this.label12.Location = new System.Drawing.Point(77, 13);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(129, 28);
+            this.label12.Size = new System.Drawing.Size(115, 25);
             this.label12.TabIndex = 1;
             this.label12.Text = "Configurações";
+            this.label12.Click += new System.EventHandler(this.btnConfiguracoes_Click);
             // 
             // panel11
             // 
@@ -347,6 +382,7 @@
             // pictureBox10
             // 
             this.pictureBox10.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_combo_chart_38;
+            this.pictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox10.Location = new System.Drawing.Point(24, 3);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(40, 40);
@@ -356,10 +392,11 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.ForeColor = System.Drawing.SystemColors.Window;
-            this.label11.Location = new System.Drawing.Point(77, 10);
+            this.label11.Font = new System.Drawing.Font("Poppins", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(221)))), ((int)(((byte)(203)))));
+            this.label11.Location = new System.Drawing.Point(77, 13);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(91, 28);
+            this.label11.Size = new System.Drawing.Size(80, 25);
             this.label11.TabIndex = 1;
             this.label11.Text = "Relatórios";
             // 
@@ -378,6 +415,7 @@
             // pictureBox5
             // 
             this.pictureBox5.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_receipt_38;
+            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox5.Location = new System.Drawing.Point(24, 3);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(40, 40);
@@ -387,16 +425,17 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.SystemColors.Window;
-            this.label6.Location = new System.Drawing.Point(77, 10);
+            this.label6.Font = new System.Drawing.Font("Poppins", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(221)))), ((int)(((byte)(203)))));
+            this.label6.Location = new System.Drawing.Point(77, 13);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 28);
+            this.label6.Size = new System.Drawing.Size(66, 25);
             this.label6.TabIndex = 1;
             this.label6.Text = "Pedidos";
             // 
             // panel14
             // 
-            this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(128)))));
+            this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
             this.panel14.Location = new System.Drawing.Point(24, 656);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(212, 1);
@@ -418,6 +457,7 @@
             // pictureBox12
             // 
             this.pictureBox12.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_close_38;
+            this.pictureBox12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox12.Location = new System.Drawing.Point(24, 3);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(40, 40);
@@ -427,10 +467,11 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.SystemColors.Window;
-            this.label13.Location = new System.Drawing.Point(77, 10);
+            this.label13.Font = new System.Drawing.Font("Poppins", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(221)))), ((int)(((byte)(203)))));
+            this.label13.Location = new System.Drawing.Point(77, 13);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(42, 28);
+            this.label13.Size = new System.Drawing.Size(37, 25);
             this.label13.TabIndex = 1;
             this.label13.Text = "Sair";
             // 
@@ -449,6 +490,7 @@
             // pictureBox9
             // 
             this.pictureBox9.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_us_dollar_circled_38;
+            this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox9.Location = new System.Drawing.Point(24, 3);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(40, 40);
@@ -458,10 +500,11 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.SystemColors.Window;
-            this.label10.Location = new System.Drawing.Point(77, 10);
+            this.label10.Font = new System.Drawing.Font("Poppins", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(221)))), ((int)(((byte)(203)))));
+            this.label10.Location = new System.Drawing.Point(77, 13);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(95, 28);
+            this.label10.Size = new System.Drawing.Size(84, 25);
             this.label10.TabIndex = 1;
             this.label10.Text = "Financeiro";
             // 
@@ -480,6 +523,7 @@
             // pictureBox8
             // 
             this.pictureBox8.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_users_38;
+            this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox8.Location = new System.Drawing.Point(24, 3);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(40, 40);
@@ -489,10 +533,11 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.SystemColors.Window;
-            this.label9.Location = new System.Drawing.Point(77, 10);
+            this.label9.Font = new System.Drawing.Font("Poppins", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(221)))), ((int)(((byte)(203)))));
+            this.label9.Location = new System.Drawing.Point(77, 13);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(76, 28);
+            this.label9.Size = new System.Drawing.Size(68, 25);
             this.label9.TabIndex = 1;
             this.label9.Text = "Clientes";
             // 
@@ -511,6 +556,7 @@
             // pictureBox6
             // 
             this.pictureBox6.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_utensils_38;
+            this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox6.Location = new System.Drawing.Point(24, 3);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(40, 40);
@@ -520,10 +566,11 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.SystemColors.Window;
-            this.label7.Location = new System.Drawing.Point(77, 10);
+            this.label7.Font = new System.Drawing.Font("Poppins", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(221)))), ((int)(((byte)(203)))));
+            this.label7.Location = new System.Drawing.Point(77, 13);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 28);
+            this.label7.Size = new System.Drawing.Size(56, 25);
             this.label7.TabIndex = 1;
             this.label7.Text = "Mesas";
             // 
@@ -543,6 +590,7 @@
             // pictureBox4
             // 
             this.pictureBox4.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_box_38;
+            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox4.Location = new System.Drawing.Point(24, 3);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(40, 40);
@@ -553,10 +601,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.SystemColors.Window;
-            this.label5.Location = new System.Drawing.Point(77, 10);
+            this.label5.Font = new System.Drawing.Font("Poppins", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(221)))), ((int)(((byte)(203)))));
+            this.label5.Location = new System.Drawing.Point(77, 13);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(75, 28);
+            this.label5.Size = new System.Drawing.Size(67, 25);
             this.label5.TabIndex = 1;
             this.label5.Text = "Estoque";
             this.label5.Click += new System.EventHandler(this.btnEstoque_Click);
@@ -576,6 +625,7 @@
             // pictureBox2
             // 
             this.pictureBox2.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_burguer_38;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox2.Location = new System.Drawing.Point(24, 3);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(40, 40);
@@ -585,10 +635,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.SystemColors.Window;
-            this.label3.Location = new System.Drawing.Point(77, 10);
+            this.label3.Font = new System.Drawing.Font("Poppins", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(221)))), ((int)(((byte)(203)))));
+            this.label3.Location = new System.Drawing.Point(77, 13);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 28);
+            this.label3.Size = new System.Drawing.Size(70, 25);
             this.label3.TabIndex = 1;
             this.label3.Text = "Lanches";
             // 
@@ -607,6 +658,7 @@
             // pictureBox3
             // 
             this.pictureBox3.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_soda_38;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox3.Location = new System.Drawing.Point(24, 3);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(40, 40);
@@ -616,16 +668,17 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.SystemColors.Window;
-            this.label4.Location = new System.Drawing.Point(77, 10);
+            this.label4.Font = new System.Drawing.Font("Poppins", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(221)))), ((int)(((byte)(203)))));
+            this.label4.Location = new System.Drawing.Point(77, 13);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 28);
+            this.label4.Size = new System.Drawing.Size(67, 25);
             this.label4.TabIndex = 1;
             this.label4.Text = "Bebidas";
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(128)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
             this.panel1.Location = new System.Drawing.Point(24, 55);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(212, 1);
@@ -646,6 +699,7 @@
             // 
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.pnlIndicadorAtivo);
             this.panel2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel2.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel2.Location = new System.Drawing.Point(0, 62);
@@ -657,17 +711,25 @@
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_house_38;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Location = new System.Drawing.Point(24, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(40, 40);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
+            // pnlIndicadorAtivo
+            // 
+            this.pnlIndicadorAtivo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(128)))));
+            this.pnlIndicadorAtivo.Location = new System.Drawing.Point(0, 0);
+            this.pnlIndicadorAtivo.Name = "pnlIndicadorAtivo";
+            this.pnlIndicadorAtivo.Size = new System.Drawing.Size(4, 48);
+            this.pnlIndicadorAtivo.TabIndex = 4;
+            // 
             // pnlConteudo
             // 
             this.pnlConteudo.AutoScroll = true;
             this.pnlConteudo.AutoSize = true;
-            this.pnlConteudo.Controls.Add(this.panel18);
             this.pnlConteudo.Controls.Add(this.flowLayoutPanel1);
             this.pnlConteudo.Controls.Add(this.label15);
             this.pnlConteudo.Controls.Add(this.label14);
@@ -680,242 +742,334 @@
             this.pnlConteudo.Size = new System.Drawing.Size(1046, 771);
             this.pnlConteudo.TabIndex = 1;
             // 
-            // panel18
-            // 
-            this.panel18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(128)))));
-            this.panel18.Controls.Add(this.label22);
-            this.panel18.Controls.Add(this.lblDescricaoEstoque);
-            this.panel18.Controls.Add(this.lblValorEstoque);
-            this.panel18.Controls.Add(this.pictureBox20);
-            this.panel18.Location = new System.Drawing.Point(768, 96);
-            this.panel18.Margin = new System.Windows.Forms.Padding(0, 0, 24, 0);
-            this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(230, 140);
-            this.panel18.TabIndex = 9;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(60, 20);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(127, 28);
-            this.label22.TabIndex = 7;
-            this.label22.Text = "Estoque Baixo";
-            // 
-            // lblDescricaoEstoque
-            // 
-            this.lblDescricaoEstoque.AutoSize = true;
-            this.lblDescricaoEstoque.Font = new System.Drawing.Font("Poppins Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescricaoEstoque.Location = new System.Drawing.Point(20, 96);
-            this.lblDescricaoEstoque.Name = "lblDescricaoEstoque";
-            this.lblDescricaoEstoque.Size = new System.Drawing.Size(65, 23);
-            this.lblDescricaoEstoque.TabIndex = 6;
-            this.lblDescricaoEstoque.Text = "label23";
-            // 
-            // lblValorEstoque
-            // 
-            this.lblValorEstoque.AutoSize = true;
-            this.lblValorEstoque.Font = new System.Drawing.Font("Poppins", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorEstoque.Location = new System.Drawing.Point(20, 64);
-            this.lblValorEstoque.Name = "lblValorEstoque";
-            this.lblValorEstoque.Size = new System.Drawing.Size(89, 34);
-            this.lblValorEstoque.TabIndex = 5;
-            this.lblValorEstoque.Text = "label24";
-            // 
-            // pictureBox20
-            // 
-            this.pictureBox20.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_error_32;
-            this.pictureBox20.Location = new System.Drawing.Point(20, 20);
-            this.pictureBox20.Name = "pictureBox20";
-            this.pictureBox20.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox20.TabIndex = 4;
-            this.pictureBox20.TabStop = false;
-            // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(221)))), ((int)(((byte)(203)))));
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.flowLayoutPanel1.Controls.Add(this.panel13);
             this.flowLayoutPanel1.Controls.Add(this.panel16);
             this.flowLayoutPanel1.Controls.Add(this.lvlValorMesas);
+            this.flowLayoutPanel1.Controls.Add(this.panel18);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 96);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1000, 140);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1000, 150);
             this.flowLayoutPanel1.TabIndex = 3;
             this.flowLayoutPanel1.WrapContents = false;
             // 
             // panel13
             // 
-            this.panel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(128)))));
+            this.panel13.BackColor = System.Drawing.Color.White;
+            this.panel13.Controls.Add(this.pnlAccentVendas);
+            this.panel13.Controls.Add(this.pnlIconVendas);
             this.panel13.Controls.Add(this.label16);
             this.panel13.Controls.Add(this.lblDescricaoCardTotalVendas);
             this.panel13.Controls.Add(this.lblValorCardTotalVendas);
-            this.panel13.Controls.Add(this.pictureBox18);
             this.panel13.Location = new System.Drawing.Point(0, 0);
             this.panel13.Margin = new System.Windows.Forms.Padding(0, 0, 24, 0);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(230, 140);
             this.panel13.TabIndex = 8;
             // 
+            // pnlAccentVendas
+            // 
+            this.pnlAccentVendas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.pnlAccentVendas.Location = new System.Drawing.Point(0, 0);
+            this.pnlAccentVendas.Name = "pnlAccentVendas";
+            this.pnlAccentVendas.Size = new System.Drawing.Size(6, 140);
+            this.pnlAccentVendas.TabIndex = 8;
+            // 
+            // pnlIconVendas
+            // 
+            this.pnlIconVendas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.pnlIconVendas.Controls.Add(this.pictureBox18);
+            this.pnlIconVendas.Location = new System.Drawing.Point(26, 20);
+            this.pnlIconVendas.Name = "pnlIconVendas";
+            this.pnlIconVendas.Size = new System.Drawing.Size(48, 48);
+            this.pnlIconVendas.TabIndex = 7;
+            // 
+            // pictureBox18
+            // 
+            this.pictureBox18.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_us_dollar_circled_32;
+            this.pictureBox18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox18.Location = new System.Drawing.Point(8, 8);
+            this.pictureBox18.Name = "pictureBox18";
+            this.pictureBox18.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox18.TabIndex = 4;
+            this.pictureBox18.TabStop = false;
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(60, 20);
+            this.label16.Font = new System.Drawing.Font("Poppins", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.label16.Location = new System.Drawing.Point(84, 34);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(144, 28);
+            this.label16.Size = new System.Drawing.Size(130, 25);
             this.label16.TabIndex = 7;
             this.label16.Text = "Total de Vendas";
             // 
             // lblDescricaoCardTotalVendas
             // 
             this.lblDescricaoCardTotalVendas.AutoSize = true;
-            this.lblDescricaoCardTotalVendas.Font = new System.Drawing.Font("Poppins Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescricaoCardTotalVendas.Location = new System.Drawing.Point(20, 96);
+            this.lblDescricaoCardTotalVendas.Font = new System.Drawing.Font("Poppins Medium", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescricaoCardTotalVendas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.lblDescricaoCardTotalVendas.Location = new System.Drawing.Point(26, 105);
             this.lblDescricaoCardTotalVendas.Name = "lblDescricaoCardTotalVendas";
-            this.lblDescricaoCardTotalVendas.Size = new System.Drawing.Size(61, 23);
+            this.lblDescricaoCardTotalVendas.Size = new System.Drawing.Size(57, 22);
             this.lblDescricaoCardTotalVendas.TabIndex = 6;
             this.lblDescricaoCardTotalVendas.Text = "label17";
             // 
             // lblValorCardTotalVendas
             // 
             this.lblValorCardTotalVendas.AutoSize = true;
-            this.lblValorCardTotalVendas.Font = new System.Drawing.Font("Poppins", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorCardTotalVendas.Location = new System.Drawing.Point(20, 64);
+            this.lblValorCardTotalVendas.Font = new System.Drawing.Font("Poppins", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorCardTotalVendas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.lblValorCardTotalVendas.Location = new System.Drawing.Point(26, 76);
             this.lblValorCardTotalVendas.Name = "lblValorCardTotalVendas";
-            this.lblValorCardTotalVendas.Size = new System.Drawing.Size(84, 34);
+            this.lblValorCardTotalVendas.Size = new System.Drawing.Size(95, 39);
             this.lblValorCardTotalVendas.TabIndex = 5;
             this.lblValorCardTotalVendas.Text = "label18";
             // 
-            // pictureBox18
-            // 
-            this.pictureBox18.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_us_dollar_circled_32;
-            this.pictureBox18.Location = new System.Drawing.Point(20, 20);
-            this.pictureBox18.Name = "pictureBox18";
-            this.pictureBox18.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox18.TabIndex = 4;
-            this.pictureBox18.TabStop = false;
-            // 
             // panel16
             // 
-            this.panel16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(128)))));
+            this.panel16.BackColor = System.Drawing.Color.White;
+            this.panel16.Controls.Add(this.pnlAccentPedidos);
+            this.panel16.Controls.Add(this.pnlIconPedidos);
             this.panel16.Controls.Add(this.label);
             this.panel16.Controls.Add(this.lblTituloCardPedidos);
             this.panel16.Controls.Add(this.lblValorCardPedidos);
-            this.panel16.Controls.Add(this.pictureBox17);
             this.panel16.Location = new System.Drawing.Point(254, 0);
             this.panel16.Margin = new System.Windows.Forms.Padding(0, 0, 24, 0);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(230, 140);
             this.panel16.TabIndex = 1;
             // 
+            // pnlAccentPedidos
+            // 
+            this.pnlAccentPedidos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(22)))), ((int)(((byte)(52)))));
+            this.pnlAccentPedidos.Location = new System.Drawing.Point(0, 0);
+            this.pnlAccentPedidos.Name = "pnlAccentPedidos";
+            this.pnlAccentPedidos.Size = new System.Drawing.Size(6, 140);
+            this.pnlAccentPedidos.TabIndex = 8;
+            // 
+            // pnlIconPedidos
+            // 
+            this.pnlIconPedidos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(22)))), ((int)(((byte)(52)))));
+            this.pnlIconPedidos.Controls.Add(this.pictureBox17);
+            this.pnlIconPedidos.Location = new System.Drawing.Point(26, 20);
+            this.pnlIconPedidos.Name = "pnlIconPedidos";
+            this.pnlIconPedidos.Size = new System.Drawing.Size(48, 48);
+            this.pnlIconPedidos.TabIndex = 7;
+            // 
+            // pictureBox17
+            // 
+            this.pictureBox17.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_receipt_32;
+            this.pictureBox17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox17.Location = new System.Drawing.Point(8, 8);
+            this.pictureBox17.Name = "pictureBox17";
+            this.pictureBox17.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox17.TabIndex = 4;
+            this.pictureBox17.TabStop = false;
+            // 
             // label
             // 
             this.label.AutoSize = true;
-            this.label.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label.Location = new System.Drawing.Point(60, 20);
+            this.label.Font = new System.Drawing.Font("Poppins", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.label.Location = new System.Drawing.Point(84, 34);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(118, 28);
+            this.label.Size = new System.Drawing.Size(106, 25);
             this.label.TabIndex = 7;
             this.label.Text = "Pedidos Hoje";
             // 
             // lblTituloCardPedidos
             // 
             this.lblTituloCardPedidos.AutoSize = true;
-            this.lblTituloCardPedidos.Font = new System.Drawing.Font("Poppins Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTituloCardPedidos.Location = new System.Drawing.Point(20, 96);
+            this.lblTituloCardPedidos.Font = new System.Drawing.Font("Poppins Medium", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTituloCardPedidos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.lblTituloCardPedidos.Location = new System.Drawing.Point(26, 105);
             this.lblTituloCardPedidos.Name = "lblTituloCardPedidos";
-            this.lblTituloCardPedidos.Size = new System.Drawing.Size(105, 23);
+            this.lblTituloCardPedidos.Size = new System.Drawing.Size(100, 22);
             this.lblTituloCardPedidos.TabIndex = 6;
             this.lblTituloCardPedidos.Text = "lblTituloCard";
             // 
             // lblValorCardPedidos
             // 
             this.lblValorCardPedidos.AutoSize = true;
-            this.lblValorCardPedidos.Font = new System.Drawing.Font("Poppins", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorCardPedidos.Location = new System.Drawing.Point(20, 64);
+            this.lblValorCardPedidos.Font = new System.Drawing.Font("Poppins", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorCardPedidos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.lblValorCardPedidos.Location = new System.Drawing.Point(26, 76);
             this.lblValorCardPedidos.Name = "lblValorCardPedidos";
-            this.lblValorCardPedidos.Size = new System.Drawing.Size(141, 34);
+            this.lblValorCardPedidos.Size = new System.Drawing.Size(160, 39);
             this.lblValorCardPedidos.TabIndex = 5;
             this.lblValorCardPedidos.Text = "lblValorCard";
             // 
-            // pictureBox17
-            // 
-            this.pictureBox17.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_receipt_32;
-            this.pictureBox17.Location = new System.Drawing.Point(20, 20);
-            this.pictureBox17.Name = "pictureBox17";
-            this.pictureBox17.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox17.TabIndex = 4;
-            this.pictureBox17.TabStop = false;
-            // 
             // lvlValorMesas
             // 
-            this.lvlValorMesas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(128)))));
+            this.lvlValorMesas.BackColor = System.Drawing.Color.White;
+            this.lvlValorMesas.Controls.Add(this.pnlAccentMesas);
+            this.lvlValorMesas.Controls.Add(this.pnlIconMesas);
             this.lvlValorMesas.Controls.Add(this.label19);
             this.lvlValorMesas.Controls.Add(this.lblDescricaoMesas);
             this.lvlValorMesas.Controls.Add(this.lblValorCardMesas);
-            this.lvlValorMesas.Controls.Add(this.pictureBox19);
             this.lvlValorMesas.Location = new System.Drawing.Point(508, 0);
             this.lvlValorMesas.Margin = new System.Windows.Forms.Padding(0, 0, 24, 0);
             this.lvlValorMesas.Name = "lvlValorMesas";
             this.lvlValorMesas.Size = new System.Drawing.Size(230, 140);
             this.lvlValorMesas.TabIndex = 8;
             // 
+            // pnlAccentMesas
+            // 
+            this.pnlAccentMesas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(128)))));
+            this.pnlAccentMesas.Location = new System.Drawing.Point(0, 0);
+            this.pnlAccentMesas.Name = "pnlAccentMesas";
+            this.pnlAccentMesas.Size = new System.Drawing.Size(6, 140);
+            this.pnlAccentMesas.TabIndex = 8;
+            // 
+            // pnlIconMesas
+            // 
+            this.pnlIconMesas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(128)))));
+            this.pnlIconMesas.Controls.Add(this.pictureBox19);
+            this.pnlIconMesas.Location = new System.Drawing.Point(26, 20);
+            this.pnlIconMesas.Name = "pnlIconMesas";
+            this.pnlIconMesas.Size = new System.Drawing.Size(48, 48);
+            this.pnlIconMesas.TabIndex = 7;
+            // 
+            // pictureBox19
+            // 
+            this.pictureBox19.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_utensils_32;
+            this.pictureBox19.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox19.Location = new System.Drawing.Point(8, 8);
+            this.pictureBox19.Name = "pictureBox19";
+            this.pictureBox19.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox19.TabIndex = 4;
+            this.pictureBox19.TabStop = false;
+            // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(60, 20);
+            this.label19.Font = new System.Drawing.Font("Poppins", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.label19.Location = new System.Drawing.Point(84, 34);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(156, 28);
+            this.label19.Size = new System.Drawing.Size(139, 25);
             this.label19.TabIndex = 7;
             this.label19.Text = "Mesas Ocupadas";
             // 
             // lblDescricaoMesas
             // 
             this.lblDescricaoMesas.AutoSize = true;
-            this.lblDescricaoMesas.Font = new System.Drawing.Font("Poppins Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescricaoMesas.Location = new System.Drawing.Point(20, 96);
+            this.lblDescricaoMesas.Font = new System.Drawing.Font("Poppins Medium", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescricaoMesas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(120)))), ((int)(((byte)(70)))));
+            this.lblDescricaoMesas.Location = new System.Drawing.Point(26, 105);
             this.lblDescricaoMesas.Name = "lblDescricaoMesas";
-            this.lblDescricaoMesas.Size = new System.Drawing.Size(65, 23);
+            this.lblDescricaoMesas.Size = new System.Drawing.Size(61, 22);
             this.lblDescricaoMesas.TabIndex = 6;
             this.lblDescricaoMesas.Text = "label20";
             // 
             // lblValorCardMesas
             // 
             this.lblValorCardMesas.AutoSize = true;
-            this.lblValorCardMesas.Font = new System.Drawing.Font("Poppins", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorCardMesas.Location = new System.Drawing.Point(20, 64);
+            this.lblValorCardMesas.Font = new System.Drawing.Font("Poppins", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorCardMesas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.lblValorCardMesas.Location = new System.Drawing.Point(26, 76);
             this.lblValorCardMesas.Name = "lblValorCardMesas";
-            this.lblValorCardMesas.Size = new System.Drawing.Size(83, 34);
+            this.lblValorCardMesas.Size = new System.Drawing.Size(94, 39);
             this.lblValorCardMesas.TabIndex = 5;
             this.lblValorCardMesas.Text = "label21";
             // 
-            // pictureBox19
+            // panel18
             // 
-            this.pictureBox19.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_utensils_32;
-            this.pictureBox19.Location = new System.Drawing.Point(20, 20);
-            this.pictureBox19.Name = "pictureBox19";
-            this.pictureBox19.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox19.TabIndex = 4;
-            this.pictureBox19.TabStop = false;
+            this.panel18.BackColor = System.Drawing.Color.White;
+            this.panel18.Controls.Add(this.pnlAccentEstoque);
+            this.panel18.Controls.Add(this.pnlIconEstoque);
+            this.panel18.Controls.Add(this.label22);
+            this.panel18.Controls.Add(this.lblDescricaoEstoque);
+            this.panel18.Controls.Add(this.lblValorEstoque);
+            this.panel18.Location = new System.Drawing.Point(762, 0);
+            this.panel18.Margin = new System.Windows.Forms.Padding(0, 0, 24, 0);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(230, 140);
+            this.panel18.TabIndex = 9;
+            // 
+            // pnlAccentEstoque
+            // 
+            this.pnlAccentEstoque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.pnlAccentEstoque.Location = new System.Drawing.Point(0, 0);
+            this.pnlAccentEstoque.Name = "pnlAccentEstoque";
+            this.pnlAccentEstoque.Size = new System.Drawing.Size(6, 140);
+            this.pnlAccentEstoque.TabIndex = 8;
+            // 
+            // pnlIconEstoque
+            // 
+            this.pnlIconEstoque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.pnlIconEstoque.Controls.Add(this.pictureBox20);
+            this.pnlIconEstoque.Location = new System.Drawing.Point(26, 20);
+            this.pnlIconEstoque.Name = "pnlIconEstoque";
+            this.pnlIconEstoque.Size = new System.Drawing.Size(48, 48);
+            this.pnlIconEstoque.TabIndex = 7;
+            // 
+            // pictureBox20
+            // 
+            this.pictureBox20.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_error_32;
+            this.pictureBox20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox20.Location = new System.Drawing.Point(8, 8);
+            this.pictureBox20.Name = "pictureBox20";
+            this.pictureBox20.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox20.TabIndex = 4;
+            this.pictureBox20.TabStop = false;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Poppins", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.label22.Location = new System.Drawing.Point(84, 34);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(114, 25);
+            this.label22.TabIndex = 7;
+            this.label22.Text = "Estoque Baixo";
+            // 
+            // lblDescricaoEstoque
+            // 
+            this.lblDescricaoEstoque.AutoSize = true;
+            this.lblDescricaoEstoque.Font = new System.Drawing.Font("Poppins Medium", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescricaoEstoque.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.lblDescricaoEstoque.Location = new System.Drawing.Point(26, 105);
+            this.lblDescricaoEstoque.Name = "lblDescricaoEstoque";
+            this.lblDescricaoEstoque.Size = new System.Drawing.Size(60, 22);
+            this.lblDescricaoEstoque.TabIndex = 6;
+            this.lblDescricaoEstoque.Text = "label23";
+            // 
+            // lblValorEstoque
+            // 
+            this.lblValorEstoque.AutoSize = true;
+            this.lblValorEstoque.Font = new System.Drawing.Font("Poppins", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorEstoque.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.lblValorEstoque.Location = new System.Drawing.Point(26, 76);
+            this.lblValorEstoque.Name = "lblValorEstoque";
+            this.lblValorEstoque.Size = new System.Drawing.Size(101, 39);
+            this.lblValorEstoque.TabIndex = 5;
+            this.lblValorEstoque.Text = "label24";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(14, 55);
+            this.label15.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(90)))), ((int)(((byte)(75)))));
+            this.label15.Location = new System.Drawing.Point(6, 55);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(166, 15);
+            this.label15.Size = new System.Drawing.Size(196, 23);
             this.label15.TabIndex = 2;
             this.label15.Text = "Resumo geral da lanchonete";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Poppins", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(6, 4);
+            this.label14.Font = new System.Drawing.Font("Poppins SemiBold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(22)))), ((int)(((byte)(52)))));
+            this.label14.Location = new System.Drawing.Point(4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(204, 56);
+            this.label14.Size = new System.Drawing.Size(206, 56);
             this.label14.TabIndex = 1;
             this.label14.Text = "Dashboard";
             // 
@@ -924,6 +1078,7 @@
             this.pnlRodape.Controls.Add(this.lblUsuarioConectado);
             this.pnlRodape.Controls.Add(this.lblHora);
             this.pnlRodape.Controls.Add(this.lblData);
+            this.pnlRodape.Controls.Add(this.pnlStatusDot);
             this.pnlRodape.Controls.Add(this.lblStatusBanco);
             this.pnlRodape.Controls.Add(this.label17);
             this.pnlRodape.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -936,6 +1091,7 @@
             // 
             this.lblUsuarioConectado.AutoSize = true;
             this.lblUsuarioConectado.Font = new System.Drawing.Font("Poppins", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuarioConectado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.lblUsuarioConectado.Location = new System.Drawing.Point(732, 8);
             this.lblUsuarioConectado.Name = "lblUsuarioConectado";
             this.lblUsuarioConectado.Size = new System.Drawing.Size(124, 19);
@@ -946,6 +1102,7 @@
             // 
             this.lblHora.AutoSize = true;
             this.lblHora.Font = new System.Drawing.Font("Poppins", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHora.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.lblHora.Location = new System.Drawing.Point(665, 8);
             this.lblHora.Name = "lblHora";
             this.lblHora.Size = new System.Drawing.Size(48, 19);
@@ -957,18 +1114,27 @@
             this.lblData.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblData.AutoSize = true;
             this.lblData.Font = new System.Drawing.Font("Poppins", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.lblData.Location = new System.Drawing.Point(478, 8);
             this.lblData.Name = "lblData";
             this.lblData.Size = new System.Drawing.Size(48, 19);
             this.lblData.TabIndex = 2;
             this.lblData.Text = "lblData";
             // 
+            // pnlStatusDot
+            // 
+            this.pnlStatusDot.BackColor = System.Drawing.Color.Green;
+            this.pnlStatusDot.Location = new System.Drawing.Point(224, 12);
+            this.pnlStatusDot.Name = "pnlStatusDot";
+            this.pnlStatusDot.Size = new System.Drawing.Size(8, 8);
+            this.pnlStatusDot.TabIndex = 5;
+            // 
             // lblStatusBanco
             // 
             this.lblStatusBanco.AutoSize = true;
             this.lblStatusBanco.Font = new System.Drawing.Font("Poppins", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatusBanco.ForeColor = System.Drawing.Color.Green;
-            this.lblStatusBanco.Location = new System.Drawing.Point(224, 8);
+            this.lblStatusBanco.Location = new System.Drawing.Point(238, 8);
             this.lblStatusBanco.Name = "lblStatusBanco";
             this.lblStatusBanco.Size = new System.Drawing.Size(91, 19);
             this.lblStatusBanco.TabIndex = 1;
@@ -978,6 +1144,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Poppins", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.label17.Location = new System.Drawing.Point(16, 8);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(112, 19);
@@ -997,10 +1164,10 @@
             // pnlMenuLateral
             // 
             this.pnlMenuLateral.AutoScroll = true;
-            this.pnlMenuLateral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(54)))), ((int)(((byte)(73)))));
+            this.pnlMenuLateral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(22)))), ((int)(((byte)(52)))));
             this.pnlMenuLateral.Controls.Add(this.panel14);
             this.pnlMenuLateral.Controls.Add(this.btnSair);
-            this.pnlMenuLateral.Controls.Add(this.panel12);
+            this.pnlMenuLateral.Controls.Add(this.btnConfiguracoes);
             this.pnlMenuLateral.Controls.Add(this.panel11);
             this.pnlMenuLateral.Controls.Add(this.panel10);
             this.pnlMenuLateral.Controls.Add(this.panel9);
@@ -1024,6 +1191,7 @@
             // picLogo
             // 
             this.picLogo.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_burguer_38;
+            this.picLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.picLogo.Location = new System.Drawing.Point(24, 12);
             this.picLogo.Name = "picLogo";
             this.picLogo.Size = new System.Drawing.Size(40, 40);
@@ -1059,15 +1227,16 @@
             this.panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.pnlHeader.ResumeLayout(false);
-            this.pnlHeader.PerformLayout();
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnConfiguracoes02)).EndInit();
+            this.pnlBusca.ResumeLayout(false);
+            this.pnlBusca.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
-            this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
+            this.btnConfiguracoes.ResumeLayout(false);
+            this.btnConfiguracoes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
@@ -1101,19 +1270,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlConteudo.ResumeLayout(false);
             this.pnlConteudo.PerformLayout();
-            this.panel18.ResumeLayout(false);
-            this.panel18.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
+            this.pnlIconVendas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
+            this.pnlIconPedidos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
             this.lvlValorMesas.ResumeLayout(false);
             this.lvlValorMesas.PerformLayout();
+            this.pnlIconMesas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
+            this.panel18.ResumeLayout(false);
+            this.panel18.PerformLayout();
+            this.pnlIconEstoque.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
             this.pnlRodape.ResumeLayout(false);
             this.pnlRodape.PerformLayout();
             this.pnlCorpo.ResumeLayout(false);
@@ -1133,7 +1306,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel pnlHeader;
-        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Panel btnConfiguracoes;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel11;
@@ -1168,17 +1341,19 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel pnlIndicadorAtivo;
         private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Panel pnlConteudo;
         private System.Windows.Forms.Panel pnlRodape;
         private System.Windows.Forms.Panel pnlCorpo;
         private System.Windows.Forms.Panel pnlMenuLateral;
         private System.Windows.Forms.Panel pnlRoot;
+        private System.Windows.Forms.Panel pnlBusca;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.PictureBox pictureBox15;
-        private System.Windows.Forms.PictureBox pictureBox14;
+        private System.Windows.Forms.PictureBox btnConfiguracoes02;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label lblCargo;
         private System.Windows.Forms.PictureBox pictureBox16;
@@ -1186,14 +1361,20 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.Panel pnlAccentPedidos;
+        private System.Windows.Forms.Panel pnlIconPedidos;
         private System.Windows.Forms.PictureBox pictureBox17;
         private System.Windows.Forms.Label lblValorCardPedidos;
         private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Panel pnlAccentVendas;
+        private System.Windows.Forms.Panel pnlIconVendas;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label lblDescricaoCardTotalVendas;
         private System.Windows.Forms.Label lblValorCardTotalVendas;
         private System.Windows.Forms.PictureBox pictureBox18;
         private System.Windows.Forms.Panel lvlValorMesas;
+        private System.Windows.Forms.Panel pnlAccentMesas;
+        private System.Windows.Forms.Panel pnlIconMesas;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label lblDescricaoMesas;
         private System.Windows.Forms.Label lblValorCardMesas;
@@ -1201,16 +1382,18 @@
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.Label lblTituloCardPedidos;
         private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.Panel pnlAccentEstoque;
+        private System.Windows.Forms.Panel pnlIconEstoque;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label lblDescricaoEstoque;
         private System.Windows.Forms.Label lblValorEstoque;
         private System.Windows.Forms.PictureBox pictureBox20;
         private System.Windows.Forms.Label lblHora;
         private System.Windows.Forms.Label lblData;
+        private System.Windows.Forms.Panel pnlStatusDot;
         private System.Windows.Forms.Label lblStatusBanco;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label lblUsuarioConectado;
         private System.Windows.Forms.Timer timer1;
     }
 }
-

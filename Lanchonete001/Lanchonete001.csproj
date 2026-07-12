@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuracoes\UcConfiguracoes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Configuracoes\UcConfiguracoes.Designer.cs">
+      <DependentUpon>UcConfiguracoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracoes\UcConfiguracoesSobre.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Configuracoes\UcConfiguracoesSobre.Designer.cs">
+      <DependentUpon>UcConfiguracoesSobre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Estoque\FrmNovoInsumo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +91,13 @@
     <Compile Include="UcLanches.Designer.cs">
       <DependentUpon>UcLanches.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\RoundedControls.cs" />
+    <EmbeddedResource Include="Configuracoes\UcConfiguracoes.resx">
+      <DependentUpon>UcConfiguracoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuracoes\UcConfiguracoesSobre.resx">
+      <DependentUpon>UcConfiguracoesSobre.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Estoque\FrmNovoInsumo.resx">
       <DependentUpon>FrmNovoInsumo.cs</DependentUpon>
     </EmbeddedResource>
@@ -185,6 +204,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-search-25.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-palette-38.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-palette-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-bell-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-user-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-store-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-info-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-burguer-96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-cancel-48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

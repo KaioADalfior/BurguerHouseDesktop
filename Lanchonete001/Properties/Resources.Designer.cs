@@ -83,6 +83,16 @@ namespace Lanchonete001.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_bell_40 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-bell-40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_box_32 {
             get {
                 object obj = ResourceManager.GetObject("icons8-box-32", resourceCulture);
@@ -106,6 +116,26 @@ namespace Lanchonete001.Properties {
         internal static System.Drawing.Bitmap icons8_burguer_38 {
             get {
                 object obj = ResourceManager.GetObject("icons8-burguer-38", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_burguer_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-burguer-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_cancel_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-cancel-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +193,39 @@ namespace Lanchonete001.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_info_40 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-info-40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_motorcycle_38 {
             get {
                 object obj = ResourceManager.GetObject("icons8-motorcycle-38", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_palette_38 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-palette-38", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_palette_40 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-palette-40", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,6 +303,16 @@ namespace Lanchonete001.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_store_40 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-store-40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_us_dollar_circled_32 {
             get {
                 object obj = ResourceManager.GetObject("icons8-us-dollar-circled-32", resourceCulture);
@@ -256,6 +326,16 @@ namespace Lanchonete001.Properties {
         internal static System.Drawing.Bitmap icons8_us_dollar_circled_38 {
             get {
                 object obj = ResourceManager.GetObject("icons8-us-dollar-circled-38", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_user_40 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-user-40", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
