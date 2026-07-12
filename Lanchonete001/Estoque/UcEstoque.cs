@@ -21,6 +21,10 @@ namespace Lanchonete001.Estoque
             ConfigurarGrid();
             PopularGrid();
             AtualizarCardsResumo();
+
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
         }
 
         private void UcEstoque_Load(object sender, EventArgs e)
