@@ -1,6 +1,4 @@
-﻿using Lanchonete001.UI;
-
-namespace Lanchonete001.Produtos
+﻿namespace Lanchonete001.Produtos
 {
     partial class UcPedidos
     {
@@ -21,7 +19,7 @@ namespace Lanchonete001.Produtos
         {
             this.components = new System.ComponentModel.Container();
 
-            this.pnlHeader = new Lanchonete001.UI.RoundedPanel();
+            this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblSubtitulo = new System.Windows.Forms.Label();
             this.lblTitulo = new System.Windows.Forms.Label();
 
@@ -34,12 +32,11 @@ namespace Lanchonete001.Produtos
             //
             // pnlHeader
             //
-            this.pnlHeader.BackColor = AppColors.Background;
-            this.pnlHeader.BorderColor = System.Drawing.Color.Transparent;
-            this.pnlHeader.BorderThickness = 0;
+            // Painel quadrado (sem cantos arredondados), cor de fundo
+            // vinda direto da paleta (creme).
+            this.pnlHeader.BackColor = PaletaCreme;
             this.pnlHeader.Controls.Add(this.lblSubtitulo);
             this.pnlHeader.Controls.Add(this.lblTitulo);
-            this.pnlHeader.CornerRadius = 0;
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
@@ -50,7 +47,7 @@ namespace Lanchonete001.Produtos
             //
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Poppins", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.ForeColor = AppColors.TextDark;
+            this.lblTitulo.ForeColor = PaletaAzulMarinho;
             this.lblTitulo.Location = new System.Drawing.Point(32, 8);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(120, 48);
@@ -61,7 +58,7 @@ namespace Lanchonete001.Produtos
             //
             this.lblSubtitulo.AutoSize = true;
             this.lblSubtitulo.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubtitulo.ForeColor = AppColors.TextMuted;
+            this.lblSubtitulo.ForeColor = PaletaAzulPetroleo;
             this.lblSubtitulo.Location = new System.Drawing.Point(33, 40);
             this.lblSubtitulo.Name = "lblSubtitulo";
             this.lblSubtitulo.Size = new System.Drawing.Size(420, 23);
@@ -73,7 +70,7 @@ namespace Lanchonete001.Produtos
             // As 4 colunas do Kanban (Aguardando Preparo, Em Preparo,
             // Entregue, Finalizado) são montadas dinamicamente em
             // UcPedidos.cs (MontarColunas), dentro deste painel.
-            this.pnlQuadro.BackColor = AppColors.Background;
+            this.pnlQuadro.BackColor = PaletaCreme;
             this.pnlQuadro.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlQuadro.Location = new System.Drawing.Point(0, 70);
             this.pnlQuadro.Name = "pnlQuadro";
@@ -93,7 +90,7 @@ namespace Lanchonete001.Produtos
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = AppColors.Background;
+            this.BackColor = PaletaCreme;
             this.Controls.Add(this.pnlQuadro);
             this.Controls.Add(this.pnlHeader);
             this.Name = "UcPedidos";
@@ -106,7 +103,7 @@ namespace Lanchonete001.Produtos
 
         #endregion
 
-        private Lanchonete001.UI.RoundedPanel pnlHeader;
+        private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblSubtitulo;
 

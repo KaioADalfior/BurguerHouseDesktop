@@ -1,5 +1,4 @@
 ﻿using Lanchonete001.Mesas;
-using Lanchonete001.UI;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -10,18 +9,30 @@ namespace Lanchonete001.Produtos
 {
     public partial class UcPedidos : UserControl
     {
-        private static readonly Color CorAguardando = Color.FromArgb(230, 126, 34);
-        private static readonly Color CorAguardandoClara = Color.FromArgb(253, 235, 220);
-        private static readonly Color CorEmPreparo = Color.FromArgb(52, 152, 219);
-        private static readonly Color CorEmPreparoClara = Color.FromArgb(214, 234, 248);
-        private static readonly Color CorEntregue = Color.FromArgb(142, 68, 173);
-        private static readonly Color CorEntregueClara = Color.FromArgb(233, 217, 243);
-        private static readonly Color CorFinalizado = AppColors.Success;
-        private static readonly Color CorFinalizadoClara = AppColors.SuccessLight;
+        // ---------- Paleta de cores fixa (única fonte de cor do controle) ----------
+        private static readonly Color PaletaCreme = ColorTranslator.FromHtml("#e8ddcb");
+        private static readonly Color PaletaAreia = ColorTranslator.FromHtml("#cdb380");
+        private static readonly Color PaletaVerdeAzulado = ColorTranslator.FromHtml("#036564");
+        private static readonly Color PaletaAzulPetroleo = ColorTranslator.FromHtml("#033649");
+        private static readonly Color PaletaAzulMarinho = ColorTranslator.FromHtml("#031634");
+
+        // "Branco" e "texto claro" da paleta: tons bem claros derivados do creme,
+        // em vez de usar Color.White puro (mantém tudo ancorado na mesma paleta).
+        private static readonly Color SuperficieClara = ControlPaint.Light(PaletaCreme, 0.65f);
+        private static readonly Color TextoClaro = ControlPaint.Light(PaletaCreme, 0.85f);
+
+        // Cor de destaque (accent) de cada coluna do Kanban
+        private static readonly Color CorAguardando = PaletaAreia;
+        private static readonly Color CorEmPreparo = PaletaVerdeAzulado;
+        private static readonly Color CorEntregue = PaletaAzulPetroleo;
+        private static readonly Color CorFinalizado = PaletaAzulMarinho;
 
         public UcPedidos()
         {
             InitializeComponent();
+
+            // Evita o flicker do redesenho do quadro a cada tick do timer.
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
         }
 
         private void UcPedidos_Load(object sender, EventArgs e)
@@ -38,7 +49,13 @@ namespace Lanchonete001.Produtos
         private void MontarColunas()
         {
             pnlQuadro.SuspendLayout();
-            foreach (Control antigo in pnlQuadro.Controls) antigo.Dispose();
+
+            // IMPORTANTE: materializar em lista antes de descartar. Dispose()
+            // remove o controle de pnlQuadro.Controls automaticamente, então
+            // usar o próprio pnlQuadro.Controls no foreach quebra a enumeração
+            // (InvalidOperationException) a cada atualização do timer.
+            foreach (Control antigo in pnlQuadro.Controls.Cast<Control>().ToList())
+                antigo.Dispose();
             pnlQuadro.Controls.Clear();
 
             var pedidosEnviados = MesaRepositorio.Mesas
@@ -46,35 +63,62 @@ namespace Lanchonete001.Produtos
                 .OrderBy(m => m.Numero)
                 .ToList();
 
-            var grade = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 4, RowCount = 1, BackColor = AppColors.Background };
+            var grade = new TableLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                ColumnCount = 4,
+                RowCount = 1,
+                BackColor = PaletaCreme
+            };
             for (int i = 0; i < 4; i++) grade.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25));
             grade.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
 
-            grade.Controls.Add(CriarColuna("Aguardando Preparo", CorAguardando, CorAguardandoClara,
+            grade.Controls.Add(CriarColuna("Aguardando Preparo", CorAguardando,
                 pedidosEnviados.Where(m => m.Pedido.StatusPreparo == StatusPreparoPedido.AguardandoPreparo)), 0, 0);
-            grade.Controls.Add(CriarColuna("Em Preparo", CorEmPreparo, CorEmPreparoClara,
+            grade.Controls.Add(CriarColuna("Em Preparo", CorEmPreparo,
                 pedidosEnviados.Where(m => m.Pedido.StatusPreparo == StatusPreparoPedido.EmPreparo)), 1, 0);
-            grade.Controls.Add(CriarColuna("Entregue", CorEntregue, CorEntregueClara,
+            grade.Controls.Add(CriarColuna("Entregue", CorEntregue,
                 pedidosEnviados.Where(m => m.Pedido.StatusPreparo == StatusPreparoPedido.Entregue)), 2, 0);
-            grade.Controls.Add(CriarColuna("Finalizado", CorFinalizado, CorFinalizadoClara,
+            grade.Controls.Add(CriarColuna("Finalizado", CorFinalizado,
                 pedidosEnviados.Where(m => m.Pedido.StatusPreparo == StatusPreparoPedido.Finalizado)), 3, 0);
 
             pnlQuadro.Controls.Add(grade);
             pnlQuadro.ResumeLayout();
         }
 
-        private Panel CriarColuna(string titulo, Color corTitulo, Color corHeader, IEnumerable<Mesa> mesas)
+        /// <summary>
+        /// Monta uma coluna do Kanban: cabeçalho quadrado (linha fixa) +
+        /// lista rolável (linha fill), sem cantos arredondados.
+        /// </summary>
+        private Panel CriarColuna(string titulo, Color corAccent, IEnumerable<Mesa> mesas)
         {
-            var coluna = new Panel { Dock = DockStyle.Fill, Margin = new Padding(8), BackColor = Color.White };
+            var coluna = new TableLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                Margin = new Padding(6),
+                ColumnCount = 1,
+                RowCount = 2,
+                BackColor = SuperficieClara
+            };
+            coluna.RowStyles.Add(new RowStyle(SizeType.Absolute, 42));
+            coluna.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
 
-            var header = new RoundedPanel { Dock = DockStyle.Top, Height = 44, BackColor = corHeader, CornerRadius = 10, BorderThickness = 0 };
+            bool textoEscuro = corAccent == PaletaAreia; // fundo claro precisa de texto escuro
+
+            var header = new Panel
+            {
+                Dock = DockStyle.Fill,
+                BackColor = corAccent,
+                Margin = new Padding(0, 0, 0, 4)
+            };
             header.Controls.Add(new Label
             {
-                AutoSize = true,
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleLeft,
+                Padding = new Padding(12, 0, 0, 0),
                 Font = new Font("Poppins", 10.5F, FontStyle.Bold),
-                ForeColor = corTitulo,
+                ForeColor = textoEscuro ? PaletaAzulMarinho : TextoClaro,
                 BackColor = Color.Transparent,
-                Location = new Point(12, 10),
                 Text = titulo
             });
 
@@ -84,7 +128,8 @@ namespace Lanchonete001.Produtos
                 FlowDirection = FlowDirection.TopDown,
                 WrapContents = false,
                 AutoScroll = true,
-                Padding = new Padding(0, 8, 0, 0)
+                BackColor = SuperficieClara,
+                Padding = new Padding(8)
             };
 
             var mesasLista = mesas.ToList();
@@ -93,45 +138,56 @@ namespace Lanchonete001.Produtos
                 lista.Controls.Add(new Label
                 {
                     AutoSize = true,
-                    Font = new Font("Poppins", 9F),
-                    ForeColor = AppColors.TextMuted,
+                    Font = new Font("Poppins", 9F, FontStyle.Italic),
+                    ForeColor = PaletaAzulPetroleo,
+                    BackColor = Color.Transparent,
                     Text = "Nenhum pedido"
                 });
             }
             else
             {
                 foreach (var mesa in mesasLista)
-                    lista.Controls.Add(CriarCardPedido(mesa, corTitulo, corHeader));
+                    lista.Controls.Add(CriarCardPedido(mesa, corAccent));
             }
 
-            coluna.Controls.Add(lista);
-            coluna.Controls.Add(header);
+            coluna.Controls.Add(header, 0, 0);
+            coluna.Controls.Add(lista, 0, 1);
+
             return coluna;
         }
 
-        private RoundedPanel CriarCardPedido(Mesa mesa, Color corDestaque, Color corFundo)
+        /// <summary>
+        /// Card quadrado com borda reta desenhada manualmente (sem região
+        /// arredondada), evitando os bugs visuais do componente antigo.
+        /// </summary>
+        private Panel CriarCardPedido(Mesa mesa, Color corAccent)
         {
             var pedido = mesa.Pedido;
 
-            var card = new RoundedPanel
+            var card = new Panel
             {
-                Width = 240,
+                Width = 224,
                 AutoSize = true,
                 AutoSizeMode = AutoSizeMode.GrowAndShrink,
-                Margin = new Padding(8),
+                Margin = new Padding(0, 0, 0, 10),
                 Padding = new Padding(12, 10, 12, 10),
-                BackColor = corFundo,
-                BorderColor = corDestaque,
-                BorderThickness = 1,
-                CornerRadius = 12,
+                BackColor = TextoClaro,
                 Tag = mesa
+            };
+            card.Paint += (s, e) =>
+            {
+                using (var caneta = new Pen(corAccent, 2f))
+                {
+                    var rect = new Rectangle(0, 0, card.Width - 1, card.Height - 1);
+                    e.Graphics.DrawRectangle(caneta, rect);
+                }
             };
 
             var lblMesa = new Label
             {
                 AutoSize = true,
                 Font = new Font("Poppins", 11F, FontStyle.Bold),
-                ForeColor = AppColors.TextDark,
+                ForeColor = PaletaAzulMarinho,
                 BackColor = Color.Transparent,
                 Location = new Point(0, 0),
                 Text = "Mesa " + mesa.Numero.ToString("00")
@@ -141,10 +197,10 @@ namespace Lanchonete001.Produtos
             {
                 AutoSize = true,
                 Font = new Font("Poppins", 8.75F),
-                ForeColor = AppColors.TextMuted,
+                ForeColor = PaletaAzulPetroleo,
                 BackColor = Color.Transparent,
                 Location = new Point(0, 26),
-                MaximumSize = new Size(216, 0),
+                MaximumSize = new Size(196, 0),
                 Text = string.Join("\n", pedido.Itens.Select(i => $"{i.Quantidade}x {i.NomeProduto}"))
             };
 
@@ -152,7 +208,7 @@ namespace Lanchonete001.Produtos
             {
                 AutoSize = true,
                 Font = new Font("Poppins", 9F, FontStyle.Bold),
-                ForeColor = AppColors.TextDark,
+                ForeColor = PaletaAzulMarinho,
                 BackColor = Color.Transparent,
                 Location = new Point(0, lblItens.Location.Y + lblItens.PreferredHeight + 6),
                 Text = pedido.Total.ToString("C2")
@@ -171,26 +227,28 @@ namespace Lanchonete001.Produtos
                 {
                     AutoSize = true,
                     Font = new Font("Poppins", 8F, FontStyle.Italic),
-                    ForeColor = AppColors.TextMuted,
+                    ForeColor = PaletaAzulPetroleo,
                     BackColor = Color.Transparent,
                     Location = new Point(0, proximaLinhaY),
-                    MaximumSize = new Size(216, 0),
+                    MaximumSize = new Size(196, 0),
                     Text = "Aguardando fechamento na mesa"
                 };
                 card.Controls.Add(lblAviso);
             }
             else
             {
-                var btnAcao = new RoundedButton
+                var btnAcao = new Button
                 {
                     AutoSize = true,
-                    CornerRadius = 8,
+                    AutoSizeMode = AutoSizeMode.GrowAndShrink,
                     FlatStyle = FlatStyle.Flat,
-                    BackColor = corDestaque,
-                    ForeColor = Color.White,
+                    BackColor = corAccent,
+                    ForeColor = TextoClaro,
                     Font = new Font("Poppins", 8.5F, FontStyle.Bold),
+                    Padding = new Padding(10, 4, 10, 4),
                     Location = new Point(0, proximaLinhaY),
-                    Text = TextoAcao(pedido.StatusPreparo)
+                    Text = TextoAcao(pedido.StatusPreparo),
+                    UseVisualStyleBackColor = false
                 };
                 btnAcao.FlatAppearance.BorderSize = 0;
                 btnAcao.Click += (s, e) => AvancarPedido(mesa);
