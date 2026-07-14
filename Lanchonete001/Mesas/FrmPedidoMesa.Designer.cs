@@ -59,7 +59,6 @@ namespace Lanchonete001.Mesas
             this.btnDividirConta = new Lanchonete001.UI.RoundedButton();
             this.btnEnviarCozinha = new Lanchonete001.UI.RoundedButton();
             this.btnFecharConta = new Lanchonete001.UI.RoundedButton();
-            this.btnImprimirComanda = new Lanchonete001.UI.RoundedButton();
 
             this.pnlHeader.SuspendLayout();
             this.pnlProdutos.SuspendLayout();
@@ -459,7 +458,6 @@ namespace Lanchonete001.Mesas
             this.flpAcoes.Controls.Add(this.btnDividirConta);
             this.flpAcoes.Controls.Add(this.btnEnviarCozinha);
             this.flpAcoes.Controls.Add(this.btnFecharConta);
-            this.flpAcoes.Controls.Add(this.btnImprimirComanda);
             this.flpAcoes.Location = new System.Drawing.Point(32, 12);
             this.flpAcoes.Name = "flpAcoes";
             this.flpAcoes.Size = new System.Drawing.Size(796, 44);
@@ -533,22 +531,7 @@ namespace Lanchonete001.Mesas
             this.btnFecharConta.Text = "Fechar Conta";
             this.btnFecharConta.UseVisualStyleBackColor = false;
             this.btnFecharConta.Click += new System.EventHandler(this.btnFecharConta_Click);
-            //
-            // btnImprimirComanda
-            //
-            this.btnImprimirComanda.BackColor = AppColors.Background;
-            this.btnImprimirComanda.CornerRadius = 10;
-            this.btnImprimirComanda.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnImprimirComanda.FlatAppearance.BorderSize = 1;
-            this.btnImprimirComanda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnImprimirComanda.Font = new System.Drawing.Font("Poppins", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImprimirComanda.ForeColor = AppColors.TextDark;
-            this.btnImprimirComanda.Name = "btnImprimirComanda";
-            this.btnImprimirComanda.Size = new System.Drawing.Size(150, 40);
-            this.btnImprimirComanda.TabIndex = 4;
-            this.btnImprimirComanda.Text = "Imprimir Comanda";
-            this.btnImprimirComanda.UseVisualStyleBackColor = false;
-            this.btnImprimirComanda.Click += new System.EventHandler(this.btnImprimirComanda_Click);
+            
             //
             // FrmPedidoMesa
             //
@@ -567,6 +550,7 @@ namespace Lanchonete001.Mesas
             this.Name = "FrmPedidoMesa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Pedido da Mesa";
+            this.Load += new System.EventHandler(this.FrmPedidoMesa_Load);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             this.pnlProdutos.ResumeLayout(false);
@@ -623,6 +607,5 @@ namespace Lanchonete001.Mesas
         private Lanchonete001.UI.RoundedButton btnDividirConta;
         private Lanchonete001.UI.RoundedButton btnEnviarCozinha;
         private Lanchonete001.UI.RoundedButton btnFecharConta;
-        private Lanchonete001.UI.RoundedButton btnImprimirComanda;
     }
 }

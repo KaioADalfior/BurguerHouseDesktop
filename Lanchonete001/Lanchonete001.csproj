@@ -100,6 +100,7 @@
     <Compile Include="FormBackup.Designer.cs">
       <DependentUpon>FormBackup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Impressora\ImpressoraComanda.cs" />
     <Compile Include="Lanches\UcLanches.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -112,6 +113,25 @@
     <Compile Include="Login\FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mesas\FormaPagamento.cs" />
+    <Compile Include="Mesas\FrmDividirConta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mesas\FrmDividirConta.Designer.cs">
+      <DependentUpon>FrmDividirConta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mesas\FrmEscolherMesa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mesas\FrmEscolherMesa.Designer.cs">
+      <DependentUpon>FrmEscolherMesa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mesas\FrmFecharConta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mesas\FrmFecharConta.Designer.cs">
+      <DependentUpon>FrmFecharConta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mesas\FrmPedidoMesa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +143,7 @@
     <Compile Include="Mesas\MesaRepositorio.cs" />
     <Compile Include="Mesas\PedidoMesa.cs" />
     <Compile Include="Mesas\StatusMesa.cs" />
+    <Compile Include="Mesas\StatusPreparoPedido.cs" />
     <Compile Include="Mesas\UcMesas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -131,6 +152,12 @@
     </Compile>
     <Compile Include="Produtos\Produto.cs" />
     <Compile Include="Produtos\ProdutoRepositorio.cs" />
+    <Compile Include="Produtos\UcPedidos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Produtos\UcPedidos.Designer.cs">
+      <DependentUpon>UcPedidos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\RoundedControls.cs" />
@@ -163,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mesas\UcMesas.resx">
       <DependentUpon>UcMesas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produtos\UcPedidos.resx">
+      <DependentUpon>UcPedidos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

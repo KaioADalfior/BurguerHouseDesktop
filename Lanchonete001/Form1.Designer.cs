@@ -880,6 +880,7 @@ namespace Lanchonete001
             this.btnPedidos.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
             this.btnPedidos.Size = new System.Drawing.Size(260, 48);
             this.btnPedidos.TabIndex = 7;
+            this.btnPedidos.Click += new System.EventHandler(this.btnPedidos_Click);
             // 
             // picMenuPedidos
             // 
@@ -890,6 +891,7 @@ namespace Lanchonete001
             this.picMenuPedidos.Size = new System.Drawing.Size(40, 40);
             this.picMenuPedidos.TabIndex = 3;
             this.picMenuPedidos.TabStop = false;
+            this.picMenuPedidos.Click += new System.EventHandler(this.btnPedidos_Click);
             // 
             // lblMenuPedidos
             // 
@@ -901,6 +903,7 @@ namespace Lanchonete001
             this.lblMenuPedidos.Size = new System.Drawing.Size(66, 25);
             this.lblMenuPedidos.TabIndex = 1;
             this.lblMenuPedidos.Text = "Pedidos";
+            this.lblMenuPedidos.Click += new System.EventHandler(this.btnPedidos_Click);
             // 
             // btnEstoque
             // 

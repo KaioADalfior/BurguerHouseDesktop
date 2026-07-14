@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Lanchonete001.Mesas;
+using Lanchonete001.Produtos;
 
 namespace Lanchonete001
 {
@@ -339,6 +340,12 @@ namespace Lanchonete001
         {
             MarcarItemMenuAtivo(btnMesas);
             CarregarTela(new UcMesas());
+        }
+
+        private void btnPedidos_Click(object sender, EventArgs e)
+        {
+            MarcarItemMenuAtivo(btnPedidos);
+            CarregarTela(new UcPedidos());
         }
     }
 }

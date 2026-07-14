@@ -1,8 +1,7 @@
-﻿using Lanchonete001.Produtos;
+﻿using Lanchonete001.Cardapio;
 using Lanchonete001.UI;
 using System;
 using System.Drawing;
-using System.Drawing.Printing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
@@ -11,92 +10,71 @@ namespace Lanchonete001.Mesas
 {
     public partial class FrmPedidoMesa : Form
     {
-        // Mesma cor "Fechando" usada em UcMesas (não existe em AppColors).
+        private static readonly Color CorLivre = AppColors.Success;
+        private static readonly Color CorOcupada = AppColors.Danger;
         private static readonly Color CorFechando = Color.FromArgb(230, 126, 34);
 
         private readonly Mesa _mesa;
 
         public FrmPedidoMesa(Mesa mesa)
         {
+            _mesa = mesa;
             InitializeComponent();
-
-            _mesa = mesa ?? throw new ArgumentNullException(nameof(mesa));
-
-            // Garante que a mesa tenha um objeto de pedido para trabalharmos
-            // em cima (mas só marcamos a mesa como "Ocupada" quando o
-            // primeiro item for realmente lançado, dentro de AdicionarItem).
-            if (_mesa.Pedido == null)
-            {
-                _mesa.Pedido = new PedidoMesa();
-            }
-
-            CarregarProdutos();
-            AtualizarCabecalho();
-            AtualizarTextoDesconto();
-            AtualizarListaItens();
         }
 
-        // ---------------------------------------------------------------
-        // Carregamento de dados
-        // ---------------------------------------------------------------
-
-        private void CarregarProdutos()
+        private void FrmPedidoMesa_Load(object sender, EventArgs e)
         {
-            cboProdutos.DisplayMember = "Nome";
-            cboProdutos.Items.Clear();
-
-            foreach (var produto in ProdutoRepositorio.ObterAtivos())
-            {
-                cboProdutos.Items.Add(produto);
-            }
-
-            if (cboProdutos.Items.Count > 0)
-            {
-                cboProdutos.SelectedIndex = 0;
-            }
+            CarregarCardapio();
+            AtualizarTudo();
         }
 
-        // ---------------------------------------------------------------
-        // Cabeçalho / status
-        // ---------------------------------------------------------------
+        // -----------------------------------------------------------------
+        // Carregamento / atualização de tela
+        // -----------------------------------------------------------------
 
-        private void AtualizarCabecalho()
+        private void CarregarCardapio()
+        {
+            var disponiveis = CardapioRepositorio.Itens
+                .Where(i => i.Ativo)
+                .OrderBy(i => i.Tipo)
+                .ThenBy(i => i.Nome)
+                .ToList();
+
+            cboProdutos.DisplayMember = "Nome";
+            cboProdutos.DataSource = disponiveis;
+            btnAdicionarItem.Enabled = disponiveis.Count > 0;
+        }
+
+        private void AtualizarTudo()
+        {
+            AtualizarHeader();
+            AtualizarLista();
+            AtualizarTotais();
+        }
+
+        private void AtualizarHeader()
         {
             lblTituloMesa.Text = "Mesa " + _mesa.Numero.ToString("00");
-            lblStatusTexto.Text = TextoStatus(_mesa.Status);
 
-            Color cor = CorStatus(_mesa.Status);
+            Color cor;
+            string texto;
+            switch (_mesa.Status)
+            {
+                case StatusMesa.Ocupada: cor = CorOcupada; texto = "Ocupada"; break;
+                case StatusMesa.Fechando: cor = CorFechando; texto = "Fechando"; break;
+                default: cor = CorLivre; texto = "Livre"; break;
+            }
+
             lblStatusDot.ForeColor = cor;
             lblStatusTexto.ForeColor = cor;
+            lblStatusTexto.Text = texto;
         }
 
-        private static Color CorStatus(StatusMesa status)
-        {
-            switch (status)
-            {
-                case StatusMesa.Ocupada: return AppColors.Danger;
-                case StatusMesa.Fechando: return CorFechando;
-                default: return AppColors.Success;
-            }
-        }
-
-        private static string TextoStatus(StatusMesa status)
-        {
-            switch (status)
-            {
-                case StatusMesa.Ocupada: return "Ocupada";
-                case StatusMesa.Fechando: return "Fechando";
-                default: return "Livre";
-            }
-        }
-
-        // ---------------------------------------------------------------
-        // Itens do pedido
-        // ---------------------------------------------------------------
-
-        private void AtualizarListaItens()
+        private void AtualizarLista()
         {
             lvItens.Items.Clear();
+
+            if (_mesa.Pedido == null) return;
 
             foreach (var item in _mesa.Pedido.Itens)
             {
@@ -107,15 +85,18 @@ namespace Lanchonete001.Mesas
                 linha.Tag = item;
                 lvItens.Items.Add(linha);
             }
-
-            AtualizarTotais();
         }
 
         private void AtualizarTotais()
         {
-            lblSubtotalValor.Text = _mesa.Pedido.Subtotal.ToString("C2");
-            lblDescontoValor.Text = _mesa.Pedido.Desconto.ToString("C2");
-            lblTotalValor.Text = _mesa.Pedido.Total.ToString("C2");
+            var pedido = _mesa.Pedido;
+
+            lblSubtotalValor.Text = (pedido?.Subtotal ?? 0).ToString("C2");
+            lblDescontoValor.Text = (pedido?.Desconto ?? 0).ToString("C2");
+            lblTotalValor.Text = (pedido?.Total ?? 0).ToString("C2");
+
+            if (pedido != null)
+                txtDesconto.Text = pedido.Desconto.ToString("N2", new CultureInfo("pt-BR"));
         }
 
         private ItemPedidoMesa ObterItemSelecionado()
@@ -124,438 +105,180 @@ namespace Lanchonete001.Mesas
             return lvItens.SelectedItems[0].Tag as ItemPedidoMesa;
         }
 
+        // -----------------------------------------------------------------
+        // Itens do pedido
+        // -----------------------------------------------------------------
+
         private void btnAdicionarItem_Click(object sender, EventArgs e)
         {
-            if (!(cboProdutos.SelectedItem is Produto produtoSelecionado))
-            {
-                MessageBox.Show(this, "Selecione um lanche para adicionar.", "Atenção",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            string nome = produtoSelecionado.Nome;
-            decimal preco = produtoSelecionado.Preco;
+            var item = cboProdutos.SelectedItem as ItemCardapio;
+            if (item == null) return;
 
             MesaRepositorio.GarantirPedidoAberto(_mesa);
 
-            var itemExistente = _mesa.Pedido.Itens
-                .FirstOrDefault(i => i.NomeProduto == nome && i.PrecoUnitario == preco);
-
-            if (itemExistente != null)
+            var existente = _mesa.Pedido.Itens.FirstOrDefault(i => i.NomeProduto == item.Nome);
+            if (existente != null)
             {
-                itemExistente.Quantidade++;
+                existente.Quantidade++;
             }
             else
             {
                 _mesa.Pedido.Itens.Add(new ItemPedidoMesa
                 {
-                    NomeProduto = nome,
-                    PrecoUnitario = preco,
+                    NomeProduto = item.Nome,
+                    PrecoUnitario = item.PrecoVenda,
                     Quantidade = 1
                 });
             }
 
-            // Um novo item foi lançado após um envio anterior: reabilita o
-            // botão de "Enviar para Cozinha" para essa rodada extra.
-            _mesa.Pedido.EnviadoParaCozinha = false;
-
-            AtualizarCabecalho();
-            AtualizarListaItens();
+            AtualizarTudo();
         }
 
         private void btnAumentarQtd_Click(object sender, EventArgs e)
         {
             var item = ObterItemSelecionado();
-            if (item == null)
-            {
-                MessageBox.Show(this, "Selecione um item da lista.", "Atenção",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (item == null) return;
 
             item.Quantidade++;
-            AtualizarListaItens();
+            AtualizarTudo();
         }
 
         private void btnDiminuirQtd_Click(object sender, EventArgs e)
         {
             var item = ObterItemSelecionado();
-            if (item == null)
-            {
-                MessageBox.Show(this, "Selecione um item da lista.", "Atenção",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (item == null) return;
 
-            item.Quantidade--;
-            if (item.Quantidade <= 0)
+            if (item.Quantidade <= 1)
             {
                 _mesa.Pedido.Itens.Remove(item);
             }
+            else
+            {
+                item.Quantidade--;
+            }
 
-            AtualizarListaItens();
+            AtualizarTudo();
         }
 
         private void btnRemoverItem_Click(object sender, EventArgs e)
         {
             var item = ObterItemSelecionado();
-            if (item == null)
-            {
-                MessageBox.Show(this, "Selecione um item da lista para remover.", "Atenção",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (item == null) return;
 
-            var confirmar = MessageBox.Show(this,
-                $"Remover \"{item.NomeProduto}\" do pedido?",
-                "Confirmar remoção", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (confirmar == DialogResult.Yes)
-            {
-                _mesa.Pedido.Itens.Remove(item);
-                AtualizarListaItens();
-            }
+            _mesa.Pedido.Itens.Remove(item);
+            AtualizarTudo();
         }
 
-        // ---------------------------------------------------------------
+        // -----------------------------------------------------------------
         // Desconto
-        // ---------------------------------------------------------------
-
-        private void AtualizarTextoDesconto()
-        {
-            txtDesconto.Text = _mesa.Pedido.Desconto.ToString("N2", CultureInfo.CurrentCulture);
-        }
+        // -----------------------------------------------------------------
 
         private void btnAplicarDesconto_Click(object sender, EventArgs e)
         {
-            if (!decimal.TryParse(txtDesconto.Text, NumberStyles.Number, CultureInfo.CurrentCulture, out decimal desconto)
-                && !decimal.TryParse(txtDesconto.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out desconto))
+            if (_mesa.Pedido == null) return;
+
+            if (!decimal.TryParse(txtDesconto.Text, NumberStyles.Number, new CultureInfo("pt-BR"), out decimal valor)
+                && !decimal.TryParse(txtDesconto.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out valor))
             {
-                MessageBox.Show(this, "Informe um valor de desconto válido.", "Atenção",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Valor de desconto inválido.", "Desconto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (desconto < 0)
-            {
-                MessageBox.Show(this, "O desconto não pode ser negativo.", "Atenção",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (valor < 0) valor = 0;
 
-            _mesa.Pedido.Desconto = desconto;
-            AtualizarTextoDesconto();
+            _mesa.Pedido.Desconto = valor;
             AtualizarTotais();
         }
 
-        // ---------------------------------------------------------------
+        // -----------------------------------------------------------------
         // Ações principais
-        // ---------------------------------------------------------------
+        // -----------------------------------------------------------------
 
         private void btnEnviarCozinha_Click(object sender, EventArgs e)
         {
-            if (_mesa.Pedido.Itens.Count == 0)
+            if (_mesa.Pedido == null || _mesa.Pedido.Itens.Count == 0)
             {
-                MessageBox.Show(this, "Adicione ao menos um item antes de enviar para a cozinha.",
-                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Adicione ao menos um item antes de enviar para a cozinha.",
+                    "Pedido vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            _mesa.Pedido.EnviadoParaCozinha = true;
-            MessageBox.Show(this, "Pedido enviado para a cozinha!", "Sucesso",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MesaRepositorio.EnviarParaCozinha(_mesa);
+            MessageBox.Show("Pedido enviado para a cozinha!", "Pronto", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnFecharConta_Click(object sender, EventArgs e)
         {
-            if (_mesa.Pedido.Itens.Count == 0)
+            if (_mesa.Pedido == null || _mesa.Pedido.Itens.Count == 0)
             {
-                MessageBox.Show(this, "Não há itens lançados nesta mesa.", "Atenção",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Esta mesa não tem pedido em aberto.",
+                    "Nada a fechar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            _mesa.Status = StatusMesa.Fechando;
-            AtualizarCabecalho();
-
-            var confirmar = MessageBox.Show(this,
-                $"Confirma o fechamento da conta no valor total de {_mesa.Pedido.Total:C2}?",
-                "Fechar conta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (confirmar == DialogResult.Yes)
+            using (var dlg = new FrmFecharConta(_mesa))
             {
-                MesaRepositorio.FecharConta(_mesa);
-                DialogResult = DialogResult.OK;
-                Close();
-            }
-            else
-            {
-                _mesa.Status = StatusMesa.Ocupada;
-                AtualizarCabecalho();
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    MesaRepositorio.FecharConta(_mesa);
+                    Close();
+                }
             }
         }
 
         private void btnTransferirMesa_Click(object sender, EventArgs e)
         {
-            var mesasDisponiveis = MesaRepositorio.Mesas
-                .Where(m => m.Numero != _mesa.Numero && m.Status == StatusMesa.Livre)
-                .OrderBy(m => m.Numero)
-                .ToList();
-
-            if (mesasDisponiveis.Count == 0)
+            if (_mesa.Pedido == null || _mesa.Pedido.Itens.Count == 0)
             {
-                MessageBox.Show(this, "Não há mesas livres para transferência.", "Atenção",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Não há pedido para transferir.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            var mesaDestino = SolicitarEscolhaMesa(mesasDisponiveis);
-            if (mesaDestino == null) return;
+            var mesasLivres = MesaRepositorio.Mesas
+                .Where(m => m.Status == StatusMesa.Livre && m.Numero != _mesa.Numero)
+                .OrderBy(m => m.Numero)
+                .ToList();
 
-            mesaDestino.Pedido = _mesa.Pedido;
-            mesaDestino.Status = StatusMesa.Ocupada;
+            if (mesasLivres.Count == 0)
+            {
+                MessageBox.Show("Não há mesas livres para transferir.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
-            _mesa.Pedido = new PedidoMesa();
-            _mesa.Status = StatusMesa.Livre;
+            using (var dlg = new FrmEscolherMesa(mesasLivres))
+            {
+                if (dlg.ShowDialog(this) != DialogResult.OK) return;
 
-            MessageBox.Show(this,
-                $"Pedido transferido da Mesa {_mesa.Numero:00} para a Mesa {mesaDestino.Numero:00}.",
-                "Transferência concluída", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var destino = dlg.MesaEscolhida;
+                destino.Pedido = _mesa.Pedido;
+                destino.Status = StatusMesa.Ocupada;
 
-            DialogResult = DialogResult.OK;
-            Close();
+                _mesa.Pedido = null;
+                _mesa.Status = StatusMesa.Livre;
+
+                MessageBox.Show($"Pedido transferido para a Mesa {destino.Numero:00}.",
+                    "Transferido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Close();
+            }
         }
 
         private void btnDividirConta_Click(object sender, EventArgs e)
         {
-            if (_mesa.Pedido.Itens.Count == 0)
+            if (_mesa.Pedido == null || _mesa.Pedido.Itens.Count == 0)
             {
-                MessageBox.Show(this, "Não há itens lançados nesta mesa.", "Atenção",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Não há conta para dividir.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            int? pessoas = SolicitarQuantidadePessoas();
-            if (pessoas == null || pessoas <= 0) return;
-
-            decimal valorPorPessoa = _mesa.Pedido.Total / pessoas.Value;
-
-            MessageBox.Show(this,
-                $"Total: {_mesa.Pedido.Total:C2}\r\n" +
-                $"Dividido por {pessoas.Value} pessoa(s): {valorPorPessoa:C2} cada.",
-                "Divisão de conta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void btnImprimirComanda_Click(object sender, EventArgs e)
-        {
-            if (_mesa.Pedido.Itens.Count == 0)
+            using (var dlg = new FrmDividirConta(_mesa.Pedido.Total))
             {
-                MessageBox.Show(this, "Não há itens lançados nesta mesa.", "Atenção",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                dlg.ShowDialog(this);
             }
-
-            try
-            {
-                var documento = new PrintDocument();
-                documento.PrintPage += (s, args) => ImprimirComanda(args);
-                documento.Print();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this,
-                    "Não foi possível imprimir a comanda. Verifique se há uma impressora " +
-                    "instalada e configurada.\r\n\r\nDetalhes: " + ex.Message,
-                    "Erro ao imprimir", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ImprimirComanda(PrintPageEventArgs args)
-        {
-            var g = args.Graphics;
-            var fonteTitulo = new Font("Arial", 14, FontStyle.Bold);
-            var fonteNormal = new Font("Arial", 10);
-            var fonteNegrito = new Font("Arial", 10, FontStyle.Bold);
-
-            float x = args.MarginBounds.Left;
-            float y = args.MarginBounds.Top;
-
-            g.DrawString("Comanda - Mesa " + _mesa.Numero.ToString("00"), fonteTitulo, Brushes.Black, x, y);
-            y += 30;
-            g.DrawString(DateTime.Now.ToString("dd/MM/yyyy HH:mm"), fonteNormal, Brushes.Black, x, y);
-            y += 30;
-
-            foreach (var item in _mesa.Pedido.Itens)
-            {
-                string linha = $"{item.Quantidade}x {item.NomeProduto}";
-                g.DrawString(linha, fonteNormal, Brushes.Black, x, y);
-                g.DrawString(item.Subtotal.ToString("C2"), fonteNormal, Brushes.Black, args.MarginBounds.Right - 80, y);
-                y += 22;
-            }
-
-            y += 10;
-            g.DrawString("Subtotal: " + _mesa.Pedido.Subtotal.ToString("C2"), fonteNormal, Brushes.Black, x, y);
-            y += 22;
-            g.DrawString("Desconto: " + _mesa.Pedido.Desconto.ToString("C2"), fonteNormal, Brushes.Black, x, y);
-            y += 22;
-            g.DrawString("Total: " + _mesa.Pedido.Total.ToString("C2"), fonteNegrito, Brushes.Black, x, y);
         }
 
         private void btnFechar_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        // ---------------------------------------------------------------
-        // Pequenos diálogos auxiliares (sem precisar de mais nenhum Form)
-        // ---------------------------------------------------------------
-
-        private Mesa SolicitarEscolhaMesa(System.Collections.Generic.List<Mesa> mesasDisponiveis)
-        {
-            using (var dlg = new Form())
-            {
-                dlg.Text = "Transferir para qual mesa?";
-                dlg.FormBorderStyle = FormBorderStyle.FixedDialog;
-                dlg.StartPosition = FormStartPosition.CenterParent;
-                dlg.MaximizeBox = false;
-                dlg.MinimizeBox = false;
-                dlg.ClientSize = new Size(280, 130);
-                dlg.BackColor = AppColors.Background;
-
-                var lbl = new Label
-                {
-                    Text = "Mesa de destino:",
-                    Font = new Font("Poppins", 9.5F, FontStyle.Bold),
-                    ForeColor = AppColors.TextDark,
-                    AutoSize = true,
-                    Location = new Point(20, 16)
-                };
-
-                var combo = new ComboBox
-                {
-                    DropDownStyle = ComboBoxStyle.DropDownList,
-                    Location = new Point(20, 44),
-                    Width = 240,
-                    Font = new Font("Poppins", 9.5F)
-                };
-                foreach (var mesa in mesasDisponiveis)
-                {
-                    combo.Items.Add("Mesa " + mesa.Numero.ToString("00"));
-                }
-                combo.SelectedIndex = 0;
-
-                var btnOk = new RoundedButton
-                {
-                    Text = "Transferir",
-                    BackColor = AppColors.Primary,
-                    ForeColor = Color.White,
-                    FlatStyle = FlatStyle.Flat,
-                    CornerRadius = 10,
-                    Location = new Point(20, 84),
-                    Size = new Size(110, 34),
-                    DialogResult = DialogResult.OK
-                };
-                btnOk.FlatAppearance.BorderSize = 0;
-
-                var btnCancelar = new RoundedButton
-                {
-                    Text = "Cancelar",
-                    BackColor = AppColors.Background,
-                    ForeColor = AppColors.TextDark,
-                    FlatStyle = FlatStyle.Flat,
-                    CornerRadius = 10,
-                    Location = new Point(150, 84),
-                    Size = new Size(110, 34),
-                    DialogResult = DialogResult.Cancel
-                };
-                btnCancelar.FlatAppearance.BorderSize = 1;
-
-                dlg.Controls.Add(lbl);
-                dlg.Controls.Add(combo);
-                dlg.Controls.Add(btnOk);
-                dlg.Controls.Add(btnCancelar);
-                dlg.AcceptButton = btnOk;
-                dlg.CancelButton = btnCancelar;
-
-                if (dlg.ShowDialog(this) == DialogResult.OK)
-                {
-                    return mesasDisponiveis[combo.SelectedIndex];
-                }
-                return null;
-            }
-        }
-
-        private int? SolicitarQuantidadePessoas()
-        {
-            using (var dlg = new Form())
-            {
-                dlg.Text = "Dividir conta";
-                dlg.FormBorderStyle = FormBorderStyle.FixedDialog;
-                dlg.StartPosition = FormStartPosition.CenterParent;
-                dlg.MaximizeBox = false;
-                dlg.MinimizeBox = false;
-                dlg.ClientSize = new Size(280, 130);
-                dlg.BackColor = AppColors.Background;
-
-                var lbl = new Label
-                {
-                    Text = "Dividir entre quantas pessoas?",
-                    Font = new Font("Poppins", 9.5F, FontStyle.Bold),
-                    ForeColor = AppColors.TextDark,
-                    AutoSize = true,
-                    Location = new Point(20, 16)
-                };
-
-                var numPessoas = new NumericUpDown
-                {
-                    Minimum = 1,
-                    Maximum = 50,
-                    Value = 2,
-                    Location = new Point(20, 44),
-                    Width = 240,
-                    Font = new Font("Poppins", 9.5F),
-                    TextAlign = HorizontalAlignment.Center
-                };
-
-                var btnOk = new RoundedButton
-                {
-                    Text = "Calcular",
-                    BackColor = AppColors.Primary,
-                    ForeColor = Color.White,
-                    FlatStyle = FlatStyle.Flat,
-                    CornerRadius = 10,
-                    Location = new Point(20, 84),
-                    Size = new Size(110, 34),
-                    DialogResult = DialogResult.OK
-                };
-                btnOk.FlatAppearance.BorderSize = 0;
-
-                var btnCancelar = new RoundedButton
-                {
-                    Text = "Cancelar",
-                    BackColor = AppColors.Background,
-                    ForeColor = AppColors.TextDark,
-                    FlatStyle = FlatStyle.Flat,
-                    CornerRadius = 10,
-                    Location = new Point(150, 84),
-                    Size = new Size(110, 34),
-                    DialogResult = DialogResult.Cancel
-                };
-                btnCancelar.FlatAppearance.BorderSize = 1;
-
-                dlg.Controls.Add(lbl);
-                dlg.Controls.Add(numPessoas);
-                dlg.Controls.Add(btnOk);
-                dlg.Controls.Add(btnCancelar);
-                dlg.AcceptButton = btnOk;
-                dlg.CancelButton = btnCancelar;
-
-                if (dlg.ShowDialog(this) == DialogResult.OK)
-                {
-                    return (int)numPessoas.Value;
-                }
-                return null;
-            }
         }
     }
 }
