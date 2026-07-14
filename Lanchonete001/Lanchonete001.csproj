@@ -46,6 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bebidas\UcBebidas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Bebidas\UcBebidas.Designer.cs">
+      <DependentUpon>UcBebidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cardapio\CardapioRepositorio.cs" />
+    <Compile Include="Cardapio\FrmNovoItemCardapio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cardapio\FrmNovoItemCardapio.Designer.cs">
+      <DependentUpon>FrmNovoItemCardapio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cardapio\IngredienteReceita.cs" />
+    <Compile Include="Cardapio\ItemCardapio.cs" />
+    <Compile Include="Cardapio\TipoItemCardapio.cs" />
     <Compile Include="Configuracoes\UcConfiguracoes.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -58,6 +74,7 @@
     <Compile Include="Configuracoes\UcConfiguracoesSobre.Designer.cs">
       <DependentUpon>UcConfiguracoesSobre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Estoque\EstoqueRepositorio.cs" />
     <Compile Include="Estoque\FrmNovoInsumo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,21 +100,43 @@
     <Compile Include="FormBackup.Designer.cs">
       <DependentUpon>FormBackup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Lanches\UcLanches.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Lanches\UcLanches.Designer.cs">
+      <DependentUpon>UcLanches.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login\FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UcLanches.cs">
+    <Compile Include="Mesas\FrmPedidoMesa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mesas\FrmPedidoMesa.Designer.cs">
+      <DependentUpon>FrmPedidoMesa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mesas\ItemPedidoMesa.cs" />
+    <Compile Include="Mesas\Mesa.cs" />
+    <Compile Include="Mesas\MesaRepositorio.cs" />
+    <Compile Include="Mesas\PedidoMesa.cs" />
+    <Compile Include="Mesas\StatusMesa.cs" />
+    <Compile Include="Mesas\UcMesas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UcLanches.Designer.cs">
-      <DependentUpon>UcLanches.cs</DependentUpon>
+    <Compile Include="Mesas\UcMesas.Designer.cs">
+      <DependentUpon>UcMesas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Produtos\Produto.cs" />
+    <Compile Include="Produtos\ProdutoRepositorio.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\RoundedControls.cs" />
+    <EmbeddedResource Include="Bebidas\UcBebidas.resx">
+      <DependentUpon>UcBebidas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Configuracoes\UcConfiguracoes.resx">
       <DependentUpon>UcConfiguracoes.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,8 +155,14 @@
     <EmbeddedResource Include="FormBackup.resx">
       <DependentUpon>FormBackup.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Lanches\UcLanches.resx">
+      <DependentUpon>UcLanches.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mesas\UcMesas.resx">
+      <DependentUpon>UcMesas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -129,9 +174,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UcLanches.resx">
-      <DependentUpon>UcLanches.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
