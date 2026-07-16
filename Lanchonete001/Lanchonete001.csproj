@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BancoDados\ConexaoBanco.cs" />
     <Compile Include="Bebidas\UcBebidas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -312,6 +313,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-burguer-100 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ScriptBD\ScriptDB.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
