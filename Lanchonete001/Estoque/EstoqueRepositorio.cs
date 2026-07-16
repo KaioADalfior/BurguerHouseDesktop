@@ -172,5 +172,27 @@ namespace Lanchonete001.Estoque
                 PrecoUnitario = leitor.GetDecimal("preco_unitario")
             };
         }
+
+        /// <summary>Busca um insumo pelo Id (usado pelas receitas do Cardápio).</summary>
+        public static Insumo BuscarPorId(int id)
+        {
+            const string sql = @"
+        SELECT id, nome, categoria, quantidade_atual, unidade, quantidade_minima, preco_unitario
+        FROM insumos
+        WHERE id = @id
+        LIMIT 1";
+
+            using (var conexao = ConexaoBanco.ObterConexao())
+            using (var cmd = new MySqlCommand(sql, conexao))
+            {
+                cmd.Parameters.AddWithValue("@id", id);
+
+                using (var leitor = cmd.ExecuteReader())
+                {
+                    if (!leitor.Read()) return null;
+                    return MapearInsumo(leitor);
+                }
+            }
+        }
     }
 }

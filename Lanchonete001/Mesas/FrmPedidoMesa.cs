@@ -34,7 +34,8 @@ namespace Lanchonete001.Mesas
 
         private void CarregarCardapio()
         {
-            var disponiveis = CardapioRepositorio.Itens
+            var disponiveis = CardapioRepositorio.ObterLanches()
+                .Concat(CardapioRepositorio.ObterBebidas())
                 .Where(i => i.Ativo)
                 .OrderBy(i => i.Tipo)
                 .ThenBy(i => i.Nome)

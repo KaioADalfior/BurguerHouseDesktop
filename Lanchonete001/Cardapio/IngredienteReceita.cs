@@ -4,18 +4,19 @@ namespace Lanchonete001.Cardapio
 {
     /// <summary>
     /// Um "ingrediente" da receita de um lanche/bebida: referencia um Insumo
-    /// do estoque pelo nome e a quantidade consumida por unidade vendida.
+    /// do estoque pelo Id (tabela ingredientes_receita) e a quantidade
+    /// consumida por unidade vendida.
     /// </summary>
     public class IngredienteReceita
     {
+        public int InsumoId { get; set; }
         public string NomeInsumo { get; set; }
         public decimal Quantidade { get; set; }
         public string Unidade { get; set; }
 
         /// <summary>Busca ao vivo o Insumo correspondente no estoque.</summary>
-        public Insumo InsumoRelacionado => EstoqueRepositorio.BuscarPorNome(NomeInsumo);
+        public Insumo InsumoRelacionado => EstoqueRepositorio.BuscarPorId(InsumoId);
 
-        /// <summary>Custo desse ingrediente, calculado a partir do preço unitário atual do insumo.</summary>
         public decimal CustoItem
         {
             get
@@ -25,7 +26,6 @@ namespace Lanchonete001.Cardapio
             }
         }
 
-        /// <summary>Indica se há estoque suficiente deste insumo para preparar uma unidade.</summary>
         public bool DisponivelNoEstoque
         {
             get

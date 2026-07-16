@@ -307,36 +307,7 @@ namespace Lanchonete001.Lanches
             }
         }
 
-        private void EditarItem(ItemCardapio item)
-        {
-            var frm = new FrmNovoItemCardapio(TipoItemCardapio.Lanche, item);
-            if (frm.ShowDialog() == DialogResult.OK)
-            {
-                AplicarFiltro();
-                AtualizarCardsResumo();
-            }
-        }
-
-        private void ExcluirItem(ItemCardapio item)
-        {
-            var resultado = MessageBox.Show(
-                $"Deseja realmente excluir \"{item.Nome}\" do cardápio?",
-                "Confirmar exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (resultado != DialogResult.Yes) return;
-
-            // Limpa a célula/posição atual do grid ANTES de mexer na lista.
-            // Sem isso, ao remover a última linha o DataGridView tenta
-            // validar/commitar a célula que estava selecionada apontando
-            // para um índice que já não existe na nova lista filtrada,
-            // gerando IndexOutOfRangeException dentro do CurrencyManager.
-            dataGridView1.CurrentCell = null;
-
-            CardapioRepositorio.Remover(item);
-            listaLanches.Remove(item);
-            AplicarFiltro();
-            AtualizarCardsResumo();
-        }
+        
 
         private void AtualizarCardsResumo()
         {
@@ -354,11 +325,31 @@ namespace Lanchonete001.Lanches
             var frm = new FrmNovoItemCardapio(TipoItemCardapio.Lanche);
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                CardapioRepositorio.Adicionar(frm.ItemCriado);
-                listaLanches.Add(frm.ItemCriado);
-                AplicarFiltro();
-                AtualizarCardsResumo();
+                CarregarDados();
             }
+        }
+
+        private void EditarItem(ItemCardapio item)
+        {
+            var frm = new FrmNovoItemCardapio(TipoItemCardapio.Lanche, item);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                CarregarDados();
+            }
+        }
+
+        private void ExcluirItem(ItemCardapio item)
+        {
+            var resultado = MessageBox.Show(
+                $"Deseja realmente excluir \"{item.Nome}\" do cardápio?",
+                "Confirmar exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (resultado != DialogResult.Yes) return;
+
+            dataGridView1.CurrentCell = null;
+
+            CardapioRepositorio.Remover(item);
+            CarregarDados();
         }
     }
 }

@@ -1,117 +1,189 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using Lanchonete001.BancoDados;
+using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
 
 namespace Lanchonete001.Cardapio
 {
     /// <summary>
-    /// Fonte única de dados do cardápio (lanches + bebidas), em memória por
-    /// enquanto o projeto não tem banco de dados. UcLanches e UcBebidas leem
-    /// e escrevem aqui, cada uma filtrando pelo seu Tipo.
+    /// Acesso a dados de Lanches e Bebidas, direto no MySQL (banco BurguerHouse).
+    /// Cada item guarda sua receita em ingredientes_receita, referenciando os
+    /// insumos do estoque por Id (insumo_id).
     /// </summary>
     public static class CardapioRepositorio
     {
-        public static List<ItemCardapio> Itens { get; private set; }
+        public static List<ItemCardapio> ObterLanches() => Listar(TipoItemCardapio.Lanche);
 
-        static CardapioRepositorio()
+        public static List<ItemCardapio> ObterBebidas() => Listar(TipoItemCardapio.Bebida);
+
+        private static List<ItemCardapio> Listar(TipoItemCardapio tipo)
         {
-            Itens = new List<ItemCardapio>
+            var itens = new List<ItemCardapio>();
+
+            const string sql = @"
+                SELECT id, nome, categoria, descricao, preco_venda, ativo, tipo
+                FROM itens_cardapio
+                WHERE tipo = @tipo
+                ORDER BY nome";
+
+            using (var conexao = ConexaoBanco.ObterConexao())
+            using (var cmd = new MySqlCommand(sql, conexao))
             {
-                new ItemCardapio
+                cmd.Parameters.AddWithValue("@tipo", tipo.ToString());
+
+                using (var leitor = cmd.ExecuteReader())
                 {
-                    Nome = "X-Bacon",
-                    Categoria = "Hambúrgueres",
-                    Descricao = "Pão brioche, hambúrguer, queijo prato e bacon",
-                    PrecoVenda = 22.90m,
-                    Tipo = TipoItemCardapio.Lanche,
-                    Ingredientes = new List<IngredienteReceita>
-                    {
-                        new IngredienteReceita { NomeInsumo = "Pão brioche",          Quantidade = 1,     Unidade = "un" },
-                        new IngredienteReceita { NomeInsumo = "Hambúrguer 150g",      Quantidade = 1,     Unidade = "un" },
-                        new IngredienteReceita { NomeInsumo = "Queijo prato (fatia)", Quantidade = 2,     Unidade = "un" },
-                        new IngredienteReceita { NomeInsumo = "Bacon (fatia)",        Quantidade = 3,     Unidade = "un" },
-                    }
-                },
-                new ItemCardapio
-                {
-                    Nome = "X-Salada",
-                    Categoria = "Hambúrgueres",
-                    Descricao = "Pão brioche, hambúrguer, queijo prato, alface e tomate",
-                    PrecoVenda = 19.90m,
-                    Tipo = TipoItemCardapio.Lanche,
-                    Ingredientes = new List<IngredienteReceita>
-                    {
-                        new IngredienteReceita { NomeInsumo = "Pão brioche",          Quantidade = 1,     Unidade = "un" },
-                        new IngredienteReceita { NomeInsumo = "Hambúrguer 150g",      Quantidade = 1,     Unidade = "un" },
-                        new IngredienteReceita { NomeInsumo = "Queijo prato (fatia)", Quantidade = 1,     Unidade = "un" },
-                        new IngredienteReceita { NomeInsumo = "Alface",               Quantidade = 0.05m, Unidade = "kg" },
-                        new IngredienteReceita { NomeInsumo = "Tomate",               Quantidade = 0.08m, Unidade = "kg" },
-                    }
-                },
-                new ItemCardapio
-                {
-                    Nome = "X-Tudo",
-                    Categoria = "Hambúrgueres",
-                    Descricao = "Dois hambúrgueres, queijo em dobro, bacon, salada e molho especial",
-                    PrecoVenda = 28.90m,
-                    Tipo = TipoItemCardapio.Lanche,
-                    Ingredientes = new List<IngredienteReceita>
-                    {
-                        new IngredienteReceita { NomeInsumo = "Pão brioche",          Quantidade = 1,     Unidade = "un" },
-                        new IngredienteReceita { NomeInsumo = "Hambúrguer 150g",      Quantidade = 2,     Unidade = "un" },
-                        new IngredienteReceita { NomeInsumo = "Queijo prato (fatia)", Quantidade = 2,     Unidade = "un" },
-                        new IngredienteReceita { NomeInsumo = "Bacon (fatia)",        Quantidade = 4,     Unidade = "un" },
-                        new IngredienteReceita { NomeInsumo = "Alface",               Quantidade = 0.05m, Unidade = "kg" },
-                        new IngredienteReceita { NomeInsumo = "Tomate",               Quantidade = 0.08m, Unidade = "kg" },
-                        new IngredienteReceita { NomeInsumo = "Molho especial",       Quantidade = 0.03m, Unidade = "L"  },
-                    }
-                },
-                new ItemCardapio
-                {
-                    Nome = "Refrigerante 300ml",
-                    Categoria = "Refrigerantes",
-                    Descricao = "Copo de refrigerante gelado, 300ml",
-                    PrecoVenda = 7.50m,
-                    Tipo = TipoItemCardapio.Bebida,
-                    Ingredientes = new List<IngredienteReceita>
-                    {
-                        new IngredienteReceita { NomeInsumo = "Refrigerante (ml)",      Quantidade = 0.3m, Unidade = "L"  },
-                        new IngredienteReceita { NomeInsumo = "Copo descartável 300ml", Quantidade = 1,    Unidade = "un" },
-                    }
-                },
-                new ItemCardapio
-                {
-                    Nome = "Suco Natural 300ml",
-                    Categoria = "Sucos",
-                    Descricao = "Suco natural gelado, 300ml",
-                    PrecoVenda = 9.00m,
-                    Tipo = TipoItemCardapio.Bebida,
-                    Ingredientes = new List<IngredienteReceita>
-                    {
-                        new IngredienteReceita { NomeInsumo = "Suco natural (ml)",      Quantidade = 0.3m, Unidade = "L"  },
-                        new IngredienteReceita { NomeInsumo = "Copo descartável 300ml", Quantidade = 1,    Unidade = "un" },
-                    }
-                },
-                new ItemCardapio
-                {
-                    Nome = "Água Mineral 500ml",
-                    Categoria = "Águas",
-                    Descricao = "Garrafa de água mineral sem gás, 500ml",
-                    PrecoVenda = 5.00m,
-                    Tipo = TipoItemCardapio.Bebida,
-                    Ingredientes = new List<IngredienteReceita>
-                    {
-                        new IngredienteReceita { NomeInsumo = "Água mineral", Quantidade = 1, Unidade = "un" },
-                    }
-                },
-            };
+                    while (leitor.Read())
+                        itens.Add(MapearItem(leitor));
+                }
+            }
+
+            foreach (var item in itens)
+                item.Ingredientes = ListarIngredientes(item.Id);
+
+            return itens;
         }
 
-        public static List<ItemCardapio> ObterLanches() => Itens.Where(i => i.Tipo == TipoItemCardapio.Lanche).ToList();
+        private static List<IngredienteReceita> ListarIngredientes(int itemCardapioId)
+        {
+            var ingredientes = new List<IngredienteReceita>();
 
-        public static List<ItemCardapio> ObterBebidas() => Itens.Where(i => i.Tipo == TipoItemCardapio.Bebida).ToList();
+            const string sql = @"
+                SELECT ir.insumo_id, i.nome AS nome_insumo, ir.quantidade, ir.unidade
+                FROM ingredientes_receita ir
+                INNER JOIN insumos i ON i.id = ir.insumo_id
+                WHERE ir.item_cardapio_id = @itemCardapioId";
 
-        public static void Adicionar(ItemCardapio item) => Itens.Add(item);
+            using (var conexao = ConexaoBanco.ObterConexao())
+            using (var cmd = new MySqlCommand(sql, conexao))
+            {
+                cmd.Parameters.AddWithValue("@itemCardapioId", itemCardapioId);
 
-        public static void Remover(ItemCardapio item) => Itens.Remove(item);
+                using (var leitor = cmd.ExecuteReader())
+                {
+                    while (leitor.Read())
+                    {
+                        ingredientes.Add(new IngredienteReceita
+                        {
+                            InsumoId = leitor.GetInt32("insumo_id"),
+                            NomeInsumo = leitor.GetString("nome_insumo"),
+                            Quantidade = leitor.GetDecimal("quantidade"),
+                            Unidade = leitor.GetString("unidade")
+                        });
+                    }
+                }
+            }
+
+            return ingredientes;
+        }
+
+        /// <summary>Insere um novo item + sua receita. Retorna o Id gerado.</summary>
+        public static int Inserir(ItemCardapio item)
+        {
+            const string sqlItem = @"
+                INSERT INTO itens_cardapio (nome, categoria, descricao, preco_venda, ativo, tipo)
+                VALUES (@nome, @categoria, @descricao, @preco, @ativo, @tipo);
+                SELECT LAST_INSERT_ID();";
+
+            using (var conexao = ConexaoBanco.ObterConexao())
+            {
+                int itemId;
+                using (var cmd = new MySqlCommand(sqlItem, conexao))
+                {
+                    cmd.Parameters.AddWithValue("@nome", item.Nome);
+                    cmd.Parameters.AddWithValue("@categoria", item.Categoria);
+                    cmd.Parameters.AddWithValue("@descricao", item.Descricao ?? "");
+                    cmd.Parameters.AddWithValue("@preco", item.PrecoVenda);
+                    cmd.Parameters.AddWithValue("@ativo", item.Ativo);
+                    cmd.Parameters.AddWithValue("@tipo", item.Tipo.ToString());
+
+                    itemId = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+
+                InserirIngredientes(conexao, itemId, item.Ingredientes);
+                item.Id = itemId;
+                return itemId;
+            }
+        }
+
+        /// <summary>Atualiza um item existente e substitui sua receita por completo.</summary>
+        public static void Atualizar(ItemCardapio item)
+        {
+            const string sqlItem = @"
+                UPDATE itens_cardapio
+                SET nome = @nome, categoria = @categoria, descricao = @descricao,
+                    preco_venda = @preco, ativo = @ativo
+                WHERE id = @id";
+
+            const string sqlLimpaIngredientes = "DELETE FROM ingredientes_receita WHERE item_cardapio_id = @id";
+
+            using (var conexao = ConexaoBanco.ObterConexao())
+            {
+                using (var cmd = new MySqlCommand(sqlItem, conexao))
+                {
+                    cmd.Parameters.AddWithValue("@nome", item.Nome);
+                    cmd.Parameters.AddWithValue("@categoria", item.Categoria);
+                    cmd.Parameters.AddWithValue("@descricao", item.Descricao ?? "");
+                    cmd.Parameters.AddWithValue("@preco", item.PrecoVenda);
+                    cmd.Parameters.AddWithValue("@ativo", item.Ativo);
+                    cmd.Parameters.AddWithValue("@id", item.Id);
+                    cmd.ExecuteNonQuery();
+                }
+
+                using (var cmd = new MySqlCommand(sqlLimpaIngredientes, conexao))
+                {
+                    cmd.Parameters.AddWithValue("@id", item.Id);
+                    cmd.ExecuteNonQuery();
+                }
+
+                InserirIngredientes(conexao, item.Id, item.Ingredientes);
+            }
+        }
+
+        private static void InserirIngredientes(MySqlConnection conexao, int itemCardapioId, List<IngredienteReceita> ingredientes)
+        {
+            const string sql = @"
+                INSERT INTO ingredientes_receita (item_cardapio_id, insumo_id, quantidade, unidade)
+                VALUES (@itemCardapioId, @insumoId, @quantidade, @unidade)";
+
+            foreach (var ing in ingredientes)
+            {
+                using (var cmd = new MySqlCommand(sql, conexao))
+                {
+                    cmd.Parameters.AddWithValue("@itemCardapioId", itemCardapioId);
+                    cmd.Parameters.AddWithValue("@insumoId", ing.InsumoId);
+                    cmd.Parameters.AddWithValue("@quantidade", ing.Quantidade);
+                    cmd.Parameters.AddWithValue("@unidade", ing.Unidade);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        /// <summary>Remove o item; a receita some junto por causa do ON DELETE CASCADE.</summary>
+        public static void Remover(ItemCardapio item)
+        {
+            const string sql = "DELETE FROM itens_cardapio WHERE id = @id";
+
+            using (var conexao = ConexaoBanco.ObterConexao())
+            using (var cmd = new MySqlCommand(sql, conexao))
+            {
+                cmd.Parameters.AddWithValue("@id", item.Id);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        private static ItemCardapio MapearItem(MySqlDataReader leitor)
+        {
+            return new ItemCardapio
+            {
+                Id = leitor.GetInt32("id"),
+                Nome = leitor.GetString("nome"),
+                Categoria = leitor.IsDBNull(leitor.GetOrdinal("categoria")) ? "" : leitor.GetString("categoria"),
+                Descricao = leitor.IsDBNull(leitor.GetOrdinal("descricao")) ? "" : leitor.GetString("descricao"),
+                PrecoVenda = leitor.GetDecimal("preco_venda"),
+                Ativo = leitor.GetBoolean("ativo"),
+                Tipo = leitor.GetString("tipo") == "Lanche" ? TipoItemCardapio.Lanche : TipoItemCardapio.Bebida
+            };
+        }
     }
 }

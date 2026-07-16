@@ -305,14 +305,24 @@ namespace Lanchonete001.Estoque
             }
         }
 
+        /// <summary>
+        /// Atualiza os 4 cards do topo com dados reais calculados a partir da
+        /// lista de insumos vinda do banco:
+        /// - Total de Insumos: contagem simples.
+        /// - Estoque Baixo: itens com quantidade abaixo do mínimo definido.
+        /// - Sem Estoque: itens zerados (ruptura total, mais crítico que "baixo").
+        /// - Valor em Estoque: soma de (quantidade × preço unitário) de todos os itens.
+        /// </summary>
         private void AtualizarCardsResumo()
         {
             int totalInsumos = listaInsumos.Count;
             int totalBaixo = listaInsumos.Count(i => i.EstoqueBaixo);
+            int totalSemEstoque = listaInsumos.Count(i => i.QuantidadeAtual <= 0);
             decimal valorTotalEstoque = listaInsumos.Sum(i => i.ValorTotal);
 
             lblTotalInsumos.Text = totalInsumos.ToString();
             lblEstoqueBaixo.Text = totalBaixo.ToString();
+            lblSemEstoque.Text = totalSemEstoque.ToString();
             lblValorEstoque.Text = "R$ " + valorTotalEstoque.ToString("N2", new CultureInfo("pt-BR"));
         }
 

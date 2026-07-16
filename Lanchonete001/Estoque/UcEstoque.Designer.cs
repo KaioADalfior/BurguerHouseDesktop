@@ -44,6 +44,11 @@ namespace Lanchonete001.Estoque
             this.picIconBaixo = new System.Windows.Forms.PictureBox();
             this.lblCaptionBaixo = new System.Windows.Forms.Label();
             this.lblEstoqueBaixo = new System.Windows.Forms.Label();
+            this.pnlCardSemEstoque = new Lanchonete001.UI.RoundedPanel();
+            this.pnlIconSemEstoque = new Lanchonete001.UI.RoundedPanel();
+            this.picIconSemEstoque = new System.Windows.Forms.PictureBox();
+            this.lblCaptionSemEstoque = new System.Windows.Forms.Label();
+            this.lblSemEstoque = new System.Windows.Forms.Label();
             this.pnlCardValor = new Lanchonete001.UI.RoundedPanel();
             this.pnlIconValor = new Lanchonete001.UI.RoundedPanel();
             this.picIconValor = new System.Windows.Forms.PictureBox();
@@ -65,6 +70,9 @@ namespace Lanchonete001.Estoque
             this.pnlCardBaixo.SuspendLayout();
             this.pnlIconBaixo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picIconBaixo)).BeginInit();
+            this.pnlCardSemEstoque.SuspendLayout();
+            this.pnlIconSemEstoque.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconSemEstoque)).BeginInit();
             this.pnlCardValor.SuspendLayout();
             this.pnlIconValor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picIconValor)).BeginInit();
@@ -113,9 +121,11 @@ namespace Lanchonete001.Estoque
             // 
             // pnlCards
             // 
+            this.pnlCards.AutoScroll = true;
             this.pnlCards.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(221)))), ((int)(((byte)(203)))));
             this.pnlCards.Controls.Add(this.pnlCardTotal);
             this.pnlCards.Controls.Add(this.pnlCardBaixo);
+            this.pnlCards.Controls.Add(this.pnlCardSemEstoque);
             this.pnlCards.Controls.Add(this.pnlCardValor);
             this.pnlCards.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlCards.Location = new System.Drawing.Point(0, 70);
@@ -243,6 +253,65 @@ namespace Lanchonete001.Estoque
             this.lblEstoqueBaixo.TabIndex = 2;
             this.lblEstoqueBaixo.Text = "0";
             // 
+            // pnlCardSemEstoque
+            // 
+            this.pnlCardSemEstoque.BackColor = System.Drawing.Color.White;
+            this.pnlCardSemEstoque.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(212)))), ((int)(((byte)(191)))));
+            this.pnlCardSemEstoque.BorderThickness = 1;
+            this.pnlCardSemEstoque.Controls.Add(this.pnlIconSemEstoque);
+            this.pnlCardSemEstoque.Controls.Add(this.lblCaptionSemEstoque);
+            this.pnlCardSemEstoque.Controls.Add(this.lblSemEstoque);
+            this.pnlCardSemEstoque.CornerRadius = 16;
+            this.pnlCardSemEstoque.Location = new System.Drawing.Point(484, 12);
+            this.pnlCardSemEstoque.Margin = new System.Windows.Forms.Padding(0, 0, 16, 0);
+            this.pnlCardSemEstoque.Name = "pnlCardSemEstoque";
+            this.pnlCardSemEstoque.Size = new System.Drawing.Size(210, 120);
+            this.pnlCardSemEstoque.TabIndex = 2;
+            // 
+            // pnlIconSemEstoque
+            // 
+            this.pnlIconSemEstoque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(199)))), ((int)(((byte)(190)))));
+            this.pnlIconSemEstoque.BorderColor = System.Drawing.Color.Transparent;
+            this.pnlIconSemEstoque.BorderThickness = 0;
+            this.pnlIconSemEstoque.Controls.Add(this.picIconSemEstoque);
+            this.pnlIconSemEstoque.CornerRadius = 24;
+            this.pnlIconSemEstoque.Location = new System.Drawing.Point(18, 20);
+            this.pnlIconSemEstoque.Name = "pnlIconSemEstoque";
+            this.pnlIconSemEstoque.Size = new System.Drawing.Size(48, 48);
+            this.pnlIconSemEstoque.TabIndex = 0;
+            // 
+            // picIconSemEstoque
+            // 
+            this.picIconSemEstoque.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_error_32;
+            this.picIconSemEstoque.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picIconSemEstoque.Location = new System.Drawing.Point(12, 12);
+            this.picIconSemEstoque.Name = "picIconSemEstoque";
+            this.picIconSemEstoque.Size = new System.Drawing.Size(24, 24);
+            this.picIconSemEstoque.TabIndex = 0;
+            this.picIconSemEstoque.TabStop = false;
+            // 
+            // lblCaptionSemEstoque
+            // 
+            this.lblCaptionSemEstoque.AutoSize = true;
+            this.lblCaptionSemEstoque.Font = new System.Drawing.Font("Poppins", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCaptionSemEstoque.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(108)))), ((int)(((byte)(122)))));
+            this.lblCaptionSemEstoque.Location = new System.Drawing.Point(76, 32);
+            this.lblCaptionSemEstoque.Name = "lblCaptionSemEstoque";
+            this.lblCaptionSemEstoque.Size = new System.Drawing.Size(94, 23);
+            this.lblCaptionSemEstoque.TabIndex = 1;
+            this.lblCaptionSemEstoque.Text = "Sem Estoque";
+            // 
+            // lblSemEstoque
+            // 
+            this.lblSemEstoque.AutoSize = true;
+            this.lblSemEstoque.Font = new System.Drawing.Font("Poppins", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSemEstoque.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(87)))), ((int)(((byte)(54)))));
+            this.lblSemEstoque.Location = new System.Drawing.Point(18, 74);
+            this.lblSemEstoque.Name = "lblSemEstoque";
+            this.lblSemEstoque.Size = new System.Drawing.Size(38, 48);
+            this.lblSemEstoque.TabIndex = 2;
+            this.lblSemEstoque.Text = "0";
+            // 
             // pnlCardValor
             // 
             this.pnlCardValor.BackColor = System.Drawing.Color.White;
@@ -252,11 +321,11 @@ namespace Lanchonete001.Estoque
             this.pnlCardValor.Controls.Add(this.lblCaptionValor);
             this.pnlCardValor.Controls.Add(this.lblValorEstoque);
             this.pnlCardValor.CornerRadius = 16;
-            this.pnlCardValor.Location = new System.Drawing.Point(484, 12);
+            this.pnlCardValor.Location = new System.Drawing.Point(710, 12);
             this.pnlCardValor.Margin = new System.Windows.Forms.Padding(0, 0, 16, 0);
             this.pnlCardValor.Name = "pnlCardValor";
             this.pnlCardValor.Size = new System.Drawing.Size(210, 120);
-            this.pnlCardValor.TabIndex = 2;
+            this.pnlCardValor.TabIndex = 3;
             // 
             // pnlIconValor
             // 
@@ -294,13 +363,13 @@ namespace Lanchonete001.Estoque
             // lblValorEstoque
             // 
             this.lblValorEstoque.AutoSize = true;
-            this.lblValorEstoque.Font = new System.Drawing.Font("Poppins", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorEstoque.Font = new System.Drawing.Font("Poppins", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblValorEstoque.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(22)))), ((int)(((byte)(52)))));
             this.lblValorEstoque.Location = new System.Drawing.Point(18, 78);
             this.lblValorEstoque.Name = "lblValorEstoque";
             this.lblValorEstoque.Size = new System.Drawing.Size(92, 39);
             this.lblValorEstoque.TabIndex = 2;
-            this.lblValorEstoque.Text = "0 itens";
+            this.lblValorEstoque.Text = "R$ 0,00";
             // 
             // pnlToolbar
             // 
@@ -334,7 +403,7 @@ namespace Lanchonete001.Estoque
             // 
             // cboFiltroCategoriaInsumo
             // 
-            this.cboFiltroCategoriaInsumo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cboFiltroCategoriaInsumo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cboFiltroCategoriaInsumo.BackColor = System.Drawing.Color.White;
             this.cboFiltroCategoriaInsumo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -365,7 +434,7 @@ namespace Lanchonete001.Estoque
             // 
             // txtBuscaInsumo
             // 
-            this.txtBuscaInsumo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtBuscaInsumo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBuscaInsumo.BackColor = System.Drawing.Color.White;
             this.txtBuscaInsumo.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -472,6 +541,10 @@ namespace Lanchonete001.Estoque
             this.pnlCardBaixo.PerformLayout();
             this.pnlIconBaixo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picIconBaixo)).EndInit();
+            this.pnlCardSemEstoque.ResumeLayout(false);
+            this.pnlCardSemEstoque.PerformLayout();
+            this.pnlIconSemEstoque.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picIconSemEstoque)).EndInit();
             this.pnlCardValor.ResumeLayout(false);
             this.pnlCardValor.PerformLayout();
             this.pnlIconValor.ResumeLayout(false);
@@ -505,6 +578,12 @@ namespace Lanchonete001.Estoque
         private System.Windows.Forms.PictureBox picIconBaixo;
         private System.Windows.Forms.Label lblCaptionBaixo;
         private System.Windows.Forms.Label lblEstoqueBaixo;
+
+        private Lanchonete001.UI.RoundedPanel pnlCardSemEstoque;
+        private Lanchonete001.UI.RoundedPanel pnlIconSemEstoque;
+        private System.Windows.Forms.PictureBox picIconSemEstoque;
+        private System.Windows.Forms.Label lblCaptionSemEstoque;
+        private System.Windows.Forms.Label lblSemEstoque;
 
         private Lanchonete001.UI.RoundedPanel pnlCardValor;
         private Lanchonete001.UI.RoundedPanel pnlIconValor;

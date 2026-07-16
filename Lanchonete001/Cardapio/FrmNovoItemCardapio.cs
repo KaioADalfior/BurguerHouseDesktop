@@ -99,7 +99,7 @@ namespace Lanchonete001.Cardapio
             var insumo = EstoqueRepositorio.BuscarPorNome(nomeInsumo);
             if (insumo == null) return;
 
-            var existente = ingredientesAtuais.FirstOrDefault(i => i.NomeInsumo == nomeInsumo);
+            var existente = ingredientesAtuais.FirstOrDefault(i => i.InsumoId == insumo.Id);
             if (existente != null)
             {
                 existente.Quantidade += numQuantidadeIngrediente.Value;
@@ -108,7 +108,8 @@ namespace Lanchonete001.Cardapio
             {
                 ingredientesAtuais.Add(new IngredienteReceita
                 {
-                    NomeInsumo = nomeInsumo,
+                    InsumoId = insumo.Id,
+                    NomeInsumo = insumo.Nome,
                     Quantidade = numQuantidadeIngrediente.Value,
                     Unidade = insumo.Unidade
                 });
@@ -193,6 +194,11 @@ namespace Lanchonete001.Cardapio
             item.PrecoVenda = numPrecoVenda.Value;
             item.Ativo = chkAtivo.Checked;
             item.Ingredientes = new List<IngredienteReceita>(ingredientesAtuais);
+
+            if (itemEmEdicao == null)
+                CardapioRepositorio.Inserir(item);
+            else
+                CardapioRepositorio.Atualizar(item);
 
             ItemCriado = item;
             DialogResult = DialogResult.OK;
