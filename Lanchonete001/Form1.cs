@@ -18,7 +18,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Globalization;
 
 namespace Lanchonete001
 {
@@ -553,6 +552,13 @@ namespace Lanchonete001
         {
             MarcarItemMenuAtivo(btnUsuarios);
             CarregarTela(new UcUsuarios(usuarioLogado));
+        }
+
+        private void btnFinanceiro_Click(object sender, EventArgs e)
+        {
+            MarcarItemMenuAtivo(btnFinanceiro);
+            //CarregarTela(new UcFinanceiro());
+
         }
     }
 }
