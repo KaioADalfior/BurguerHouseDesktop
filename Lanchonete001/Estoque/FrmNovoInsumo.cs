@@ -1,28 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Lanchonete001.Estoque
 {
     public partial class FrmNovoInsumo : Form
     {
-        public Insumo InsumoCriado { get; private set; }
-
         private Insumo insumoEmEdicao;
 
+        /// <summary>Modo cadastro.</summary>
         public FrmNovoInsumo()
         {
             InitializeComponent();
             ConfigurarCombos();
         }
 
+        /// <summary>Modo edição.</summary>
         public FrmNovoInsumo(Insumo insumoExistente)
         {
             InitializeComponent();
@@ -37,7 +29,7 @@ namespace Lanchonete001.Estoque
             cboCategoriaInsumo.Items.AddRange(new object[]
             {
                 "Carnes", "Pães", "Laticínios", "Vegetais",
-                "Bebidas/Insumos líquidos", "Embalagens"
+                "Bebidas/Insumos líquidos", "Embalagens", "Molhos"
             });
 
             cboUnidadeInsumo.Items.AddRange(new object[] { "un", "kg", "g", "L", "ml" });
@@ -61,7 +53,6 @@ namespace Lanchonete001.Estoque
             numQuantidadeMinima.Value = insumo.QuantidadeMinima;
             numPrecoUnitario.Value = insumo.PrecoUnitario;
 
-            // Ajusta os textos do cabeçalho e do botão principal para o modo de edição
             lblTitulo.Text = "Editar Insumo";
             lblSubtitulo.Text = "Atualize os dados do insumo abaixo";
             btnSalvarInsumo.Text = "Atualizar";
@@ -72,38 +63,38 @@ namespace Lanchonete001.Estoque
         {
             if (!ValidarCampos()) return;
 
-            // Se já existia (edição), reaproveita o mesmo objeto;
-            // se é novo, cria um Insumo do zero
-            var insumo = insumoEmEdicao ?? new Insumo();
+            try
+            {
+                bool ehEdicao = insumoEmEdicao != null;
+                var insumo = insumoEmEdicao ?? new Insumo();
 
-            insumo.Nome = txtNomeInsumo.Text.Trim();
-            insumo.Categoria = cboCategoriaInsumo.SelectedItem.ToString();
-            insumo.Unidade = cboUnidadeInsumo.SelectedItem.ToString();
-            insumo.QuantidadeAtual = numQuantidadeAtual.Value;
-            insumo.QuantidadeMinima = numQuantidadeMinima.Value;
-            insumo.PrecoUnitario = numPrecoUnitario.Value;
+                insumo.Nome = txtNomeInsumo.Text.Trim();
+                insumo.Categoria = cboCategoriaInsumo.SelectedItem.ToString();
+                insumo.Unidade = cboUnidadeInsumo.SelectedItem.ToString();
+                insumo.QuantidadeAtual = numQuantidadeAtual.Value;
+                insumo.QuantidadeMinima = numQuantidadeMinima.Value;
+                insumo.PrecoUnitario = numPrecoUnitario.Value;
 
-            InsumoCriado = insumo;
+                if (ehEdicao)
+                {
+                    EstoqueRepositorio.Atualizar(insumo);
+                }
+                else
+                {
+                    insumo.Id = EstoqueRepositorio.Inserir(insumo);
+                }
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-        }
-
-        private void Cancelar()
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
-
-        private void LimparCampos()
-        {
-            txtNomeInsumo.Clear();
-            cboCategoriaInsumo.SelectedIndex = -1;
-            cboUnidadeInsumo.SelectedIndex = -1;
-            numQuantidadeAtual.Value = 0;
-            numQuantidadeMinima.Value = 0;
-            numPrecoUnitario.Value = 0;
-            txtNomeInsumo.Focus();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Não foi possível salvar o insumo no banco de dados.\n\nDetalhes: " + ex.Message,
+                    "Erro ao salvar",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private bool ValidarCampos()
@@ -132,6 +123,20 @@ namespace Lanchonete001.Estoque
                 return false;
             }
 
+            string nomeDigitado = txtNomeInsumo.Text.Trim();
+            int? idAtual = insumoEmEdicao?.Id;
+
+            if (EstoqueRepositorio.ExisteNome(nomeDigitado, idAtual))
+            {
+                MessageBox.Show(
+                    "Já existe um insumo cadastrado com esse nome.",
+                    "Nome duplicado",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                txtNomeInsumo.Focus();
+                return false;
+            }
+
             return true;
         }
 
@@ -147,7 +152,8 @@ namespace Lanchonete001.Estoque
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            Cancelar();
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

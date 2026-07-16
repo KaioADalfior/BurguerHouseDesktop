@@ -1,12 +1,9 @@
 ﻿using Lanchonete001.UI;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Lanchonete001.Estoque
@@ -15,33 +12,39 @@ namespace Lanchonete001.Estoque
     {
         private const string PlaceholderBusca = "Buscar insumo...";
 
-        private List<Insumo> listaInsumos;
+        private List<Insumo> listaInsumos = new List<Insumo>();
         private BindingSource bindingInsumos;
 
         public UcEstoque()
         {
             InitializeComponent();
 
-            CarregarDadosTeste();
             ConfigurarCombos();
             ConfigurarGrid();
-            PopularGrid();
             ConfigurarFiltros();
-            AtualizarCardsResumo();
+            CarregarDados();
         }
 
-        private void CarregarDadosTeste()
+        /// <summary>Recarrega os insumos direto do banco de dados (BurguerHouse).</summary>
+        private void CarregarDados()
         {
-            listaInsumos = new List<Insumo>
+            try
             {
-                new Insumo { Nome = "Bacon (fatia)",         Categoria = "Carnes",                   QuantidadeAtual = 48,   Unidade = "un", QuantidadeMinima = 20 },
-                new Insumo { Nome = "Pão brioche",           Categoria = "Pães",                     QuantidadeAtual = 15,   Unidade = "un", QuantidadeMinima = 30 },
-                new Insumo { Nome = "Hambúrguer 150g",       Categoria = "Carnes",                   QuantidadeAtual = 60,   Unidade = "un", QuantidadeMinima = 25 },
-                new Insumo { Nome = "Queijo prato (fatia)",  Categoria = "Laticínios",                QuantidadeAtual = 8,    Unidade = "un", QuantidadeMinima = 20 },
-                new Insumo { Nome = "Alface",                Categoria = "Vegetais",                 QuantidadeAtual = 2.5m, Unidade = "kg", QuantidadeMinima = 3  },
-                new Insumo { Nome = "Refrigerante (ml)",     Categoria = "Bebidas/Insumos líquidos",  QuantidadeAtual = 12,   Unidade = "L",  QuantidadeMinima = 10 },
-                new Insumo { Nome = "Copo descartável 300ml", Categoria = "Embalagens",               QuantidadeAtual = 200,  Unidade = "un", QuantidadeMinima = 100 },
-            };
+                listaInsumos = EstoqueRepositorio.Listar();
+
+                PopularGrid();
+                AtualizarCardsResumo();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Não foi possível carregar o estoque do banco de dados.\n\n" +
+                    "Verifique se o MySQL está rodando e se o banco 'burguerhouse' foi criado.\n\n" +
+                    "Detalhes: " + ex.Message,
+                    "Erro de conexão",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void ConfigurarCombos()
@@ -51,7 +54,7 @@ namespace Lanchonete001.Estoque
             cboFiltroCategoriaInsumo.Items.AddRange(new object[]
             {
                 "Carnes", "Pães", "Laticínios", "Vegetais",
-                "Bebidas/Insumos líquidos", "Embalagens"
+                "Bebidas/Insumos líquidos", "Embalagens", "Molhos"
             });
             cboFiltroCategoriaInsumo.SelectedIndex = 0;
         }
@@ -66,14 +69,14 @@ namespace Lanchonete001.Estoque
                 Name = "colInsumo",
                 HeaderText = "Insumo",
                 DataPropertyName = "Nome",
-                FillWeight = 24
+                FillWeight = 22
             });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "colCategoria",
                 HeaderText = "Categoria",
                 DataPropertyName = "Categoria",
-                FillWeight = 20
+                FillWeight = 18
             });
 
             var colQtdAtual = new DataGridViewTextBoxColumn
@@ -81,7 +84,7 @@ namespace Lanchonete001.Estoque
                 Name = "colQtdAtual",
                 HeaderText = "Qtd. Atual",
                 DataPropertyName = "QuantidadeAtual",
-                FillWeight = 12
+                FillWeight = 11
             };
             colQtdAtual.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             colQtdAtual.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -92,7 +95,7 @@ namespace Lanchonete001.Estoque
                 Name = "colUnidade",
                 HeaderText = "Unidade",
                 DataPropertyName = "Unidade",
-                FillWeight = 9
+                FillWeight = 8
             });
 
             var colQtdMinima = new DataGridViewTextBoxColumn
@@ -100,7 +103,7 @@ namespace Lanchonete001.Estoque
                 Name = "colQtdMinima",
                 HeaderText = "Qtd. Mínima",
                 DataPropertyName = "QuantidadeMinima",
-                FillWeight = 12
+                FillWeight = 11
             };
             colQtdMinima.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             colQtdMinima.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -110,19 +113,31 @@ namespace Lanchonete001.Estoque
             {
                 Name = "colStatus",
                 HeaderText = "Status",
-                FillWeight = 15,
+                FillWeight = 14,
                 SortMode = DataGridViewColumnSortMode.NotSortable
             };
             colStatus.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns.Add(colStatus);
 
+            var colAcoes = new DataGridViewTextBoxColumn
+            {
+                Name = "colAcoes",
+                HeaderText = "",
+                FillWeight = 10,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+                ReadOnly = true
+            };
+            colAcoes.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns.Add(colAcoes);
+
             dataGridView1.CellFormatting += DataGridView1_CellFormatting;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
+            dataGridView1.CellDoubleClick += DataGridView1_CellDoubleClick;
+            dataGridView1.CellMouseClick += DataGridView1_CellMouseClick;
         }
 
         private void ConfigurarFiltros()
         {
-            // Conecta busca e filtro de categoria à mesma lógica de filtragem
             txtBuscaInsumo.TextChanged += (s, e) => AplicarFiltro();
             cboFiltroCategoriaInsumo.SelectedIndexChanged += (s, e) => AplicarFiltro();
 
@@ -178,9 +193,7 @@ namespace Lanchonete001.Estoque
             dataGridView1.Invalidate();
         }
 
-        /// <summary>
-        /// Destaca sutilmente a linha inteira quando o insumo está com estoque baixo.
-        /// </summary>
+        /// <summary>Destaca sutilmente a linha inteira quando o insumo está com estoque baixo.</summary>
         private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -192,18 +205,26 @@ namespace Lanchonete001.Estoque
             }
         }
 
-        /// <summary>
-        /// Desenha a coluna de Status como um "badge" (pílula colorida com ponto),
-        /// muito mais moderno do que texto com emoji.
-        /// </summary>
         private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.RowIndex < 0 || dataGridView1.Columns[e.ColumnIndex].Name != "colStatus")
-                return;
+            if (e.RowIndex < 0) return;
 
             var insumo = dataGridView1.Rows[e.RowIndex].DataBoundItem as Insumo;
             if (insumo == null) return;
 
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "colStatus")
+            {
+                PintarBadgeStatus(e, insumo);
+            }
+            else if (dataGridView1.Columns[e.ColumnIndex].Name == "colAcoes")
+            {
+                PintarLinkEditar(e);
+            }
+        }
+
+        /// <summary>Desenha a coluna de Status como um "badge" (pílula colorida com ponto).</summary>
+        private void PintarBadgeStatus(DataGridViewCellPaintingEventArgs e, Insumo insumo)
+        {
             e.PaintBackground(e.CellBounds, true);
 
             bool baixo = insumo.EstoqueBaixo;
@@ -241,30 +262,67 @@ namespace Lanchonete001.Estoque
             e.Handled = true;
         }
 
+        /// <summary>Desenha um link de texto "Editar" na última coluna da grid.</summary>
+        private void PintarLinkEditar(DataGridViewCellPaintingEventArgs e)
+        {
+            e.PaintBackground(e.CellBounds, true);
+
+            var g = e.Graphics;
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            TextRenderer.DrawText(g, "Editar", e.CellStyle.Font, e.CellBounds, AppColors.Primary,
+                TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter | TextFormatFlags.NoPadding);
+
+            e.Handled = true;
+        }
+
+        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            AbrirEdicao(e.RowIndex);
+        }
+
+        private void DataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "colAcoes")
+            {
+                AbrirEdicao(e.RowIndex);
+            }
+        }
+
+        private void AbrirEdicao(int rowIndex)
+        {
+            if (rowIndex < 0 || rowIndex >= dataGridView1.Rows.Count) return;
+
+            var insumo = dataGridView1.Rows[rowIndex].DataBoundItem as Insumo;
+            if (insumo == null) return;
+
+            var frm = new FrmNovoInsumo(insumo);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                CarregarDados(); // recarrega já com a alteração salva no banco
+            }
+        }
+
         private void AtualizarCardsResumo()
         {
             int totalInsumos = listaInsumos.Count;
             int totalBaixo = listaInsumos.Count(i => i.EstoqueBaixo);
+            decimal valorTotalEstoque = listaInsumos.Sum(i => i.ValorTotal);
 
             lblTotalInsumos.Text = totalInsumos.ToString();
             lblEstoqueBaixo.Text = totalBaixo.ToString();
-
-            // Estimativa simples de valor (sem PrecoUnitario ainda, mantém texto informativo)
-            lblValorEstoque.Text = $"{totalInsumos} itens";
+            lblValorEstoque.Text = "R$ " + valorTotalEstoque.ToString("N2", new CultureInfo("pt-BR"));
         }
-
 
         private void btnNovoInsumo_Click(object sender, EventArgs e)
         {
             var frm = new FrmNovoInsumo();
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                listaInsumos.Add(frm.InsumoCriado);
-                AplicarFiltro(); // já reaplica o filtro atual, se houver
-                AtualizarCardsResumo();
+                CarregarDados();
             }
         }
     }
 }
-
-
