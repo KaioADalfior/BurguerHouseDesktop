@@ -58,7 +58,7 @@ namespace Lanchonete001.Produtos
                 antigo.Dispose();
             pnlQuadro.Controls.Clear();
 
-            var pedidosEnviados = MesaRepositorio.Mesas
+            var pedidosEnviados = MesaRepositorio.ObterMesas()
                 .Where(m => m.Pedido != null && m.Pedido.EnviadoParaCozinha)
                 .OrderBy(m => m.Numero)
                 .ToList();

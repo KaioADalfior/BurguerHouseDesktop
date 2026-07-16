@@ -29,9 +29,8 @@ namespace Lanchonete001.Mesas
             txtPesquisarMesa.Text = TextoPesquisaPlaceholder;
             txtPesquisarMesa.ForeColor = AppColors.TextMuted;
 
-            // Se já existirem mesas cadastradas (ex.: voltando para esta tela),
-            // mantém a quantidade atual; senão começa com uma sugestão de 8.
-            numQuantidadeMesas.Value = MesaRepositorio.Mesas.Count > 0 ? MesaRepositorio.Mesas.Count : 8;
+            int quantidadeAtual = MesaRepositorio.ObterMesas().Count;
+            numQuantidadeMesas.Value = quantidadeAtual > 0 ? quantidadeAtual : 8;
 
             AplicarQuantidade();
         }
@@ -80,12 +79,14 @@ namespace Lanchonete001.Mesas
 
             string filtro = ObterTextoPesquisa();
 
-            var mesasFiltradas = MesaRepositorio.Mesas
-                .OrderBy(m => m.Numero)
+            var mesasFiltradas = MesaRepositorio.ObterMesas()
                 .Where(m => string.IsNullOrEmpty(filtro)
                     || m.Numero.ToString().Contains(filtro)
                     || m.Numero.ToString("00").Contains(filtro))
+                .OrderBy(m => m.Numero)
                 .ToList();
+
+            // ... resto do método continua igual
 
             pnlGradeMesas.SuspendLayout();
 

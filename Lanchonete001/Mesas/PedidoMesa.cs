@@ -6,6 +6,8 @@ namespace Lanchonete001.Mesas
 {
     public class PedidoMesa
     {
+        public int Id { get; set; }
+        public int MesaId { get; set; }
         public List<ItemPedidoMesa> Itens { get; set; } = new List<ItemPedidoMesa>();
         public decimal Desconto { get; set; }
         public bool EnviadoParaCozinha { get; set; }

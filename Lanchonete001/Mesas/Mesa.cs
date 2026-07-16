@@ -6,6 +6,7 @@
     /// </summary>
     public class Mesa
     {
+        public int Id { get; set; }
         public int Numero { get; set; }
         public StatusMesa Status { get; set; } = StatusMesa.Livre;
         public PedidoMesa Pedido { get; set; }

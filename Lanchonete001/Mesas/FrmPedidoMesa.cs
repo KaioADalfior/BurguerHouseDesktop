@@ -116,21 +116,7 @@ namespace Lanchonete001.Mesas
             if (item == null) return;
 
             MesaRepositorio.GarantirPedidoAberto(_mesa);
-
-            var existente = _mesa.Pedido.Itens.FirstOrDefault(i => i.NomeProduto == item.Nome);
-            if (existente != null)
-            {
-                existente.Quantidade++;
-            }
-            else
-            {
-                _mesa.Pedido.Itens.Add(new ItemPedidoMesa
-                {
-                    NomeProduto = item.Nome,
-                    PrecoUnitario = item.PrecoVenda,
-                    Quantidade = 1
-                });
-            }
+            MesaRepositorio.AdicionarItem(_mesa.Pedido, item);
 
             AtualizarTudo();
         }
@@ -140,7 +126,7 @@ namespace Lanchonete001.Mesas
             var item = ObterItemSelecionado();
             if (item == null) return;
 
-            item.Quantidade++;
+            MesaRepositorio.AumentarQuantidade(_mesa.Pedido, item);
             AtualizarTudo();
         }
 
@@ -149,15 +135,7 @@ namespace Lanchonete001.Mesas
             var item = ObterItemSelecionado();
             if (item == null) return;
 
-            if (item.Quantidade <= 1)
-            {
-                _mesa.Pedido.Itens.Remove(item);
-            }
-            else
-            {
-                item.Quantidade--;
-            }
-
+            MesaRepositorio.DiminuirQuantidade(_mesa.Pedido, item);
             AtualizarTudo();
         }
 
@@ -166,7 +144,7 @@ namespace Lanchonete001.Mesas
             var item = ObterItemSelecionado();
             if (item == null) return;
 
-            _mesa.Pedido.Itens.Remove(item);
+            MesaRepositorio.RemoverItem(_mesa.Pedido, item);
             AtualizarTudo();
         }
 
@@ -187,7 +165,7 @@ namespace Lanchonete001.Mesas
 
             if (valor < 0) valor = 0;
 
-            _mesa.Pedido.Desconto = valor;
+            MesaRepositorio.AtualizarDesconto(_mesa.Pedido, valor);
             AtualizarTotais();
         }
 
@@ -235,7 +213,7 @@ namespace Lanchonete001.Mesas
                 return;
             }
 
-            var mesasLivres = MesaRepositorio.Mesas
+            var mesasLivres = MesaRepositorio.ObterMesas()
                 .Where(m => m.Status == StatusMesa.Livre && m.Numero != _mesa.Numero)
                 .OrderBy(m => m.Numero)
                 .ToList();
@@ -251,11 +229,7 @@ namespace Lanchonete001.Mesas
                 if (dlg.ShowDialog(this) != DialogResult.OK) return;
 
                 var destino = dlg.MesaEscolhida;
-                destino.Pedido = _mesa.Pedido;
-                destino.Status = StatusMesa.Ocupada;
-
-                _mesa.Pedido = null;
-                _mesa.Status = StatusMesa.Livre;
+                MesaRepositorio.TransferirPedido(_mesa, destino);
 
                 MessageBox.Show($"Pedido transferido para a Mesa {destino.Numero:00}.",
                     "Transferido", MessageBoxButtons.OK, MessageBoxIcon.Information);
