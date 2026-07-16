@@ -3,6 +3,7 @@ using Lanchonete001.Lanches;
 using Lanchonete001.Bebidas;
 using Lanchonete001.Configuracoes;
 using Lanchonete001.Estoque;
+using Lanchonete001.BancoDados;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Lanchonete001.Mesas;
 using Lanchonete001.Produtos;
+using Lanchonete001.Usuarios;
 
 namespace Lanchonete001
 {
@@ -35,24 +37,60 @@ namespace Lanchonete001
 
         private Panel itemMenuAtivo;
 
-        public Form1()
+        /// <summary>Usuário autenticado que está usando o sistema (vindo do FrmLogin).</summary>
+        private readonly Usuario usuarioLogado;
+
+        /// <summary>
+        /// Menus (por chave interna) liberados para cada cargo.
+        /// "Dono" e "Gerente" têm acesso igual ao "Admin", exceto que não
+        /// podem cadastrar outro usuário com cargo Admin (isso é tratado
+        /// em FrmNovoUsuario/UcUsuarios, não aqui no menu).
+        /// </summary>
+        private static readonly Dictionary<string, string[]> PermissoesPorCargo =
+            new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["Admin"] = new[] { "Dashboard", "Lanches", "Bebidas", "Estoque", "Pedidos", "Mesas", "Delivery", "Clientes", "Financeiro", "Relatorios", "Configuracoes", "Usuarios" },
+                ["Dono"] = new[] { "Dashboard", "Lanches", "Bebidas", "Estoque", "Pedidos", "Mesas", "Delivery", "Clientes", "Financeiro", "Relatorios", "Configuracoes", "Usuarios" },
+                ["Gerente"] = new[] { "Dashboard", "Lanches", "Bebidas", "Estoque", "Pedidos", "Mesas", "Delivery", "Clientes", "Financeiro", "Relatorios", "Configuracoes", "Usuarios" },
+                ["Financeiro"] = new[] { "Dashboard", "Estoque", "Pedidos", "Relatorios" },
+                ["Garçom"] = new[] { "Mesas", "Pedidos", "Lanches", "Bebidas" },
+                ["Cozinha"] = new[] { "Lanches", "Bebidas", "Pedidos", "Mesas", "Delivery" },
+            };
+
+        public Form1() : this(null)
+        {
+        }
+
+        public Form1(Usuario usuarioLogado)
         {
             InitializeComponent();
+
+            this.usuarioLogado = usuarioLogado;
 
             // Obs.: o clique do btnSair (painel, ícone e label) já é vinculado
             // diretamente no Designer (btnSair, picMenuSair, lblMenuSair),
             // então não é necessário religar aqui.
 
-            CarregarDadosTeste();
+            CarregarDadosUsuario();
             AtualizarDataHora();
             AplicarEstiloModerno();
+            AplicarPermissoesPorCargo();
         }
 
-        private void CarregarDadosTeste()
+        /// <summary>
+        /// Preenche os labels do cabeçalho/menu com os dados reais do usuário
+        /// logado (nome, cargo) e o status atual da conexão com o banco.
+        /// Os cards do dashboard (vendas, pedidos, mesas, estoque) continuam
+        /// com dados de exemplo por enquanto.
+        /// </summary>
+        private void CarregarDadosUsuario()
         {
-            lblCargo.Text = "Cargo: Gerente";
-            lblUsuario.Text = "Usuário: Kaio Andrião Dalfior";
-            lblUsuarioConectado.Text = "Usuário: Kaio Andrião Dalfior";
+            string nomeExibido = usuarioLogado?.Nome ?? "Desconhecido";
+            string cargoExibido = usuarioLogado?.CargoNome ?? "-";
+
+            lblCargo.Text = "Cargo: " + cargoExibido;
+            lblUsuario.Text = "Usuário: " + nomeExibido;
+            lblUsuarioConectado.Text = "Usuário: " + nomeExibido;
 
             lblValorCardVendas.Text = "R$ 1.000,00";
             lblValorCardPedidos.Text = "38";
@@ -64,7 +102,21 @@ namespace Lanchonete001
             lblDescricaoCardEstoque.Text = "Baixo Estoque";
             lblDescricaoCardPedidos.Text = "+12% vs Ontem";
 
-            lblStatusBanco.Text = "Banco de Dados: Conectado";
+            AtualizarStatusBanco();
+        }
+
+        /// <summary>Testa a conexão com o banco agora e reflete o resultado em lblStatusBanco.</summary>
+        private void AtualizarStatusBanco()
+        {
+            bool conectado = ConexaoBanco.TestarConexao(out string mensagemErro);
+
+            lblStatusBanco.Text = conectado
+                ? "Banco de Dados: Conectado"
+                : "Banco de Dados: Desconectado";
+
+            lblStatusBanco.ForeColor = conectado
+                ? Color.FromArgb(46, 139, 87)
+                : Color.FromArgb(196, 69, 54);
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -156,6 +208,101 @@ namespace Lanchonete001
 
             // Estado inicial: "Dashboard" começa selecionado, pois é a tela carregada por padrão
             MarcarItemMenuAtivo(btnDashboard);
+        }
+
+        /// <summary>
+        /// Ajusta o menu lateral conforme o cargo do usuário logado, de
+        /// acordo com o dicionário PermissoesPorCargo. Itens não permitidos
+        /// NÃO são escondidos: continuam visíveis no menu, porém ficam
+        /// bloqueados (sem clique) e com uma aparência esmaecida, deixando
+        /// claro que aquele recurso existe mas não está disponível para o
+        /// cargo atual. Se o cargo não for encontrado (nulo, vazio ou não
+        /// cadastrado), libera apenas o Dashboard por segurança.
+        /// </summary>
+        private void AplicarPermissoesPorCargo()
+        {
+            string cargo = usuarioLogado?.CargoNome;
+
+            // Relaciona cada painel de menu (btnX) à sua chave de permissão
+            var mapaMenu = new Dictionary<string, Panel>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["Dashboard"] = btnDashboard,
+                ["Lanches"] = btnLanches,
+                ["Bebidas"] = btnBebidas,
+                ["Estoque"] = btnEstoque,
+                ["Pedidos"] = btnPedidos,
+                ["Mesas"] = btnMesas,
+                ["Delivery"] = btnDelivery,
+                ["Clientes"] = btnClientes,
+                ["Financeiro"] = btnFinanceiro,
+                ["Relatorios"] = btnRelatorios,
+                ["Configuracoes"] = btnConfiguracoes,
+                ["Usuarios"] = btnUsuarios,
+            };
+
+            string[] permitidos;
+
+            if (string.IsNullOrWhiteSpace(cargo) || !PermissoesPorCargo.TryGetValue(cargo, out permitidos))
+            {
+                // Cargo desconhecido/nulo: por segurança, libera só o Dashboard
+                permitidos = new[] { "Dashboard" };
+            }
+
+            foreach (var par in mapaMenu)
+            {
+                bool liberado = permitidos.Contains(par.Key, StringComparer.OrdinalIgnoreCase);
+                AplicarEstadoItemMenu(par.Value, liberado);
+            }
+
+            // btnSair fica sempre liberado, independente do cargo
+        }
+
+        /// <summary>
+        /// Aplica o estado visual/funcional de um item do menu lateral:
+        /// - Liberado: aparência normal, clicável, cursor de "mão".
+        /// - Bloqueado: continua visível (não desaparece do menu), mas com
+        ///   cor esmaecida, texto acinzentado, cursor de "bloqueado" e
+        ///   Enabled = false, o que já impede clique nele e em seus filhos
+        ///   (ícone/label) automaticamente.
+        /// </summary>
+        private void AplicarEstadoItemMenu(Panel item, bool liberado)
+        {
+            item.Enabled = liberado;
+            item.Cursor = liberado ? Cursors.Hand : Cursors.No;
+            item.BackColor = liberado ? CorMenuNormal : TomBloqueado(CorMenuNormal);
+
+            EsmaecerFilhosRecursivo(item, liberado);
+        }
+
+        /// <summary>
+        /// Percorre recursivamente os filhos de um item de menu (ícone e
+        /// label) ajustando a cor do texto para um tom acinzentado quando o
+        /// item está bloqueado, mantendo tudo visível na tela.
+        /// </summary>
+        private static void EsmaecerFilhosRecursivo(Control raiz, bool liberado)
+        {
+            foreach (Control filho in raiz.Controls)
+            {
+                if (filho is Label lbl)
+                {
+                    lbl.ForeColor = liberado ? Color.White : Color.FromArgb(120, 128, 140);
+                }
+
+                EsmaecerFilhosRecursivo(filho, liberado);
+            }
+        }
+
+        /// <summary>
+        /// Gera um tom "apagado"/acinzentado a partir da cor normal do menu,
+        /// usado no fundo dos itens bloqueados para indicar visualmente que
+        /// aquele recurso não está disponível para o cargo do usuário.
+        /// </summary>
+        private static Color TomBloqueado(Color cor)
+        {
+            int r = (cor.R + 110) / 2;
+            int g = (cor.G + 110) / 2;
+            int b = (cor.B + 110) / 2;
+            return Color.FromArgb(r, g, b);
         }
 
         /// <summary>
@@ -346,6 +493,12 @@ namespace Lanchonete001
         {
             MarcarItemMenuAtivo(btnPedidos);
             CarregarTela(new UcPedidos());
+        }
+
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            MarcarItemMenuAtivo(btnUsuarios);
+            CarregarTela(new UcUsuarios(usuarioLogado));
         }
     }
 }

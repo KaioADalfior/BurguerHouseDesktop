@@ -3,14 +3,14 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Lanchonete001.Usuarios;
 
 namespace Lanchonete001.Login
 {
     public partial class FrmLogin : Form
     {
-        // ---- Credenciais fixas (conforme solicitado) ----
-        private const string USUARIO_VALIDO = "user";
-        private const string SENHA_VALIDA = "user";
+        /// <summary>Usuário autenticado com sucesso (disponível após login válido, para outras telas usarem).</summary>
+        public Usuario UsuarioLogado { get; private set; }
 
         private bool _senhaVisivel = false;
 
@@ -125,21 +125,40 @@ namespace Lanchonete001.Login
                 return;
             }
 
-            if (usuario == USUARIO_VALIDO && senha == SENHA_VALIDA)
+            btnEntrar.Enabled = false;
+
+            try
             {
-                // "Lembrar-me" fica disponível em chkLembrar.Checked para,
-                // se desejado, persistir o usuário (ex.: Properties.Settings) aqui.
+                Usuario usuarioAutenticado = UsuarioRepositorio.Autenticar(usuario, senha);
 
-                lblMensagem.ForeColor = Color.FromArgb(46, 139, 87);
-                lblMensagem.Text = "Login realizado com sucesso!";
+                if (usuarioAutenticado != null)
+                {
+                    UsuarioLogado = usuarioAutenticado;
 
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                    lblMensagem.ForeColor = Color.FromArgb(46, 139, 87);
+                    lblMensagem.Text = "Login realizado com sucesso!";
+
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MostrarErro("Usuário ou senha inválidos.");
+                    AnimarErro();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MostrarErro("Usuário ou senha inválidos.");
-                AnimarErro();
+                MostrarErro("Não foi possível conectar ao banco de dados.");
+                MessageBox.Show(
+                    "Verifique se o MySQL está rodando.\n\nDetalhes: " + ex.Message,
+                    "Erro de conexão",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                btnEntrar.Enabled = true;
             }
         }
 

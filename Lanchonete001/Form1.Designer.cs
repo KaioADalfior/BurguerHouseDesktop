@@ -32,138 +32,143 @@ namespace Lanchonete001
             this.lblStatusBanco = new System.Windows.Forms.Label();
             this.lblVersaoApp = new System.Windows.Forms.Label();
             this.pnlAreaConteudo = new System.Windows.Forms.Panel();
+            this.btnUsuarios = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlCardVendas = new System.Windows.Forms.Panel();
             this.pnlAccentVendas = new System.Windows.Forms.Panel();
             this.pnlIconVendas = new System.Windows.Forms.Panel();
-            this.picIconVendas = new System.Windows.Forms.PictureBox();
             this.lblCaptionVendas = new System.Windows.Forms.Label();
             this.lblDescricaoCardVendas = new System.Windows.Forms.Label();
             this.lblValorCardVendas = new System.Windows.Forms.Label();
             this.pnlCardPedidos = new System.Windows.Forms.Panel();
             this.pnlAccentPedidos = new System.Windows.Forms.Panel();
             this.pnlIconPedidos = new System.Windows.Forms.Panel();
-            this.picIconPedidos = new System.Windows.Forms.PictureBox();
             this.lblCaptionPedidos = new System.Windows.Forms.Label();
             this.lblDescricaoCardPedidos = new System.Windows.Forms.Label();
             this.lblValorCardPedidos = new System.Windows.Forms.Label();
             this.pnlCardEstoque = new System.Windows.Forms.Panel();
             this.pnlAccentEstoque = new System.Windows.Forms.Panel();
             this.pnlIconEstoque = new System.Windows.Forms.Panel();
-            this.picIconEstoqueCard = new System.Windows.Forms.PictureBox();
             this.lblCaptionEstoqueCard = new System.Windows.Forms.Label();
             this.lblDescricaoCardEstoque = new System.Windows.Forms.Label();
             this.lblValorCardEstoque = new System.Windows.Forms.Label();
             this.pnlCardMesas = new System.Windows.Forms.Panel();
             this.pnlAccentMesas = new System.Windows.Forms.Panel();
             this.pnlIconMesas = new System.Windows.Forms.Panel();
-            this.picIconMesas = new System.Windows.Forms.PictureBox();
             this.lblCaptionMesas = new System.Windows.Forms.Label();
             this.lblDescricaoCardMesas = new System.Windows.Forms.Label();
             this.lblValorCardMesas = new System.Windows.Forms.Label();
             this.pnlMenuLateral = new System.Windows.Forms.Panel();
             this.pnlDivisorMenuBase = new System.Windows.Forms.Panel();
             this.btnSair = new System.Windows.Forms.Panel();
-            this.picMenuSair = new System.Windows.Forms.PictureBox();
             this.lblMenuSair = new System.Windows.Forms.Label();
             this.btnConfiguracoes = new System.Windows.Forms.Panel();
-            this.picMenuConfiguracoes = new System.Windows.Forms.PictureBox();
             this.lblMenuConfiguracoes = new System.Windows.Forms.Label();
             this.btnRelatorios = new System.Windows.Forms.Panel();
-            this.picMenuRelatorios = new System.Windows.Forms.PictureBox();
             this.lblMenuRelatorios = new System.Windows.Forms.Label();
             this.btnFinanceiro = new System.Windows.Forms.Panel();
-            this.picMenuFinanceiro = new System.Windows.Forms.PictureBox();
             this.lblMenuFinanceiro = new System.Windows.Forms.Label();
             this.btnClientes = new System.Windows.Forms.Panel();
-            this.picMenuClientes = new System.Windows.Forms.PictureBox();
             this.lblMenuClientes = new System.Windows.Forms.Label();
             this.btnDelivery = new System.Windows.Forms.Panel();
-            this.picMenuDelivery = new System.Windows.Forms.PictureBox();
             this.lblMenuDelivery = new System.Windows.Forms.Label();
             this.btnMesas = new System.Windows.Forms.Panel();
-            this.picMenuMesas = new System.Windows.Forms.PictureBox();
             this.lblMenuMesas = new System.Windows.Forms.Label();
             this.btnPedidos = new System.Windows.Forms.Panel();
-            this.picMenuPedidos = new System.Windows.Forms.PictureBox();
             this.lblMenuPedidos = new System.Windows.Forms.Label();
             this.btnEstoque = new System.Windows.Forms.Panel();
-            this.picMenuEstoque = new System.Windows.Forms.PictureBox();
             this.lblMenuEstoque = new System.Windows.Forms.Label();
             this.btnBebidas = new System.Windows.Forms.Panel();
-            this.picMenuBebidas = new System.Windows.Forms.PictureBox();
             this.lblMenuBebidas = new System.Windows.Forms.Label();
             this.btnLanches = new System.Windows.Forms.Panel();
-            this.picMenuLanches = new System.Windows.Forms.PictureBox();
             this.lblMenuLanches = new System.Windows.Forms.Label();
             this.btnDashboard = new System.Windows.Forms.Panel();
-            this.picMenuDashboard = new System.Windows.Forms.PictureBox();
             this.lblMenuDashboard = new System.Windows.Forms.Label();
             this.pnlIndicadorAtivo = new System.Windows.Forms.Panel();
             this.pnlDivisorMenuTopo = new System.Windows.Forms.Panel();
             this.lblMarcaApp = new System.Windows.Forms.Label();
-            this.picLogo = new System.Windows.Forms.PictureBox();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlPerfilUsuario = new System.Windows.Forms.Panel();
-            this.picNotificacoes = new System.Windows.Forms.PictureBox();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblCargo = new System.Windows.Forms.Label();
-            this.picAvatarUsuario = new System.Windows.Forms.PictureBox();
-            this.btnConfiguracoes02 = new System.Windows.Forms.PictureBox();
             this.pnlBusca = new System.Windows.Forms.Panel();
             this.txtBuscaGlobal = new System.Windows.Forms.TextBox();
-            this.picBuscarGlobal = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.picIconVendas = new System.Windows.Forms.PictureBox();
+            this.picIconPedidos = new System.Windows.Forms.PictureBox();
+            this.picIconEstoqueCard = new System.Windows.Forms.PictureBox();
+            this.picIconMesas = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picMenuSair = new System.Windows.Forms.PictureBox();
+            this.picMenuConfiguracoes = new System.Windows.Forms.PictureBox();
+            this.picMenuRelatorios = new System.Windows.Forms.PictureBox();
+            this.picMenuFinanceiro = new System.Windows.Forms.PictureBox();
+            this.picMenuClientes = new System.Windows.Forms.PictureBox();
+            this.picMenuDelivery = new System.Windows.Forms.PictureBox();
+            this.picMenuMesas = new System.Windows.Forms.PictureBox();
+            this.picMenuPedidos = new System.Windows.Forms.PictureBox();
+            this.picMenuEstoque = new System.Windows.Forms.PictureBox();
+            this.picMenuBebidas = new System.Windows.Forms.PictureBox();
+            this.picMenuLanches = new System.Windows.Forms.PictureBox();
+            this.picMenuDashboard = new System.Windows.Forms.PictureBox();
+            this.picLogo = new System.Windows.Forms.PictureBox();
+            this.picNotificacoes = new System.Windows.Forms.PictureBox();
+            this.picAvatarUsuario = new System.Windows.Forms.PictureBox();
+            this.btnConfiguracoes02 = new System.Windows.Forms.PictureBox();
+            this.picBuscarGlobal = new System.Windows.Forms.PictureBox();
             this.pnlRoot.SuspendLayout();
             this.pnlCorpo.SuspendLayout();
             this.pnlConteudo.SuspendLayout();
             this.pnlRodape.SuspendLayout();
             this.pnlAreaConteudo.SuspendLayout();
+            this.btnUsuarios.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnlCardVendas.SuspendLayout();
             this.pnlIconVendas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picIconVendas)).BeginInit();
             this.pnlCardPedidos.SuspendLayout();
             this.pnlIconPedidos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picIconPedidos)).BeginInit();
             this.pnlCardEstoque.SuspendLayout();
             this.pnlIconEstoque.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picIconEstoqueCard)).BeginInit();
             this.pnlCardMesas.SuspendLayout();
             this.pnlIconMesas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picIconMesas)).BeginInit();
             this.pnlMenuLateral.SuspendLayout();
             this.btnSair.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuSair)).BeginInit();
             this.btnConfiguracoes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuConfiguracoes)).BeginInit();
             this.btnRelatorios.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuRelatorios)).BeginInit();
             this.btnFinanceiro.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuFinanceiro)).BeginInit();
             this.btnClientes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuClientes)).BeginInit();
             this.btnDelivery.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuDelivery)).BeginInit();
             this.btnMesas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuMesas)).BeginInit();
             this.btnPedidos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuPedidos)).BeginInit();
             this.btnEstoque.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuEstoque)).BeginInit();
             this.btnBebidas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuBebidas)).BeginInit();
             this.btnLanches.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuLanches)).BeginInit();
             this.btnDashboard.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuDashboard)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.pnlHeader.SuspendLayout();
             this.pnlPerfilUsuario.SuspendLayout();
+            this.pnlBusca.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconVendas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconPedidos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconEstoqueCard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconMesas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuSair)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuConfiguracoes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuRelatorios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuFinanceiro)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuDelivery)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuMesas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuPedidos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuEstoque)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuBebidas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuLanches)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuDashboard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNotificacoes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAvatarUsuario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnConfiguracoes02)).BeginInit();
-            this.pnlBusca.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBuscarGlobal)).BeginInit();
             this.SuspendLayout();
             // 
@@ -287,6 +292,31 @@ namespace Lanchonete001
             this.pnlAreaConteudo.Size = new System.Drawing.Size(982, 707);
             this.pnlAreaConteudo.TabIndex = 2;
             // 
+            // btnUsuarios
+            // 
+            this.btnUsuarios.Controls.Add(this.pictureBox1);
+            this.btnUsuarios.Controls.Add(this.label1);
+            this.btnUsuarios.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUsuarios.Font = new System.Drawing.Font("Poppins", 12F);
+            this.btnUsuarios.Location = new System.Drawing.Point(0, 663);
+            this.btnUsuarios.Name = "btnUsuarios";
+            this.btnUsuarios.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
+            this.btnUsuarios.Size = new System.Drawing.Size(260, 48);
+            this.btnUsuarios.TabIndex = 14;
+            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Poppins", 10.5F);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(221)))), ((int)(((byte)(203)))));
+            this.label1.Location = new System.Drawing.Point(77, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 25);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Usuários";
+            this.label1.Click += new System.EventHandler(this.btnUsuarios_Click);
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
@@ -330,16 +360,6 @@ namespace Lanchonete001
             this.pnlIconVendas.Name = "pnlIconVendas";
             this.pnlIconVendas.Size = new System.Drawing.Size(48, 48);
             this.pnlIconVendas.TabIndex = 7;
-            // 
-            // picIconVendas
-            // 
-            this.picIconVendas.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_us_dollar_circled_32;
-            this.picIconVendas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picIconVendas.Location = new System.Drawing.Point(8, 8);
-            this.picIconVendas.Name = "picIconVendas";
-            this.picIconVendas.Size = new System.Drawing.Size(32, 32);
-            this.picIconVendas.TabIndex = 4;
-            this.picIconVendas.TabStop = false;
             // 
             // lblCaptionVendas
             // 
@@ -405,16 +425,6 @@ namespace Lanchonete001
             this.pnlIconPedidos.Size = new System.Drawing.Size(48, 48);
             this.pnlIconPedidos.TabIndex = 7;
             // 
-            // picIconPedidos
-            // 
-            this.picIconPedidos.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_receipt_32;
-            this.picIconPedidos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picIconPedidos.Location = new System.Drawing.Point(8, 8);
-            this.picIconPedidos.Name = "picIconPedidos";
-            this.picIconPedidos.Size = new System.Drawing.Size(32, 32);
-            this.picIconPedidos.TabIndex = 4;
-            this.picIconPedidos.TabStop = false;
-            // 
             // lblCaptionPedidos
             // 
             this.lblCaptionPedidos.AutoSize = true;
@@ -477,16 +487,6 @@ namespace Lanchonete001
             this.pnlIconEstoque.Name = "pnlIconEstoque";
             this.pnlIconEstoque.Size = new System.Drawing.Size(48, 48);
             this.pnlIconEstoque.TabIndex = 7;
-            // 
-            // picIconEstoqueCard
-            // 
-            this.picIconEstoqueCard.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_error_32;
-            this.picIconEstoqueCard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picIconEstoqueCard.Location = new System.Drawing.Point(8, 8);
-            this.picIconEstoqueCard.Name = "picIconEstoqueCard";
-            this.picIconEstoqueCard.Size = new System.Drawing.Size(32, 32);
-            this.picIconEstoqueCard.TabIndex = 4;
-            this.picIconEstoqueCard.TabStop = false;
             // 
             // lblCaptionEstoqueCard
             // 
@@ -551,16 +551,6 @@ namespace Lanchonete001
             this.pnlIconMesas.Size = new System.Drawing.Size(48, 48);
             this.pnlIconMesas.TabIndex = 7;
             // 
-            // picIconMesas
-            // 
-            this.picIconMesas.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_utensils_32;
-            this.picIconMesas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picIconMesas.Location = new System.Drawing.Point(8, 8);
-            this.picIconMesas.Name = "picIconMesas";
-            this.picIconMesas.Size = new System.Drawing.Size(32, 32);
-            this.picIconMesas.TabIndex = 4;
-            this.picIconMesas.TabStop = false;
-            // 
             // lblCaptionMesas
             // 
             this.lblCaptionMesas.AutoSize = true;
@@ -597,6 +587,7 @@ namespace Lanchonete001
             // 
             this.pnlMenuLateral.AutoScroll = true;
             this.pnlMenuLateral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(22)))), ((int)(((byte)(52)))));
+            this.pnlMenuLateral.Controls.Add(this.btnUsuarios);
             this.pnlMenuLateral.Controls.Add(this.pnlDivisorMenuBase);
             this.pnlMenuLateral.Controls.Add(this.btnSair);
             this.pnlMenuLateral.Controls.Add(this.btnConfiguracoes);
@@ -635,23 +626,12 @@ namespace Lanchonete001
             this.btnSair.Controls.Add(this.lblMenuSair);
             this.btnSair.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSair.Font = new System.Drawing.Font("Poppins", 12F);
-            this.btnSair.Location = new System.Drawing.Point(0, 663);
+            this.btnSair.Location = new System.Drawing.Point(0, 720);
             this.btnSair.Name = "btnSair";
             this.btnSair.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
             this.btnSair.Size = new System.Drawing.Size(260, 48);
             this.btnSair.TabIndex = 15;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
-            // 
-            // picMenuSair
-            // 
-            this.picMenuSair.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_close_38;
-            this.picMenuSair.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picMenuSair.Location = new System.Drawing.Point(24, 3);
-            this.picMenuSair.Name = "picMenuSair";
-            this.picMenuSair.Size = new System.Drawing.Size(40, 40);
-            this.picMenuSair.TabIndex = 3;
-            this.picMenuSair.TabStop = false;
-            this.picMenuSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // lblMenuSair
             // 
@@ -678,17 +658,6 @@ namespace Lanchonete001
             this.btnConfiguracoes.TabIndex = 13;
             this.btnConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click);
             // 
-            // picMenuConfiguracoes
-            // 
-            this.picMenuConfiguracoes.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_config_38;
-            this.picMenuConfiguracoes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picMenuConfiguracoes.Location = new System.Drawing.Point(24, 3);
-            this.picMenuConfiguracoes.Name = "picMenuConfiguracoes";
-            this.picMenuConfiguracoes.Size = new System.Drawing.Size(40, 40);
-            this.picMenuConfiguracoes.TabIndex = 3;
-            this.picMenuConfiguracoes.TabStop = false;
-            this.picMenuConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click);
-            // 
             // lblMenuConfiguracoes
             // 
             this.lblMenuConfiguracoes.AutoSize = true;
@@ -713,16 +682,6 @@ namespace Lanchonete001
             this.btnRelatorios.Size = new System.Drawing.Size(260, 48);
             this.btnRelatorios.TabIndex = 12;
             // 
-            // picMenuRelatorios
-            // 
-            this.picMenuRelatorios.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_combo_chart_38;
-            this.picMenuRelatorios.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picMenuRelatorios.Location = new System.Drawing.Point(24, 3);
-            this.picMenuRelatorios.Name = "picMenuRelatorios";
-            this.picMenuRelatorios.Size = new System.Drawing.Size(40, 40);
-            this.picMenuRelatorios.TabIndex = 3;
-            this.picMenuRelatorios.TabStop = false;
-            // 
             // lblMenuRelatorios
             // 
             this.lblMenuRelatorios.AutoSize = true;
@@ -745,16 +704,6 @@ namespace Lanchonete001
             this.btnFinanceiro.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
             this.btnFinanceiro.Size = new System.Drawing.Size(260, 48);
             this.btnFinanceiro.TabIndex = 11;
-            // 
-            // picMenuFinanceiro
-            // 
-            this.picMenuFinanceiro.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_us_dollar_circled_38;
-            this.picMenuFinanceiro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picMenuFinanceiro.Location = new System.Drawing.Point(24, 3);
-            this.picMenuFinanceiro.Name = "picMenuFinanceiro";
-            this.picMenuFinanceiro.Size = new System.Drawing.Size(40, 40);
-            this.picMenuFinanceiro.TabIndex = 3;
-            this.picMenuFinanceiro.TabStop = false;
             // 
             // lblMenuFinanceiro
             // 
@@ -779,16 +728,6 @@ namespace Lanchonete001
             this.btnClientes.Size = new System.Drawing.Size(260, 48);
             this.btnClientes.TabIndex = 10;
             // 
-            // picMenuClientes
-            // 
-            this.picMenuClientes.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_users_38;
-            this.picMenuClientes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picMenuClientes.Location = new System.Drawing.Point(24, 3);
-            this.picMenuClientes.Name = "picMenuClientes";
-            this.picMenuClientes.Size = new System.Drawing.Size(40, 40);
-            this.picMenuClientes.TabIndex = 3;
-            this.picMenuClientes.TabStop = false;
-            // 
             // lblMenuClientes
             // 
             this.lblMenuClientes.AutoSize = true;
@@ -811,16 +750,6 @@ namespace Lanchonete001
             this.btnDelivery.Padding = new System.Windows.Forms.Padding(24, 0, 0, 0);
             this.btnDelivery.Size = new System.Drawing.Size(260, 48);
             this.btnDelivery.TabIndex = 9;
-            // 
-            // picMenuDelivery
-            // 
-            this.picMenuDelivery.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_motorcycle_38;
-            this.picMenuDelivery.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picMenuDelivery.Location = new System.Drawing.Point(24, 3);
-            this.picMenuDelivery.Name = "picMenuDelivery";
-            this.picMenuDelivery.Size = new System.Drawing.Size(40, 40);
-            this.picMenuDelivery.TabIndex = 3;
-            this.picMenuDelivery.TabStop = false;
             // 
             // lblMenuDelivery
             // 
@@ -845,17 +774,6 @@ namespace Lanchonete001
             this.btnMesas.Size = new System.Drawing.Size(260, 48);
             this.btnMesas.TabIndex = 8;
             this.btnMesas.Click += new System.EventHandler(this.btnMesas_Click);
-            // 
-            // picMenuMesas
-            // 
-            this.picMenuMesas.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_utensils_38;
-            this.picMenuMesas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picMenuMesas.Location = new System.Drawing.Point(24, 3);
-            this.picMenuMesas.Name = "picMenuMesas";
-            this.picMenuMesas.Size = new System.Drawing.Size(40, 40);
-            this.picMenuMesas.TabIndex = 3;
-            this.picMenuMesas.TabStop = false;
-            this.picMenuMesas.Click += new System.EventHandler(this.btnMesas_Click);
             // 
             // lblMenuMesas
             // 
@@ -882,17 +800,6 @@ namespace Lanchonete001
             this.btnPedidos.TabIndex = 7;
             this.btnPedidos.Click += new System.EventHandler(this.btnPedidos_Click);
             // 
-            // picMenuPedidos
-            // 
-            this.picMenuPedidos.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_receipt_38;
-            this.picMenuPedidos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picMenuPedidos.Location = new System.Drawing.Point(24, 3);
-            this.picMenuPedidos.Name = "picMenuPedidos";
-            this.picMenuPedidos.Size = new System.Drawing.Size(40, 40);
-            this.picMenuPedidos.TabIndex = 3;
-            this.picMenuPedidos.TabStop = false;
-            this.picMenuPedidos.Click += new System.EventHandler(this.btnPedidos_Click);
-            // 
             // lblMenuPedidos
             // 
             this.lblMenuPedidos.AutoSize = true;
@@ -917,17 +824,6 @@ namespace Lanchonete001
             this.btnEstoque.Size = new System.Drawing.Size(260, 48);
             this.btnEstoque.TabIndex = 6;
             this.btnEstoque.Click += new System.EventHandler(this.btnEstoque_Click);
-            // 
-            // picMenuEstoque
-            // 
-            this.picMenuEstoque.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_box_38;
-            this.picMenuEstoque.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picMenuEstoque.Location = new System.Drawing.Point(24, 3);
-            this.picMenuEstoque.Name = "picMenuEstoque";
-            this.picMenuEstoque.Size = new System.Drawing.Size(40, 40);
-            this.picMenuEstoque.TabIndex = 3;
-            this.picMenuEstoque.TabStop = false;
-            this.picMenuEstoque.Click += new System.EventHandler(this.btnEstoque_Click);
             // 
             // lblMenuEstoque
             // 
@@ -954,17 +850,6 @@ namespace Lanchonete001
             this.btnBebidas.TabIndex = 5;
             this.btnBebidas.Click += new System.EventHandler(this.btnBebidas_Click);
             // 
-            // picMenuBebidas
-            // 
-            this.picMenuBebidas.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_soda_38;
-            this.picMenuBebidas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picMenuBebidas.Location = new System.Drawing.Point(24, 3);
-            this.picMenuBebidas.Name = "picMenuBebidas";
-            this.picMenuBebidas.Size = new System.Drawing.Size(40, 40);
-            this.picMenuBebidas.TabIndex = 3;
-            this.picMenuBebidas.TabStop = false;
-            this.picMenuBebidas.Click += new System.EventHandler(this.btnBebidas_Click);
-            // 
             // lblMenuBebidas
             // 
             this.lblMenuBebidas.AutoSize = true;
@@ -990,17 +875,6 @@ namespace Lanchonete001
             this.btnLanches.TabIndex = 4;
             this.btnLanches.Click += new System.EventHandler(this.btnLanches_Click);
             // 
-            // picMenuLanches
-            // 
-            this.picMenuLanches.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_burguer_38;
-            this.picMenuLanches.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picMenuLanches.Location = new System.Drawing.Point(24, 3);
-            this.picMenuLanches.Name = "picMenuLanches";
-            this.picMenuLanches.Size = new System.Drawing.Size(40, 40);
-            this.picMenuLanches.TabIndex = 3;
-            this.picMenuLanches.TabStop = false;
-            this.picMenuLanches.Click += new System.EventHandler(this.btnLanches_Click);
-            // 
             // lblMenuLanches
             // 
             this.lblMenuLanches.AutoSize = true;
@@ -1025,17 +899,6 @@ namespace Lanchonete001
             this.btnDashboard.Size = new System.Drawing.Size(260, 48);
             this.btnDashboard.TabIndex = 3;
             this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
-            // 
-            // picMenuDashboard
-            // 
-            this.picMenuDashboard.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_house_38;
-            this.picMenuDashboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picMenuDashboard.Location = new System.Drawing.Point(24, 3);
-            this.picMenuDashboard.Name = "picMenuDashboard";
-            this.picMenuDashboard.Size = new System.Drawing.Size(40, 40);
-            this.picMenuDashboard.TabIndex = 3;
-            this.picMenuDashboard.TabStop = false;
-            this.picMenuDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
             // lblMenuDashboard
             // 
@@ -1076,16 +939,6 @@ namespace Lanchonete001
             this.lblMarcaApp.TabIndex = 1;
             this.lblMarcaApp.Text = "BURGUER HOUSE";
             // 
-            // picLogo
-            // 
-            this.picLogo.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_burguer_38;
-            this.picLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picLogo.Location = new System.Drawing.Point(24, 12);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(40, 40);
-            this.picLogo.TabIndex = 0;
-            this.picLogo.TabStop = false;
-            // 
             // pnlHeader
             // 
             this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(22)))), ((int)(((byte)(52)))));
@@ -1110,18 +963,6 @@ namespace Lanchonete001
             this.pnlPerfilUsuario.Size = new System.Drawing.Size(359, 46);
             this.pnlPerfilUsuario.TabIndex = 14;
             // 
-            // picNotificacoes
-            // 
-            this.picNotificacoes.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_alarm_38;
-            this.picNotificacoes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picNotificacoes.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picNotificacoes.Dock = System.Windows.Forms.DockStyle.Right;
-            this.picNotificacoes.Location = new System.Drawing.Point(239, 0);
-            this.picNotificacoes.Name = "picNotificacoes";
-            this.picNotificacoes.Size = new System.Drawing.Size(40, 46);
-            this.picNotificacoes.TabIndex = 8;
-            this.picNotificacoes.TabStop = false;
-            // 
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
@@ -1143,6 +984,230 @@ namespace Lanchonete001
             this.lblCargo.Size = new System.Drawing.Size(55, 19);
             this.lblCargo.TabIndex = 6;
             this.lblCargo.Text = "lblCargo";
+            // 
+            // pnlBusca
+            // 
+            this.pnlBusca.BackColor = System.Drawing.Color.White;
+            this.pnlBusca.Controls.Add(this.txtBuscaGlobal);
+            this.pnlBusca.Controls.Add(this.picBuscarGlobal);
+            this.pnlBusca.Location = new System.Drawing.Point(16, 8);
+            this.pnlBusca.Name = "pnlBusca";
+            this.pnlBusca.Size = new System.Drawing.Size(260, 30);
+            this.pnlBusca.TabIndex = 15;
+            // 
+            // txtBuscaGlobal
+            // 
+            this.txtBuscaGlobal.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBuscaGlobal.Font = new System.Drawing.Font("Poppins", 9.75F);
+            this.txtBuscaGlobal.Location = new System.Drawing.Point(12, 6);
+            this.txtBuscaGlobal.Name = "txtBuscaGlobal";
+            this.txtBuscaGlobal.Size = new System.Drawing.Size(206, 20);
+            this.txtBuscaGlobal.TabIndex = 0;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // picIconVendas
+            // 
+            this.picIconVendas.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_us_dollar_circled_32;
+            this.picIconVendas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picIconVendas.Location = new System.Drawing.Point(8, 8);
+            this.picIconVendas.Name = "picIconVendas";
+            this.picIconVendas.Size = new System.Drawing.Size(32, 32);
+            this.picIconVendas.TabIndex = 4;
+            this.picIconVendas.TabStop = false;
+            // 
+            // picIconPedidos
+            // 
+            this.picIconPedidos.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_receipt_32;
+            this.picIconPedidos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picIconPedidos.Location = new System.Drawing.Point(8, 8);
+            this.picIconPedidos.Name = "picIconPedidos";
+            this.picIconPedidos.Size = new System.Drawing.Size(32, 32);
+            this.picIconPedidos.TabIndex = 4;
+            this.picIconPedidos.TabStop = false;
+            // 
+            // picIconEstoqueCard
+            // 
+            this.picIconEstoqueCard.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_error_32;
+            this.picIconEstoqueCard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picIconEstoqueCard.Location = new System.Drawing.Point(8, 8);
+            this.picIconEstoqueCard.Name = "picIconEstoqueCard";
+            this.picIconEstoqueCard.Size = new System.Drawing.Size(32, 32);
+            this.picIconEstoqueCard.TabIndex = 4;
+            this.picIconEstoqueCard.TabStop = false;
+            // 
+            // picIconMesas
+            // 
+            this.picIconMesas.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_utensils_32;
+            this.picIconMesas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picIconMesas.Location = new System.Drawing.Point(8, 8);
+            this.picIconMesas.Name = "picIconMesas";
+            this.picIconMesas.Size = new System.Drawing.Size(32, 32);
+            this.picIconMesas.TabIndex = 4;
+            this.picIconMesas.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_user_38;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(24, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.btnUsuarios_Click);
+            // 
+            // picMenuSair
+            // 
+            this.picMenuSair.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_close_38;
+            this.picMenuSair.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picMenuSair.Location = new System.Drawing.Point(24, 3);
+            this.picMenuSair.Name = "picMenuSair";
+            this.picMenuSair.Size = new System.Drawing.Size(40, 40);
+            this.picMenuSair.TabIndex = 3;
+            this.picMenuSair.TabStop = false;
+            this.picMenuSair.Click += new System.EventHandler(this.btnSair_Click);
+            // 
+            // picMenuConfiguracoes
+            // 
+            this.picMenuConfiguracoes.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_config_38;
+            this.picMenuConfiguracoes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picMenuConfiguracoes.Location = new System.Drawing.Point(24, 3);
+            this.picMenuConfiguracoes.Name = "picMenuConfiguracoes";
+            this.picMenuConfiguracoes.Size = new System.Drawing.Size(40, 40);
+            this.picMenuConfiguracoes.TabIndex = 3;
+            this.picMenuConfiguracoes.TabStop = false;
+            this.picMenuConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click);
+            // 
+            // picMenuRelatorios
+            // 
+            this.picMenuRelatorios.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_combo_chart_38;
+            this.picMenuRelatorios.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picMenuRelatorios.Location = new System.Drawing.Point(24, 3);
+            this.picMenuRelatorios.Name = "picMenuRelatorios";
+            this.picMenuRelatorios.Size = new System.Drawing.Size(40, 40);
+            this.picMenuRelatorios.TabIndex = 3;
+            this.picMenuRelatorios.TabStop = false;
+            // 
+            // picMenuFinanceiro
+            // 
+            this.picMenuFinanceiro.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_us_dollar_circled_38;
+            this.picMenuFinanceiro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picMenuFinanceiro.Location = new System.Drawing.Point(24, 3);
+            this.picMenuFinanceiro.Name = "picMenuFinanceiro";
+            this.picMenuFinanceiro.Size = new System.Drawing.Size(40, 40);
+            this.picMenuFinanceiro.TabIndex = 3;
+            this.picMenuFinanceiro.TabStop = false;
+            // 
+            // picMenuClientes
+            // 
+            this.picMenuClientes.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_users_38;
+            this.picMenuClientes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picMenuClientes.Location = new System.Drawing.Point(24, 3);
+            this.picMenuClientes.Name = "picMenuClientes";
+            this.picMenuClientes.Size = new System.Drawing.Size(40, 40);
+            this.picMenuClientes.TabIndex = 3;
+            this.picMenuClientes.TabStop = false;
+            // 
+            // picMenuDelivery
+            // 
+            this.picMenuDelivery.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_motorcycle_38;
+            this.picMenuDelivery.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picMenuDelivery.Location = new System.Drawing.Point(24, 3);
+            this.picMenuDelivery.Name = "picMenuDelivery";
+            this.picMenuDelivery.Size = new System.Drawing.Size(40, 40);
+            this.picMenuDelivery.TabIndex = 3;
+            this.picMenuDelivery.TabStop = false;
+            // 
+            // picMenuMesas
+            // 
+            this.picMenuMesas.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_utensils_38;
+            this.picMenuMesas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picMenuMesas.Location = new System.Drawing.Point(24, 3);
+            this.picMenuMesas.Name = "picMenuMesas";
+            this.picMenuMesas.Size = new System.Drawing.Size(40, 40);
+            this.picMenuMesas.TabIndex = 3;
+            this.picMenuMesas.TabStop = false;
+            this.picMenuMesas.Click += new System.EventHandler(this.btnMesas_Click);
+            // 
+            // picMenuPedidos
+            // 
+            this.picMenuPedidos.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_receipt_38;
+            this.picMenuPedidos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picMenuPedidos.Location = new System.Drawing.Point(24, 3);
+            this.picMenuPedidos.Name = "picMenuPedidos";
+            this.picMenuPedidos.Size = new System.Drawing.Size(40, 40);
+            this.picMenuPedidos.TabIndex = 3;
+            this.picMenuPedidos.TabStop = false;
+            this.picMenuPedidos.Click += new System.EventHandler(this.btnPedidos_Click);
+            // 
+            // picMenuEstoque
+            // 
+            this.picMenuEstoque.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_box_38;
+            this.picMenuEstoque.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picMenuEstoque.Location = new System.Drawing.Point(24, 3);
+            this.picMenuEstoque.Name = "picMenuEstoque";
+            this.picMenuEstoque.Size = new System.Drawing.Size(40, 40);
+            this.picMenuEstoque.TabIndex = 3;
+            this.picMenuEstoque.TabStop = false;
+            this.picMenuEstoque.Click += new System.EventHandler(this.btnEstoque_Click);
+            // 
+            // picMenuBebidas
+            // 
+            this.picMenuBebidas.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_soda_38;
+            this.picMenuBebidas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picMenuBebidas.Location = new System.Drawing.Point(24, 3);
+            this.picMenuBebidas.Name = "picMenuBebidas";
+            this.picMenuBebidas.Size = new System.Drawing.Size(40, 40);
+            this.picMenuBebidas.TabIndex = 3;
+            this.picMenuBebidas.TabStop = false;
+            this.picMenuBebidas.Click += new System.EventHandler(this.btnBebidas_Click);
+            // 
+            // picMenuLanches
+            // 
+            this.picMenuLanches.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_burguer_38;
+            this.picMenuLanches.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picMenuLanches.Location = new System.Drawing.Point(24, 3);
+            this.picMenuLanches.Name = "picMenuLanches";
+            this.picMenuLanches.Size = new System.Drawing.Size(40, 40);
+            this.picMenuLanches.TabIndex = 3;
+            this.picMenuLanches.TabStop = false;
+            this.picMenuLanches.Click += new System.EventHandler(this.btnLanches_Click);
+            // 
+            // picMenuDashboard
+            // 
+            this.picMenuDashboard.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_house_38;
+            this.picMenuDashboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picMenuDashboard.Location = new System.Drawing.Point(24, 3);
+            this.picMenuDashboard.Name = "picMenuDashboard";
+            this.picMenuDashboard.Size = new System.Drawing.Size(40, 40);
+            this.picMenuDashboard.TabIndex = 3;
+            this.picMenuDashboard.TabStop = false;
+            this.picMenuDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
+            // 
+            // picLogo
+            // 
+            this.picLogo.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_burguer_38;
+            this.picLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picLogo.Location = new System.Drawing.Point(24, 12);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(40, 40);
+            this.picLogo.TabIndex = 0;
+            this.picLogo.TabStop = false;
+            // 
+            // picNotificacoes
+            // 
+            this.picNotificacoes.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_alarm_38;
+            this.picNotificacoes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picNotificacoes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picNotificacoes.Dock = System.Windows.Forms.DockStyle.Right;
+            this.picNotificacoes.Location = new System.Drawing.Point(239, 0);
+            this.picNotificacoes.Name = "picNotificacoes";
+            this.picNotificacoes.Size = new System.Drawing.Size(40, 46);
+            this.picNotificacoes.TabIndex = 8;
+            this.picNotificacoes.TabStop = false;
             // 
             // picAvatarUsuario
             // 
@@ -1169,25 +1234,6 @@ namespace Lanchonete001
             this.btnConfiguracoes02.TabStop = false;
             this.btnConfiguracoes02.Click += new System.EventHandler(this.btnConfiguracoes_Click);
             // 
-            // pnlBusca
-            // 
-            this.pnlBusca.BackColor = System.Drawing.Color.White;
-            this.pnlBusca.Controls.Add(this.txtBuscaGlobal);
-            this.pnlBusca.Controls.Add(this.picBuscarGlobal);
-            this.pnlBusca.Location = new System.Drawing.Point(16, 8);
-            this.pnlBusca.Name = "pnlBusca";
-            this.pnlBusca.Size = new System.Drawing.Size(260, 30);
-            this.pnlBusca.TabIndex = 15;
-            // 
-            // txtBuscaGlobal
-            // 
-            this.txtBuscaGlobal.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBuscaGlobal.Font = new System.Drawing.Font("Poppins", 9.75F);
-            this.txtBuscaGlobal.Location = new System.Drawing.Point(12, 6);
-            this.txtBuscaGlobal.Name = "txtBuscaGlobal";
-            this.txtBuscaGlobal.Size = new System.Drawing.Size(206, 20);
-            this.txtBuscaGlobal.TabIndex = 0;
-            // 
             // picBuscarGlobal
             // 
             this.picBuscarGlobal.BackgroundImage = global::Lanchonete001.Properties.Resources.icons8_search_30;
@@ -1197,10 +1243,6 @@ namespace Lanchonete001
             this.picBuscarGlobal.Size = new System.Drawing.Size(30, 30);
             this.picBuscarGlobal.TabIndex = 13;
             this.picBuscarGlobal.TabStop = false;
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -1220,70 +1262,73 @@ namespace Lanchonete001
             this.pnlRodape.ResumeLayout(false);
             this.pnlRodape.PerformLayout();
             this.pnlAreaConteudo.ResumeLayout(false);
+            this.btnUsuarios.ResumeLayout(false);
+            this.btnUsuarios.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.pnlCardVendas.ResumeLayout(false);
             this.pnlCardVendas.PerformLayout();
             this.pnlIconVendas.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picIconVendas)).EndInit();
             this.pnlCardPedidos.ResumeLayout(false);
             this.pnlCardPedidos.PerformLayout();
             this.pnlIconPedidos.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picIconPedidos)).EndInit();
             this.pnlCardEstoque.ResumeLayout(false);
             this.pnlCardEstoque.PerformLayout();
             this.pnlIconEstoque.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picIconEstoqueCard)).EndInit();
             this.pnlCardMesas.ResumeLayout(false);
             this.pnlCardMesas.PerformLayout();
             this.pnlIconMesas.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picIconMesas)).EndInit();
             this.pnlMenuLateral.ResumeLayout(false);
             this.pnlMenuLateral.PerformLayout();
             this.btnSair.ResumeLayout(false);
             this.btnSair.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuSair)).EndInit();
             this.btnConfiguracoes.ResumeLayout(false);
             this.btnConfiguracoes.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuConfiguracoes)).EndInit();
             this.btnRelatorios.ResumeLayout(false);
             this.btnRelatorios.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuRelatorios)).EndInit();
             this.btnFinanceiro.ResumeLayout(false);
             this.btnFinanceiro.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuFinanceiro)).EndInit();
             this.btnClientes.ResumeLayout(false);
             this.btnClientes.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuClientes)).EndInit();
             this.btnDelivery.ResumeLayout(false);
             this.btnDelivery.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuDelivery)).EndInit();
             this.btnMesas.ResumeLayout(false);
             this.btnMesas.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuMesas)).EndInit();
             this.btnPedidos.ResumeLayout(false);
             this.btnPedidos.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuPedidos)).EndInit();
             this.btnEstoque.ResumeLayout(false);
             this.btnEstoque.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuEstoque)).EndInit();
             this.btnBebidas.ResumeLayout(false);
             this.btnBebidas.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuBebidas)).EndInit();
             this.btnLanches.ResumeLayout(false);
             this.btnLanches.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuLanches)).EndInit();
             this.btnDashboard.ResumeLayout(false);
             this.btnDashboard.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMenuDashboard)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.pnlHeader.ResumeLayout(false);
             this.pnlPerfilUsuario.ResumeLayout(false);
             this.pnlPerfilUsuario.PerformLayout();
+            this.pnlBusca.ResumeLayout(false);
+            this.pnlBusca.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconVendas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconPedidos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconEstoqueCard)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconMesas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuSair)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuConfiguracoes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuRelatorios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuFinanceiro)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuDelivery)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuMesas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuPedidos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuEstoque)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuBebidas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuLanches)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMenuDashboard)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNotificacoes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAvatarUsuario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnConfiguracoes02)).EndInit();
-            this.pnlBusca.ResumeLayout(false);
-            this.pnlBusca.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBuscarGlobal)).EndInit();
             this.ResumeLayout(false);
 
@@ -1410,5 +1455,8 @@ namespace Lanchonete001
         private Label lblVersaoApp;
 
         private System.Windows.Forms.Timer timer1;
+        private Panel btnUsuarios;
+        private PictureBox pictureBox1;
+        private Label label1;
     }
 }

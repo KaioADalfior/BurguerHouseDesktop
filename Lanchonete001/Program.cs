@@ -22,7 +22,7 @@ namespace Lanchonete001
             {
                 if (frmLogin.ShowDialog() == DialogResult.OK)
                 {
-                    Application.Run(new Form1()); 
+                    Application.Run(new Form1(frmLogin.UsuarioLogado));
                 }
             }
         }
