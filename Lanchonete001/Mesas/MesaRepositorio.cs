@@ -1,5 +1,6 @@
 ﻿using Lanchonete001.BancoDados;
 using Lanchonete001.Cardapio;
+using Lanchonete001.Estoque;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -372,13 +373,17 @@ namespace Lanchonete001.Mesas
         // Itens do pedido
         // -----------------------------------------------------------------
 
-        public static void AdicionarItem(PedidoMesa pedido, ItemCardapio itemCardapio)
+        /// <summary>
+        /// Lança um item no pedido (ou incrementa se já existir). Retorna a
+        /// lista de insumos que zeraram/ficaram negativos na receita desse
+        /// item, para a tela avisar o atendente.
+        /// </summary>
+        public static List<AlertaEstoqueInsumo> AdicionarItem(PedidoMesa pedido, ItemCardapio itemCardapio)
         {
             var existente = pedido.Itens.FirstOrDefault(i => i.ItemCardapioId == itemCardapio.Id);
             if (existente != null)
             {
-                AtualizarQuantidadeItem(existente, existente.Quantidade + 1);
-                return;
+                return AtualizarQuantidadeItem(existente, existente.Quantidade + 1);
             }
 
             const string sql = @"
@@ -406,14 +411,21 @@ namespace Lanchonete001.Mesas
                 PrecoUnitario = itemCardapio.PrecoVenda,
                 Quantidade = 1
             });
+
+            return AjustarEstoquePorReceita(itemCardapio.Id, 1); // consome a receita da 1ª unidade
         }
 
-        public static void AumentarQuantidade(PedidoMesa pedido, ItemPedidoMesa item)
+        /// <summary>Aumenta 1 unidade do item. Retorna alertas de estoque, se houver.</summary>
+        public static List<AlertaEstoqueInsumo> AumentarQuantidade(PedidoMesa pedido, ItemPedidoMesa item)
         {
-            AtualizarQuantidadeItem(item, item.Quantidade + 1);
+            return AtualizarQuantidadeItem(item, item.Quantidade + 1);
         }
 
-        /// <summary>Se a quantidade cair a zero, o item é removido do pedido.</summary>
+        /// <summary>
+        /// Diminui 1 unidade do item (devolve estoque). Se a quantidade cair
+        /// a zero, o item é removido do pedido. Nunca gera alerta de estoque,
+        /// pois só devolve insumos.
+        /// </summary>
         public static void DiminuirQuantidade(PedidoMesa pedido, ItemPedidoMesa item)
         {
             if (item.Quantidade <= 1)
@@ -422,9 +434,10 @@ namespace Lanchonete001.Mesas
                 return;
             }
 
-            AtualizarQuantidadeItem(item, item.Quantidade - 1);
+            AtualizarQuantidadeItem(item, item.Quantidade - 1); // retorno descartado: devolução nunca alerta
         }
 
+        /// <summary>Remove o item do pedido e devolve todo o estoque reservado para ele.</summary>
         public static void RemoverItem(PedidoMesa pedido, ItemPedidoMesa item)
         {
             const string sql = "DELETE FROM itens_pedido WHERE id = @id";
@@ -437,10 +450,19 @@ namespace Lanchonete001.Mesas
             }
 
             pedido.Itens.Remove(item);
+
+            AjustarEstoquePorReceita(item.ItemCardapioId, -item.Quantidade); // devolve tudo
         }
 
-        private static void AtualizarQuantidadeItem(ItemPedidoMesa item, int novaQuantidade)
+        /// <summary>
+        /// Atualiza a quantidade de um item já lançado e ajusta o estoque
+        /// pela diferença (delta positivo consome, negativo devolve).
+        /// Retorna os alertas de estoque gerados pelo ajuste.
+        /// </summary>
+        private static List<AlertaEstoqueInsumo> AtualizarQuantidadeItem(ItemPedidoMesa item, int novaQuantidade)
         {
+            int delta = novaQuantidade - item.Quantidade; // + consome, - devolve
+
             const string sql = "UPDATE itens_pedido SET quantidade = @quantidade WHERE id = @id";
 
             using (var conexao = ConexaoBanco.ObterConexao())
@@ -452,6 +474,83 @@ namespace Lanchonete001.Mesas
             }
 
             item.Quantidade = novaQuantidade;
+
+            return AjustarEstoquePorReceita(item.ItemCardapioId, delta);
+        }
+
+        /// <summary>
+        /// Aplica a variação de estoque de todos os insumos da receita de um
+        /// item do cardápio (ingredientes_receita). variacaoQuantidade
+        /// positivo = consome estoque; negativo = devolve estoque.
+        /// Retorna os insumos que, após a baixa, zeraram ou ficaram
+        /// negativos — só quando está consumindo (nunca ao devolver).
+        /// </summary>
+        private static List<AlertaEstoqueInsumo> AjustarEstoquePorReceita(int itemCardapioId, int variacaoQuantidade)
+        {
+            var alertas = new List<AlertaEstoqueInsumo>();
+            if (variacaoQuantidade == 0) return alertas;
+
+            const string sqlIngredientes = @"
+                SELECT ir.insumo_id, ir.quantidade AS qtd_por_unidade,
+                       i.nome AS nome_insumo, i.quantidade_atual
+                FROM ingredientes_receita ir
+                INNER JOIN insumos i ON i.id = ir.insumo_id
+                WHERE ir.item_cardapio_id = @itemCardapioId";
+
+            const string sqlAtualizarInsumo = @"
+                UPDATE insumos
+                SET quantidade_atual = @novaQuantidade
+                WHERE id = @insumoId";
+
+            using (var conexao = ConexaoBanco.ObterConexao())
+            {
+                var ingredientes = new List<(int insumoId, decimal qtdPorUnidade, string nome, decimal qtdAtual)>();
+
+                using (var cmd = new MySqlCommand(sqlIngredientes, conexao))
+                {
+                    cmd.Parameters.AddWithValue("@itemCardapioId", itemCardapioId);
+
+                    using (var leitor = cmd.ExecuteReader())
+                    {
+                        while (leitor.Read())
+                        {
+                            ingredientes.Add((
+                                leitor.GetInt32("insumo_id"),
+                                leitor.GetDecimal("qtd_por_unidade"),
+                                leitor.GetString("nome_insumo"),
+                                leitor.GetDecimal("quantidade_atual")
+                            ));
+                        }
+                    }
+                }
+
+                foreach (var ingrediente in ingredientes)
+                {
+                    decimal quantidadeConsumida = ingrediente.qtdPorUnidade * variacaoQuantidade;
+                    decimal novaQuantidade = ingrediente.qtdAtual - quantidadeConsumida;
+
+                    using (var cmd = new MySqlCommand(sqlAtualizarInsumo, conexao))
+                    {
+                        cmd.Parameters.AddWithValue("@novaQuantidade", novaQuantidade);
+                        cmd.Parameters.AddWithValue("@insumoId", ingrediente.insumoId);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // Só avisa quando está CONSUMINDO (variacao > 0) e o resultado
+                    // zera ou fica negativo. Ao devolver estoque (variacao < 0) nunca
+                    // gera alerta, mesmo que o valor "suba" de negativo pra zero.
+                    if (variacaoQuantidade > 0 && novaQuantidade <= 0)
+                    {
+                        alertas.Add(new AlertaEstoqueInsumo
+                        {
+                            NomeInsumo = ingrediente.nome,
+                            QuantidadeAposConsumo = novaQuantidade
+                        });
+                    }
+                }
+            }
+
+            return alertas;
         }
 
         public static void AtualizarDesconto(PedidoMesa pedido, decimal valor)

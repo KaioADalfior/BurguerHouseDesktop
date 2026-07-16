@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BancoDados\ConexaoBanco.cs" />
+    <Compile Include="BancoDados\DashboardRepositorio.cs" />
     <Compile Include="Bebidas\UcBebidas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -124,6 +125,7 @@
     <Compile Include="Configuracoes\UcConfiguracoesSobre.Designer.cs">
       <DependentUpon>UcConfiguracoesSobre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Estoque\AlertaEstoqueInsumo.cs" />
     <Compile Include="Estoque\EstoqueRepositorio.cs" />
     <Compile Include="Estoque\FrmNovoInsumo.cs">
       <SubType>Form</SubType>
@@ -137,6 +139,12 @@
     </Compile>
     <Compile Include="Estoque\UcEstoque.Designer.cs">
       <DependentUpon>UcEstoque.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Financeiro\UcFinanceiro.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Financeiro\UcFinanceiro.Designer.cs">
+      <DependentUpon>UcFinanceiro.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -241,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Estoque\UcEstoque.resx">
       <DependentUpon>UcEstoque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Financeiro\UcFinanceiro.resx">
+      <DependentUpon>UcFinanceiro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

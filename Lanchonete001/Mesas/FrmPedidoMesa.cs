@@ -1,6 +1,8 @@
 ﻿using Lanchonete001.Cardapio;
+using Lanchonete001.Estoque;
 using Lanchonete001.UI;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -44,6 +46,25 @@ namespace Lanchonete001.Mesas
             cboProdutos.DisplayMember = "Nome";
             cboProdutos.DataSource = disponiveis;
             btnAdicionarItem.Enabled = disponiveis.Count > 0;
+        }
+
+        /// <summary>
+        /// Mostra um MessageBox de aviso (não bloqueia o pedido) sempre que o
+        /// item lançado zerar ou faltar algum insumo da receita. O atendente
+        /// decide com o cliente se troca o insumo ou segue mesmo assim.
+        /// </summary>
+        private void MostrarAlertasEstoque(List<AlertaEstoqueInsumo> alertas)
+        {
+            if (alertas == null || alertas.Count == 0) return;
+
+            var linhas = alertas.Select(a => "• " + a.NomeInsumo + " — " + a.Descricao);
+
+            string mensagem =
+                "Atenção: este item deixou o estoque no limite (ou negativo):\n\n" +
+                string.Join("\n", linhas) +
+                "\n\nConsidere avisar o cliente sobre uma possível troca de insumo.";
+
+            MessageBox.Show(mensagem, "Estoque insuficiente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void AtualizarTudo()
@@ -116,9 +137,10 @@ namespace Lanchonete001.Mesas
             if (item == null) return;
 
             MesaRepositorio.GarantirPedidoAberto(_mesa);
-            MesaRepositorio.AdicionarItem(_mesa.Pedido, item);
+            var alertas = MesaRepositorio.AdicionarItem(_mesa.Pedido, item);
 
             AtualizarTudo();
+            MostrarAlertasEstoque(alertas);
         }
 
         private void btnAumentarQtd_Click(object sender, EventArgs e)
@@ -126,8 +148,10 @@ namespace Lanchonete001.Mesas
             var item = ObterItemSelecionado();
             if (item == null) return;
 
-            MesaRepositorio.AumentarQuantidade(_mesa.Pedido, item);
+            var alertas = MesaRepositorio.AumentarQuantidade(_mesa.Pedido, item);
+
             AtualizarTudo();
+            MostrarAlertasEstoque(alertas);
         }
 
         private void btnDiminuirQtd_Click(object sender, EventArgs e)

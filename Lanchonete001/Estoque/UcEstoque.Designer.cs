@@ -297,7 +297,7 @@ namespace Lanchonete001.Estoque
             this.lblCaptionSemEstoque.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(108)))), ((int)(((byte)(122)))));
             this.lblCaptionSemEstoque.Location = new System.Drawing.Point(76, 32);
             this.lblCaptionSemEstoque.Name = "lblCaptionSemEstoque";
-            this.lblCaptionSemEstoque.Size = new System.Drawing.Size(94, 23);
+            this.lblCaptionSemEstoque.Size = new System.Drawing.Size(96, 23);
             this.lblCaptionSemEstoque.TabIndex = 1;
             this.lblCaptionSemEstoque.Text = "Sem Estoque";
             // 
@@ -367,7 +367,7 @@ namespace Lanchonete001.Estoque
             this.lblValorEstoque.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(22)))), ((int)(((byte)(52)))));
             this.lblValorEstoque.Location = new System.Drawing.Point(18, 78);
             this.lblValorEstoque.Name = "lblValorEstoque";
-            this.lblValorEstoque.Size = new System.Drawing.Size(92, 39);
+            this.lblValorEstoque.Size = new System.Drawing.Size(90, 36);
             this.lblValorEstoque.TabIndex = 2;
             this.lblValorEstoque.Text = "R$ 0,00";
             // 
@@ -403,7 +403,7 @@ namespace Lanchonete001.Estoque
             // 
             // cboFiltroCategoriaInsumo
             // 
-            this.cboFiltroCategoriaInsumo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.cboFiltroCategoriaInsumo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cboFiltroCategoriaInsumo.BackColor = System.Drawing.Color.White;
             this.cboFiltroCategoriaInsumo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -434,7 +434,7 @@ namespace Lanchonete001.Estoque
             // 
             // txtBuscaInsumo
             // 
-            this.txtBuscaInsumo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.txtBuscaInsumo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBuscaInsumo.BackColor = System.Drawing.Color.White;
             this.txtBuscaInsumo.BorderStyle = System.Windows.Forms.BorderStyle.None;

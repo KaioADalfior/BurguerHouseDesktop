@@ -1,22 +1,24 @@
-﻿using Lanchonete001.Cardapio;
-using Lanchonete001.Lanches;
+﻿using Lanchonete001.BancoDados;
 using Lanchonete001.Bebidas;
+using Lanchonete001.Cardapio;
 using Lanchonete001.Configuracoes;
 using Lanchonete001.Estoque;
-using Lanchonete001.BancoDados;
+using Lanchonete001.Lanches;
+using Lanchonete001.Mesas;
+using Lanchonete001.Produtos;
+using Lanchonete001.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Lanchonete001.Mesas;
-using Lanchonete001.Produtos;
-using Lanchonete001.Usuarios;
+using System.Globalization;
 
 namespace Lanchonete001
 {
@@ -25,6 +27,8 @@ namespace Lanchonete001
         // Paleta do menu lateral
         private static readonly Color CorMenuNormal = Color.FromArgb(3, 22, 52);
         private static readonly Color CorMenuHover = Color.FromArgb(14, 44, 82);
+        private System.Windows.Forms.Timer timerDashboard;
+
 
         // Paleta "app de lanchonete" para os cards do dashboard.
         // Pedidos deixou de usar o mesmo azul-marinho do menu lateral
@@ -92,17 +96,40 @@ namespace Lanchonete001
             lblUsuario.Text = "Usuário: " + nomeExibido;
             lblUsuarioConectado.Text = "Usuário: " + nomeExibido;
 
-            lblValorCardVendas.Text = "R$ 1.000,00";
-            lblValorCardPedidos.Text = "38";
-            lblValorCardMesas.Text = "12/32";
-            lblValorCardEstoque.Text = "5 Itens";
-
-            lblDescricaoCardVendas.Text = "Hoje!";
-            lblDescricaoCardMesas.Text = "50% Ocupação";
-            lblDescricaoCardEstoque.Text = "Baixo Estoque";
-            lblDescricaoCardPedidos.Text = "+12% vs Ontem";
-
+            AtualizarCardsDashboard();
             AtualizarStatusBanco();
+        }
+
+        private void AtualizarCardsDashboard()
+        {
+            try
+            {
+                var resumo = DashboardRepositorio.ObterResumo();
+
+                lblValorCardVendas.Text = resumo.VendasHoje.ToString("C2", new CultureInfo("pt-BR"));
+                lblValorCardPedidos.Text = resumo.PedidosHoje.ToString();
+                lblValorCardMesas.Text = $"{resumo.MesasOcupadas}/{resumo.TotalMesas}";
+                lblValorCardEstoque.Text = $"{resumo.ItensEstoqueBaixo} Itens";
+
+                lblDescricaoCardVendas.Text = "Hoje!";
+                lblDescricaoCardMesas.Text = $"{resumo.PercentualOcupacao}% Ocupação";
+                lblDescricaoCardEstoque.Text = resumo.ItensEstoqueBaixo > 0 ? "Baixo Estoque" : "Estoque OK";
+                lblDescricaoCardPedidos.Text = "Total do dia";
+            }
+            catch (Exception ex)
+            {
+                lblValorCardVendas.Text = "--";
+                lblValorCardPedidos.Text = "--";
+                lblValorCardMesas.Text = "--/--";
+                lblValorCardEstoque.Text = "--";
+
+                lblDescricaoCardVendas.Text = "Sem conexão";
+                lblDescricaoCardMesas.Text = "Sem conexão";
+                lblDescricaoCardEstoque.Text = "Sem conexão";
+                lblDescricaoCardPedidos.Text = "Sem conexão";
+
+                System.Diagnostics.Debug.WriteLine("Erro ao carregar dashboard: " + ex.Message);
+            }
         }
 
         /// <summary>Testa a conexão com o banco agora e reflete o resultado em lblStatusBanco.</summary>
@@ -146,6 +173,8 @@ namespace Lanchonete001
         {
             MarcarItemMenuAtivo(btnDashboard);
             CarregarDashboard();
+            AtualizarCardsDashboard(); // <-- adicionado: recarrega os números do banco
+
         }
 
         /// <summary>
@@ -193,6 +222,7 @@ namespace Lanchonete001
             // tela de Estoque com um clique (as demais telas ainda não têm
             // UserControl implementado, por isso só este card é clicável)
             AtribuirCliqueRecursivo(pnlCardEstoque, btnEstoque_Click);
+            ConfigurarAutoAtualizacaoDashboard();
 
             // Hover nos itens do menu lateral
             var itensMenu = new[]
@@ -208,6 +238,17 @@ namespace Lanchonete001
 
             // Estado inicial: "Dashboard" começa selecionado, pois é a tela carregada por padrão
             MarcarItemMenuAtivo(btnDashboard);
+        }
+
+        private void ConfigurarAutoAtualizacaoDashboard()
+        {
+            timerDashboard = new System.Windows.Forms.Timer { Interval = 20000 }; // 20s
+            timerDashboard.Tick += (s, e) =>
+            {
+                if (itemMenuAtivo == btnDashboard)
+                    AtualizarCardsDashboard();
+            };
+            timerDashboard.Start();
         }
 
         /// <summary>
@@ -330,10 +371,23 @@ namespace Lanchonete001
                 Text = "Confira o resumo do seu negócio hoje"
             };
 
+            // Botão de atualizar manual, ancorado à direita do cabeçalho
+            var lblAtualizar = new Label
+            {
+                AutoSize = true,
+                Font = new Font("Poppins SemiBold", 9.5F, FontStyle.Bold),
+                ForeColor = Color.FromArgb(3, 22, 52),
+                Cursor = Cursors.Hand,
+                Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                Text = "⟳  Atualizar"
+            };
+            lblAtualizar.Location = new Point(pnlAreaConteudo.ClientSize.Width - lblAtualizar.PreferredWidth - 24, 8);
+            lblAtualizar.Click += (s, e) => AtualizarCardsDashboard();
+
             pnlAreaConteudo.Controls.Add(lblSubtitulo);
             pnlAreaConteudo.Controls.Add(lblTitulo);
+            pnlAreaConteudo.Controls.Add(lblAtualizar);
 
-            // Empurra os cards para baixo, abrindo espaço para o cabeçalho
             flowLayoutPanel1.Location = new Point(6, 74);
         }
 
